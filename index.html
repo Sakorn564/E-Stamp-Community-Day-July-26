@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E-Stamp Jigsaw</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background: linear-gradient(160deg, #e8f0ff 0%, #f0e8ff 50%, #e8f8ff 100%);
+    min-height: 100vh;
+    padding: 30px 20px;
+  }
+
+  .main-header { text-align:center; margin-bottom:28px; position:relative; }
+  .logo-wrap { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:4px; }
+  .logo-img { width:64px; height:64px; object-fit:contain; border-radius:50%; box-shadow:0 4px 15px rgba(44,90,160,0.3); }
+  .main-title { font-size:40px; font-weight:900; color:#1e3a8a; letter-spacing:1px; }
+  .main-sub { font-size:20px; font-weight:700; color:#2563eb; margin-bottom:4px; }
+  .main-desc { font-size:15px; color:#6b7280; }
+  .sparkle { position:absolute; font-size:20px; animation:twinkle 2s infinite; }
+  .sparkle.s1{top:10px;left:10%;animation-delay:0s}
+  .sparkle.s2{top:5px;right:12%;animation-delay:.5s}
+  .sparkle.s3{bottom:5px;left:20%;animation-delay:1s}
+  .sparkle.s4{bottom:0;right:18%;animation-delay:1.5s}
+  @keyframes twinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+
+  .phones-row { display:flex; justify-content:center; align-items:center; gap:0; flex-wrap:wrap; margin-bottom:30px; }
+  .arrow-wrap { display:flex; align-items:center; justify-content:center; width:40px; flex-shrink:0; }
+
+  .phone { width:170px; background:#fff; border-radius:28px; border:3px solid #d1d9e6; box-shadow:0 8px 30px rgba(0,0,0,0.15); overflow:hidden; flex-shrink:0; }
+  .phone-notch { width:100%; height:22px; background:#1a1a2e; display:flex; align-items:center; justify-content:space-between; padding:0 10px; border-radius:25px 25px 0 0; }
+  .notch-time { color:#fff; font-size:9px; font-weight:700; }
+  .notch-icons { color:#fff; font-size:8px; letter-spacing:2px; }
+  .phone-inner { padding:10px 8px 8px; }
+  .ph-header { text-align:center; margin-bottom:8px; }
+  .ph-title { font-size:13px; font-weight:800; color:#1e3a8a; }
+  .ph-sub { font-size:8px; color:#6b7280; }
+
+  .jigsaw-img-grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:2px; width:100%; aspect-ratio:1/1; margin-bottom:8px; border-radius:10px; overflow:hidden; }
+  .jpiece-img { position:relative; overflow:hidden; transition:all 0.4s ease; }
+  .jpiece-img img { position:absolute; width:200%; height:200%; object-fit:cover; display:block; }
+  .jpiece-img.pos-tl img { top:0; left:0; }
+  .jpiece-img.pos-tr img { top:0; left:-100%; }
+  .jpiece-img.pos-bl img { top:-100%; left:0; }
+  .jpiece-img.pos-br img { top:-100%; left:-100%; }
+  .jpiece-img.locked { filter:grayscale(100%) opacity(0.25); }
+  .jpiece-img.unlocked { filter:none; animation:pieceReveal .5s ease; }
+  @keyframes pieceReveal{0%{transform:scale(.8);opacity:0}100%{transform:scale(1);opacity:1}}
+  .jpiece-img .lock-icon { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:18px; z-index:2; }
+  .jpiece-img.unlocked .lock-icon { display:none; }
+
+  .ph-progress { text-align:center; font-size:10px; color:#2563eb; font-weight:700; margin-bottom:6px; }
+  .ph-booths-label { text-align:center; font-size:8px; color:#6b7280; margin-bottom:4px; }
+  .ph-booths { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+  .ph-booth-btn { display:flex; align-items:center; gap:3px; padding:4px 5px; border-radius:7px; border:1.5px solid #e5e7eb; background:#f9fafb; font-size:7.5px; font-weight:600; color:#374151; }
+  .ph-booth-btn.done { background:#f0fdf4; border-color:#86efac; color:#15803d; }
+  .ph-booth-btn svg { width:12px; height:12px; flex-shrink:0; }
+  .ph-complete-box { background:linear-gradient(135deg,#2563eb,#1d4ed8); border-radius:10px; padding:10px 8px; text-align:center; margin-top:4px; }
+  .ph-complete-box .ctext { color:#fff; font-size:11px; font-weight:800; }
+  .ph-complete-box .csub { color:#bfdbfe; font-size:8px; margin-top:2px; }
+
+  /* BOTTOM SECTION */
+  .bottom-section { display:flex; gap:20px; flex-wrap:wrap; justify-content:center; align-items:flex-start; max-width:980px; margin:0 auto; }
+
+  /* BOOTH CARDS - new horizontal layout */
+  .booth-info-card { background:#fff; border-radius:20px; padding:20px 18px; box-shadow:0 4px 20px rgba(0,0,0,0.08); flex:1; min-width:420px; max-width:560px; }
+  .booth-info-title { display:inline-flex; align-items:center; gap:6px; background:#fff3cd; border:1.5px solid #fbbf24; border-radius:20px; padding:4px 14px; font-size:14px; font-weight:800; color:#92400e; margin-bottom:16px; }
+  .booth-grid-2x2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .booth-card {
+    display:flex; flex-direction:column; align-items:center;
+    padding:16px 10px 14px;
+    border-radius:14px; border:2px solid transparent;
+    transition:all .3s; text-align:center;
+    position:relative;
+  }
+  .booth-card.b-customer  { background:#eff6ff; border-color:#bfdbfe; }
+  .booth-card.b-result    { background:#f0fdf4; border-color:#bbf7d0; }
+  .booth-card.b-excellent { background:#fffbeb; border-color:#fde68a; }
+  .booth-card.b-innovation{ background:#faf5ff; border-color:#e9d5ff; }
+  .booth-card.b-customer.active  { border-color:#2563eb; box-shadow:0 0 0 3px rgba(37,99,235,0.15); }
+  .booth-card.b-result.active    { border-color:#059669; box-shadow:0 0 0 3px rgba(5,150,105,0.15); }
+  .booth-card.b-excellent.active { border-color:#d97706; box-shadow:0 0 0 3px rgba(217,119,6,0.15); }
+  .booth-card.b-innovation.active{ border-color:#7c3aed; box-shadow:0 0 0 3px rgba(124,58,237,0.15); }
+  .bc-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:8px; }
+  .bc-icon svg { width:28px; height:28px; }
+  .b-customer  .bc-icon { background:#dbeafe; }
+  .b-result    .bc-icon { background:#d1fae5; }
+  .b-excellent .bc-icon { background:#fef3c7; }
+  .b-innovation .bc-icon{ background:#ede9fe; }
+  .bc-name { font-size:15px; font-weight:800; margin-bottom:3px; }
+  .b-customer  .bc-name { color:#1e40af; }
+  .b-result    .bc-name { color:#065f46; }
+  .b-excellent .bc-name { color:#92400e; }
+  .b-innovation .bc-name{ color:#4c1d95; }
+  .bc-desc { font-size:11px; color:#6b7280; margin-bottom:12px; }
+  .bc-stamp-btn {
+    padding:7px 18px; border-radius:20px; border:none;
+    font-size:12px; font-weight:700; cursor:pointer;
+    transition:all .2s; white-space:nowrap;
+    display:flex; align-items:center; gap:5px;
+  }
+  .b-customer  .bc-stamp-btn { background:#2563eb; color:#fff; }
+  .b-result    .bc-stamp-btn { background:#059669; color:#fff; }
+  .b-excellent .bc-stamp-btn { background:#d97706; color:#fff; }
+  .b-innovation .bc-stamp-btn{ background:#7c3aed; color:#fff; }
+  .bc-stamp-btn.stamped { background:#d1fae5; color:#065f46; cursor:default; }
+  .bc-stamp-btn:hover:not(.stamped){ transform:scale(1.05); box-shadow:0 3px 10px rgba(0,0,0,0.15); }
+  .done-badge { position:absolute; top:8px; right:8px; background:#22c55e; color:#fff; font-size:10px; font-weight:700; border-radius:20px; padding:2px 8px; }
+
+  /* BENEFITS */
+  .benefit-card { background:#fff; border-radius:20px; padding:20px 18px; box-shadow:0 4px 20px rgba(0,0,0,0.08); flex:1; min-width:200px; max-width:240px; }
+  .benefit-title { display:inline-flex; align-items:center; gap:6px; background:#e0f2fe; border:1.5px solid #38bdf8; border-radius:20px; padding:4px 14px; font-size:14px; font-weight:800; color:#0c4a6e; margin-bottom:14px; }
+  .benefit-list { display:flex; flex-direction:column; gap:12px; }
+  .benefit-item { display:flex; align-items:flex-start; gap:10px; }
+  .bene-icon { width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .bene-icon svg { width:18px; height:18px; }
+  .bene-text .bname { font-size:13px; font-weight:700; color:#1f2937; }
+  .bene-text .bdesc { font-size:10px; color:#6b7280; margin-top:1px; }
+
+  /* JIGSAW PREVIEW */
+  .jigsaw-preview-card { background:linear-gradient(135deg,#eff6ff,#f5f3ff); border-radius:20px; padding:20px 18px; box-shadow:0 4px 20px rgba(0,0,0,0.08); width:200px; flex-shrink:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+  .jp-grid { display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3px; width:140px; height:140px; border-radius:10px; overflow:hidden; margin-bottom:10px; }
+  .jp-piece { position:relative; overflow:hidden; transition:all .4s; }
+  .jp-piece img { position:absolute; width:200%; height:200%; object-fit:cover; }
+  .jp-piece.pos-tl img{top:0;left:0}
+  .jp-piece.pos-tr img{top:0;left:-100%}
+  .jp-piece.pos-bl img{top:-100%;left:0}
+  .jp-piece.pos-br img{top:-100%;left:-100%}
+  .jp-piece.locked { filter:grayscale(100%) opacity(0.2); }
+  .jp-piece.unlocked { filter:none; }
+  .jp-label { font-size:13px; font-weight:700; color:#1e3a8a; }
+  .jp-sub { font-size:10px; color:#6b7280; margin-top:3px; }
+
+  /* ===== QR SCANNER MODAL ===== */
+  .qr-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:500; align-items:center; justify-content:center; }
+  .qr-modal.show { display:flex; }
+  .qr-box {
+    background:#0f172a;
+    border-radius:24px;
+    width:320px;
+    padding:0 0 24px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+    position:relative;
+    animation:slideUp .35s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
+  .qr-top-bar {
+    background:#1e293b;
+    padding:14px 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .qr-close {
+    width:32px; height:32px; border-radius:50%; background:#334155;
+    border:none; color:#94a3b8; font-size:16px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s;
+  }
+  .qr-close:hover { background:#475569; }
+  .qr-top-title { font-size:15px; font-weight:700; color:#f1f5f9; flex:1; text-align:center; }
+  .qr-booth-badge {
+    padding:3px 10px; border-radius:20px; font-size:11px; font-weight:700;
+    margin-right:4px;
+  }
+  .qr-cam-area {
+    position:relative;
+    width:100%;
+    height:280px;
+    background:#000;
+    overflow:hidden;
+  }
+  #qrVideo { width:100%; height:100%; object-fit:cover; display:block; }
+  .qr-overlay {
+    position:absolute; inset:0;
+    display:flex; align-items:center; justify-content:center;
+    pointer-events:none;
+  }
+  .qr-frame {
+    width:180px; height:180px; position:relative;
+  }
+  .qr-corner {
+    position:absolute; width:30px; height:30px;
+    border-color:#38bdf8; border-style:solid;
+  }
+  .qr-corner.tl { top:0;left:0; border-width:4px 0 0 4px; border-radius:4px 0 0 4px; }
+  .qr-corner.tr { top:0;right:0; border-width:4px 4px 0 0; border-radius:0 4px 0 0; }
+  .qr-corner.bl { bottom:0;left:0; border-width:0 0 4px 4px; border-radius:0 0 0 4px; }
+  .qr-corner.br { bottom:0;right:0; border-width:0 4px 4px 0; border-radius:0 0 4px 0; }
+  .qr-scan-line {
+    position:absolute; left:10px; right:10px; height:2px;
+    background:linear-gradient(90deg,transparent,#38bdf8,transparent);
+    animation:scanMove 2s linear infinite;
+    top:10px;
+  }
+  @keyframes scanMove{0%{top:10px}100%{top:calc(100% - 10px)}}
+  .qr-hint { text-align:center; padding:12px 16px 0; }
+  .qr-hint-text { font-size:13px; color:#94a3b8; }
+  .qr-hint-booth { font-size:15px; font-weight:700; margin-top:4px; }
+  .qr-divider { border:none; border-top:1px solid #1e293b; margin:14px 0 0; }
+  .qr-manual {
+    padding:0 16px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .qr-manual-text { font-size:11px; color:#64748b; flex:1; }
+  .qr-manual-btn {
+    padding:7px 14px; border-radius:20px; border:none;
+    font-size:12px; font-weight:700; cursor:pointer;
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:#fff; transition:transform .2s; white-space:nowrap;
+  }
+  .qr-manual-btn:hover { transform:scale(1.05); }
+
+  /* Success flash */
+  .qr-success-flash {
+    position:absolute; inset:0;
+    background:rgba(34,197,94,0.3);
+    display:none; align-items:center; justify-content:center;
+    z-index:10;
+  }
+  .qr-success-flash.show { display:flex; animation:flashFade .6s ease forwards; }
+  @keyframes flashFade{0%{opacity:1}100%{opacity:0}}
+  .qr-success-icon { font-size:80px; }
+
+  /* MAIN MODAL */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center; }
+  .modal-overlay.show { display:flex; }
+  .modal-box { background:#fff; border-radius:24px; padding:40px 30px; text-align:center; max-width:320px; width:90%; animation:popIn .4s ease; }
+  @keyframes popIn{0%{transform:scale(.5);opacity:0}80%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+  .modal-trophy { font-size:70px; margin-bottom:10px; }
+  .modal-preview { width:130px; height:130px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:2px; border-radius:10px; overflow:hidden; margin:16px auto; }
+  .modal-preview .mp { position:relative; overflow:hidden; }
+  .modal-preview .mp img { position:absolute; width:200%; height:200%; object-fit:cover; }
+  .modal-preview .mp.pos-tl img{top:0;left:0}
+  .modal-preview .mp.pos-tr img{top:0;left:-100%}
+  .modal-preview .mp.pos-bl img{top:-100%;left:0}
+  .modal-preview .mp.pos-br img{top:-100%;left:-100%}
+  .modal-h { font-size:24px; font-weight:900; color:#1e3a8a; }
+  .modal-p { font-size:14px; color:#6b7280; margin-top:8px; }
+  .modal-eco { font-size:12px; color:#059669; margin-top:6px; }
+  .modal-btn { margin-top:16px; padding:12px 30px; background:linear-gradient(135deg,#2563eb,#7c3aed); color:#fff; border:none; border-radius:25px; font-size:15px; font-weight:800; cursor:pointer; transition:transform .2s; display:block; width:100%; }
+  .modal-btn:hover { transform:scale(1.03); }
+
+  .conf { position:fixed; pointer-events:none; border-radius:50%; animation:cffall 3s ease forwards; }
+  @keyframes cffall{0%{opacity:1;transform:translateY(-20px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+
+  @media(max-width:700px){
+    .arrow-wrap{width:20px}
+    .phone{width:130px}
+    .bottom-section{flex-direction:column;align-items:center}
+    .jigsaw-preview-card,.booth-info-card{width:100%;min-width:unset;max-width:100%}
+    .booth-grid-2x2{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="main-header">
+  <div class="sparkle s1">✦</div>
+  <div class="sparkle s2">✦</div>
+  <div class="sparkle s3">✦</div>
+  <div class="sparkle s4">✦</div>
+  <div class="logo-wrap">
+    <img class="logo-img" src="https://i.imgur.com/7lE2Rcx.png" alt="logo" onerror="this.style.display='none'"/>
+    <div class="main-title">E – Stamp</div>
+  </div>
+  <div class="main-sub">แสตมป์ครบ 4 บูท รับจิ๊กซอว์สมบูรณ์</div>
+  <div class="main-desc">สะสมแสตมป์ครบทั้ง 4 บูท เพื่อรับจิ๊กซอว์ชิ้นเต็ม!</div>
+</div>
+
+<!-- PHONES ROW -->
+<div class="phones-row" id="phonesRow"></div>
+
+<!-- BOTTOM -->
+<div class="bottom-section">
+  <div class="booth-info-card">
+    <div class="booth-info-title">
+      <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="1.5" fill="#92400e"/><rect x="11" y="2" width="7" height="7" rx="1.5" fill="#92400e"/><rect x="2" y="11" width="7" height="7" rx="1.5" fill="#92400e"/><rect x="11" y="11" width="7" height="7" rx="1.5" fill="#92400e"/></svg>
+      4 บูท
+    </div>
+    <div class="booth-grid-2x2" id="boothList"></div>
+  </div>
+
+  <div class="benefit-card">
+    <div class="benefit-title">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" fill="#0ea5e9" opacity=".15"/><path d="M6 10l3 3 5-5" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      ประโยชน์
+    </div>
+    <div class="benefit-list">
+      <div class="benefit-item">
+        <div class="bene-icon" style="background:#d1fae5"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8 2 5 6 5 10c0 5 7 12 7 12s7-7 7-12c0-4-3-8-7-8z" stroke="#059669" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#059669" stroke-width="2"/></svg></div>
+        <div class="bene-text"><div class="bname">ลดการใช้กระดาษ</div><div class="bdesc">รักษ์โลกมากขึ้น</div></div>
+      </div>
+      <div class="benefit-item">
+        <div class="bene-icon" style="background:#dbeafe"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="#2563eb" stroke-width="2"/><path d="M9 7h6M9 11h6M9 15h4" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+        <div class="bene-text"><div class="bname">สะดวก รวดเร็ว</div><div class="bdesc">แสตมป์ผ่านแอปได้เลย</div></div>
+      </div>
+      <div class="benefit-item">
+        <div class="bene-icon" style="background:#fef3c7"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" stroke="#d97706" stroke-width="2" stroke-linejoin="round"/></svg></div>
+        <div class="bene-text"><div class="bname">สนุกและท้าทาย</div><div class="bdesc">สะสมให้ครบ รับรางวัล!</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jigsaw-preview-card">
+    <div class="jp-grid">
+      <div class="jp-piece pos-tl locked" id="jp-customer"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+      <div class="jp-piece pos-tr locked" id="jp-result"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+      <div class="jp-piece pos-bl locked" id="jp-excellent"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+      <div class="jp-piece pos-br locked" id="jp-innovation"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+    </div>
+    <div class="jp-label" id="jpLabel">จิ๊กซอว์ของคุณ</div>
+    <div class="jp-sub" id="jpSub">0 / 4 ชิ้น</div>
+  </div>
+</div>
+
+<!-- QR SCANNER MODAL -->
+<div class="qr-modal" id="qrModal">
+  <div class="qr-box">
+    <div class="qr-top-bar">
+      <button class="qr-close" onclick="closeQR()">✕</button>
+      <div class="qr-top-title">สแกน QR Code</div>
+      <span class="qr-booth-badge" id="qrBadge"></span>
+    </div>
+    <div class="qr-cam-area">
+      <video id="qrVideo" autoplay playsinline muted></video>
+      <div class="qr-success-flash" id="qrFlash">
+        <div class="qr-success-icon">✅</div>
+      </div>
+      <div class="qr-overlay">
+        <div class="qr-frame">
+          <div class="qr-corner tl"></div>
+          <div class="qr-corner tr"></div>
+          <div class="qr-corner bl"></div>
+          <div class="qr-corner br"></div>
+          <div class="qr-scan-line"></div>
+        </div>
+      </div>
+    </div>
+    <div class="qr-hint">
+      <div class="qr-hint-text">นำ QR Code ของบูทเข้าใกล้กล้อง</div>
+      <div class="qr-hint-booth" id="qrHintBooth"></div>
+    </div>
+    <hr class="qr-divider"/>
+    <div class="qr-manual" style="margin-top:12px">
+      <div class="qr-manual-text">ทดสอบ: กด "แสตมป์เลย" เพื่อจำลองการสแกนสำเร็จ</div>
+      <button class="qr-manual-btn" id="qrManualBtn" onclick="simulateScan()">แสตมป์เลย</button>
+    </div>
+  </div>
+</div>
+
+<!-- COMPLETE MODAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <div class="modal-trophy">🏆</div>
+    <div class="modal-preview">
+      <div class="mp pos-tl"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+      <div class="mp pos-tr"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+      <div class="mp pos-bl"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+      <div class="mp pos-br"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
+    </div>
+    <div class="modal-h">จิ๊กซอว์สมบูรณ์!</div>
+    <div class="modal-p">ขอบคุณที่ร่วมกิจกรรมครบทั้ง 4 บูท</div>
+    <div class="modal-eco">🌿 ลดการใช้กระดาษ รักษ์โลกมากขึ้น</div>
+    <button class="modal-btn" onclick="resetAll()">เริ่มใหม่อีกครั้ง</button>
+  </div>
+</div>
+
+<script>
+const IMG = "https://i.imgur.com/7lE2Rcx.png";
+const BOOTHS = [
+  { id:'customer',   label:'Customer',   sub:'บูทเกี่ยวกับลูกค้า',  cls:'b-customer',   pos:'tl', color:'#2563eb', badgeBg:'#dbeafe', badgeColor:'#1e40af',
+    icon:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#2563eb" stroke-width="2"/><circle cx="7" cy="10" r="3" stroke="#2563eb" stroke-width="1.5"/><circle cx="17" cy="10" r="3" stroke="#2563eb" stroke-width="1.5"/><path d="M4 20 Q12 15 20 20" stroke="#2563eb" stroke-width="2" stroke-linecap="round" fill="none"/></svg>' },
+  { id:'result',     label:'Result',     sub:'บูทเกี่ยวกับผลลัพธ์', cls:'b-result',     pos:'tr', color:'#059669', badgeBg:'#d1fae5', badgeColor:'#065f46',
+    icon:'<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="14" width="4" height="7" rx="1" fill="#059669"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#059669"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#059669"/><path d="M5 12 L12 8 L19 4" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg>' },
+  { id:'excellent',  label:'Excellent',  sub:'บูทความเป็นเลิศ',     cls:'b-excellent',  pos:'bl', color:'#d97706', badgeBg:'#fef3c7', badgeColor:'#92400e',
+    icon:'<svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#d97706" stroke-width="2" stroke-linejoin="round" fill="#fde68a"/></svg>' },
+  { id:'innovation', label:'Innovation', sub:'บูทนวัตกรรม',          cls:'b-innovation', pos:'br', color:'#7c3aed', badgeBg:'#ede9fe', badgeColor:'#4c1d95',
+    icon:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5 Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>' },
+];
+
+let stamped = { customer:false, result:false, excellent:false, innovation:false };
+let currentBoothId = null;
+let videoStream = null;
+let scanInterval = null;
+
+/* ---- BUILD PHONE MOCKUPS ---- */
+function buildPhones() {
+  const row = document.getElementById('phonesRow');
+  row.innerHTML = '';
+  for(let stage=1; stage<=4; stage++) {
+    if(stage>1) row.innerHTML += `<div class="arrow-wrap"><svg viewBox="0 0 32 32" fill="none"><path d="M6 16 L26 16" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/><path d="M18 8 L26 16 L18 24" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+    const activeIds = BOOTHS.slice(0,stage).map(b=>b.id);
+    let piecesHTML = BOOTHS.map(b => {
+      const isOn = activeIds.includes(b.id);
+      return `<div class="jpiece-img pos-${b.pos} ${isOn?'unlocked':'locked'}"><img src="${IMG}" alt=""/>${!isOn?'<span class="lock-icon">🔒</span>':''}</div>`;
+    }).join('');
+    let btnsHTML = BOOTHS.map(b => {
+      const done = activeIds.includes(b.id);
+      return `<div class="ph-booth-btn${done?' done':''}"><span style="width:12px;height:12px;display:inline-block">${b.icon.replace(/width="24"/g,'width="12"').replace(/height="24"/g,'height="12"')}</span><span>${b.label}</span></div>`;
+    }).join('');
+    const isComplete = stage===4;
+    row.innerHTML += `<div class="phone">
+      <div class="phone-notch"><span class="notch-time">9:41</span><span class="notch-icons">▶ ◼</span></div>
+      <div class="phone-inner">
+        <div class="ph-header"><div class="ph-title">E – Stamp</div><div class="ph-sub">แสตมป์ครบ 4 บูท รับจิ๊กซอว์สมบูรณ์</div></div>
+        <div class="jigsaw-img-grid">${piecesHTML}</div>
+        <div class="ph-progress">แสตมป์แล้ว ${stage} / 4 บูท</div>
+        ${!isComplete
+          ? `<div class="ph-booths-label">เลือกบูทเพื่อแสตมป์</div><div class="ph-booths">${btnsHTML}</div>`
+          : `<div class="ph-complete-box"><div class="ctext">จิ๊กซอว์สมบูรณ์!</div><div class="csub">ขอบคุณที่ร่วมกิจกรรม 🎉</div></div>`}
+      </div>
+    </div>`;
+  }
+}
+
+/* ---- BUILD BOOTH CARDS ---- */
+function buildBoothList() {
+  const list = document.getElementById('boothList');
+  list.innerHTML = BOOTHS.map(b => {
+    const done = stamped[b.id];
+    return `<div class="booth-card ${b.cls}${done?' active':''}">
+      ${done ? '<div class="done-badge">✓ แสตมป์แล้ว</div>' : ''}
+      <div class="bc-icon">${b.icon}</div>
+      <div class="bc-name">${b.label}</div>
+      <div class="bc-desc">${b.sub}</div>
+      <button class="bc-stamp-btn${done?' stamped':''}" onclick="${done?'':'openQR(\''+b.id+'\')'}" ${done?'disabled':''}>
+        ${done
+          ? '<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M5 12l5 5L19 7" stroke="#065f46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> แสตมป์แล้ว'
+          : '<svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="16" y="16" width="2" height="2" fill="white"/><rect x="20" y="16" width="2" height="2" fill="white"/><rect x="16" y="20" width="2" height="2" fill="white"/><rect x="20" y="20" width="2" height="2" fill="white"/></svg> แสตมป์ที่นี่!'}
+      </button>
+    </div>`;
+  }).join('');
+}
+
+/* ---- LIVE PREVIEW ---- */
+function updateLivePreview() {
+  BOOTHS.forEach(b => {
+    const el = document.getElementById('jp-'+b.id);
+    if(el) {
+      if(stamped[b.id]){ el.classList.remove('locked'); el.classList.add('unlocked'); }
+      else { el.classList.add('locked'); el.classList.remove('unlocked'); }
+    }
+  });
+  const count = Object.values(stamped).filter(Boolean).length;
+  document.getElementById('jpSub').textContent = count + ' / 4 ชิ้น';
+  const lbl = document.getElementById('jpLabel');
+  if(count===4){ lbl.textContent='จิ๊กซอว์สมบูรณ์!'; lbl.style.color='#059669'; }
+  else { lbl.textContent='จิ๊กซอว์ของคุณ'; lbl.style.color='#1e3a8a'; }
+}
+
+/* ---- QR MODAL ---- */
+function openQR(boothId) {
+  if(stamped[boothId]) return;
+  currentBoothId = boothId;
+  const booth = BOOTHS.find(b=>b.id===boothId);
+
+  // Set badge
+  const badge = document.getElementById('qrBadge');
+  badge.textContent = booth.label;
+  badge.style.background = booth.badgeBg;
+  badge.style.color = booth.badgeColor;
+
+  // Set hint
+  document.getElementById('qrHintBooth').innerHTML = `<span style="color:${booth.color}">บูท ${booth.label}</span>`;
+
+  // Show modal
+  document.getElementById('qrModal').classList.add('show');
+
+  // Start camera
+  startCamera();
+}
+
+function startCamera() {
+  if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode:'environment' } })
+      .then(stream => {
+        videoStream = stream;
+        const video = document.getElementById('qrVideo');
+        video.srcObject = stream;
+        video.play();
+        // Auto-detect QR (simulation: detect after 3s if no jsQR library)
+        // Real usage: integrate jsQR library here
+      })
+      .catch(err => {
+        console.log('Camera not available:', err);
+        // Camera unavailable is fine - user can use manual button
+      });
+  }
+}
+
+function stopCamera() {
+  if(videoStream) {
+    videoStream.getTracks().forEach(t => t.stop());
+    videoStream = null;
+  }
+  if(scanInterval) {
+    clearInterval(scanInterval);
+    scanInterval = null;
+  }
+}
+
+function closeQR() {
+  stopCamera();
+  document.getElementById('qrModal').classList.remove('show');
+  currentBoothId = null;
+  const video = document.getElementById('qrVideo');
+  video.srcObject = null;
+}
+
+function simulateScan() {
+  if(!currentBoothId) return;
+  // Flash success
+  const flash = document.getElementById('qrFlash');
+  flash.classList.add('show');
+  setTimeout(() => {
+    flash.classList.remove('show');
+    closeQR();
+    doStamp(currentBoothId);
+  }, 700);
+}
+
+function doStamp(id) {
+  if(stamped[id]) return;
+  stamped[id] = true;
+  buildBoothList();
+  updateLivePreview();
+  if(Object.values(stamped).every(Boolean)) {
+    setTimeout(()=>{ document.getElementById('modalOverlay').classList.add('show'); launchConfetti(); }, 600);
+  }
+}
+
+function launchConfetti() {
+  const colors=['#2563eb','#059669','#d97706','#7c3aed','#ec4899','#f59e0b'];
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const c=document.createElement('div');
+      c.className='conf';
+      c.style.cssText=`left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;animation-duration:${2+Math.random()*2}s`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(),4000);
+    },i*60);
+  }
+}
+
+function resetAll() {
+  stamped={customer:false,result:false,excellent:false,innovation:false};
+  buildBoothList();
+  updateLivePreview();
+  document.getElementById('modalOverlay').classList.remove('show');
+}
+
+// Close QR modal on overlay click
+document.getElementById('qrModal').addEventListener('click', function(e){ if(e.target===this) closeQR(); });
+
+buildPhones();
+buildBoothList();
+updateLivePreview();
+</script>
+</body>
+</html>
