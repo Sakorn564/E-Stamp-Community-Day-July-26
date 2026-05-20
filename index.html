@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>WD Journey Stamp Collection</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
   body { font-family:'Segoe UI',Tahoma,sans-serif; background:#f0f4ff; min-height:100vh; }
   .page{display:none} .page.active{display:block}
   .app-wrap{max-width:480px;margin:0 auto;padding:0 0 40px}
 
-  /* ===== HEADER ===== */
   .header{text-align:center;padding:28px 16px 18px;position:relative;background:linear-gradient(180deg,#dce8ff 0%,#f0f4ff 100%)}
   .header-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:6px;flex-wrap:nowrap}
   .header-logo{width:48px;height:48px;border-radius:50%;object-fit:contain;box-shadow:0 4px 14px rgba(28,78,180,0.25);flex-shrink:0}
@@ -18,75 +18,61 @@
   .header-sub{font-size:15px;font-weight:700;color:#2563eb;margin-bottom:3px}
   .header-desc{font-size:12px;color:#6b7280}
   .admin-link{position:absolute;top:18px;right:14px;font-size:11px;color:#1c4eb4;cursor:pointer;padding:4px 10px;border-radius:20px;border:1.5px solid #bfdbfe;background:#fff;font-weight:600}
-  .admin-link:hover{background:#eff6ff;border-color:#2563eb}
+  .admin-link:hover{background:#eff6ff}
   .sparkle{position:absolute;font-size:14px;animation:twinkle 2s infinite;color:#2563eb}
   .sp1{top:22px;left:8%;animation-delay:0s}.sp2{top:16px;right:22%;animation-delay:.6s}
   .sp3{bottom:10px;left:14%;animation-delay:1.1s}.sp4{bottom:8px;right:13%;animation-delay:1.7s}
   @keyframes twinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.5)}}
 
-  /* ===== NAME SECTION ===== */
   .name-section{margin:0 16px 10px;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(28,78,180,0.08);border:1.5px solid #e0eaff}
-  .name-section-title{font-size:12px;font-weight:700;color:#1c4eb4;margin-bottom:8px;display:flex;align-items:center;gap:5px}
-  .name-row{display:flex;gap:8px}
-  .name-input{flex:1;padding:10px 12px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:13px;outline:none;transition:border .2s;font-family:inherit}
-  .name-input::placeholder{color:#a0aec0}
-  .name-input:focus{border-color:#2563eb;background:#fff}
-  .dept-input{width:120px;padding:10px 12px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:13px;outline:none;transition:border .2s;font-family:inherit}
-  .dept-input::placeholder{color:#a0aec0}
-  .dept-input:focus{border-color:#2563eb;background:#fff}
-  .name-hint{font-size:10px;color:#93c5fd;margin-top:5px}
+  .name-section-title{font-size:12px;font-weight:700;color:#1c4eb4;margin-bottom:10px;display:flex;align-items:center;gap:5px}
+  .field-row{display:flex;flex-direction:column;gap:8px}
+  .field-group{display:flex;flex-direction:column;gap:4px}
+  .field-label{font-size:11px;font-weight:700;color:#374151;display:flex;align-items:center;gap:4px}
+  .field-label .req{color:#ef4444;font-size:12px}
+  .field-input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:13px;outline:none;transition:border .2s;font-family:inherit}
+  .field-input::placeholder{color:#a0aec0}
+  .field-input:focus{border-color:#2563eb;background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,0.08)}
+  .field-input.error{border-color:#ef4444;background:#fff5f5}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .name-hint{font-size:10px;color:#93c5fd;margin-top:6px;display:flex;align-items:center;gap:4px}
+  .error-msg{font-size:10px;color:#ef4444;margin-top:3px;display:none}
+  .error-msg.show{display:block}
 
-  /* ===== JIGSAW ===== */
   .jigsaw-section{margin:0 16px 8px;background:#fff;border-radius:18px;padding:16px 14px 12px;box-shadow:0 2px 12px rgba(28,78,180,0.08);border:1.5px solid #e0eaff}
   .jigsaw-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:5px;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;margin-bottom:12px}
-  .jpiece{position:relative;overflow:hidden;border-radius:3px;transition:filter .4s ease}
-  .jpiece img{position:absolute;width:200%;height:200%;object-fit:cover;display:block}
-  .jpiece.pos-tl img{top:0;left:0}.jpiece.pos-tr img{top:0;left:-100%}
-  .jpiece.pos-bl img{top:-100%;left:0}.jpiece.pos-br img{top:-100%;left:-100%}
-  .jpiece.locked{filter:grayscale(100%) opacity(.15)}
+  .jpiece{position:relative;overflow:hidden;border-radius:3px;transition:filter .4s ease;background:#e0eaff}
+  .jpiece.locked{filter:grayscale(100%) opacity(.2)}
   .jpiece.unlocked{filter:none;animation:pieceIn .5s ease}
   @keyframes pieceIn{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
-  .jpiece .lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:2;background:rgba(220,230,255,0.4)}
+  .jpiece .lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:2}
   .jpiece.unlocked .lock-overlay{display:none}
   .lock-overlay .lname{font-size:10px;font-weight:700;color:#93c5fd}
-
+  .piece-fill{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:40px}
   .progress-row{display:flex;align-items:center;gap:10px}
   .progress-label{font-size:13px;font-weight:700;color:#1c4eb4;white-space:nowrap}
   .progress-track{flex:1;height:8px;background:#dbeafe;border-radius:10px;overflow:hidden}
   .progress-fill{height:100%;background:linear-gradient(90deg,#1c4eb4,#2563eb,#60a5fa);border-radius:10px;transition:width .6s ease}
 
-  /* ===== BOOTHS ===== */
   .booth-section{margin:0 16px 12px}
   .booth-section-label{font-size:13px;font-weight:700;color:#6b7280;margin-bottom:10px;display:flex;align-items:center;gap:6px}
   .booth-section-label::before,.booth-section-label::after{content:'';flex:1;height:1px;background:#e0eaff}
-  .booth-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .booth-list{display:flex;flex-direction:column;gap:10px}
 
-  .booth-card{border-radius:16px;padding:16px 10px 14px;display:flex;flex-direction:column;align-items:center;text-align:center;border:2px solid transparent;position:relative;transition:all .25s;cursor:pointer;background:#fff;box-shadow:0 2px 10px rgba(28,78,180,0.07)}
-  .booth-card:active{transform:scale(.97)}
-  .bc-customer{border-color:#bfdbfe}
-  .bc-result{border-color:#bbf7d0}
-  .bc-excellent{border-color:#fde68a}
-  .bc-innovation{border-color:#ddd6fe}
-  .bc-customer.done{border-color:#1c4eb4;box-shadow:0 0 0 3px rgba(28,78,180,.1),0 4px 14px rgba(28,78,180,0.12)}
-  .bc-result.done{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.1),0 4px 14px rgba(5,150,105,0.12)}
-  .bc-excellent.done{border-color:#d97706;box-shadow:0 0 0 3px rgba(217,119,6,.1),0 4px 14px rgba(217,119,6,0.12)}
-  .bc-innovation.done{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1),0 4px 14px rgba(124,58,237,0.12)}
-
-  .bc-icon-wrap{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
-  .bc-icon-wrap svg{width:26px;height:26px}
-  .bc-customer .bc-icon-wrap{background:#eff6ff}
-  .bc-result .bc-icon-wrap{background:#f0fdf4}
-  .bc-excellent .bc-icon-wrap{background:#fffbeb}
-  .bc-innovation .bc-icon-wrap{background:#f5f3ff}
-
-  .bc-name{font-size:14px;font-weight:800;margin-bottom:2px}
-  .bc-customer .bc-name{color:#1c4eb4}
-  .bc-result .bc-name{color:#065f46}
-  .bc-excellent .bc-name{color:#92400e}
-  .bc-innovation .bc-name{color:#4c1d95}
-  .bc-sub{font-size:10px;color:#9ca3af;margin-bottom:12px}
-
-  .bc-btn{padding:8px 0;width:100%;border-radius:20px;border:none;font-size:11px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:all .2s}
+  .booth-card{border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:14px;border:2px solid transparent;position:relative;transition:all .25s;background:#fff;box-shadow:0 2px 10px rgba(28,78,180,0.07)}
+  .bc-customer{border-color:#bfdbfe}.bc-result{border-color:#bbf7d0}.bc-excellent{border-color:#fde68a}.bc-innovation{border-color:#ddd6fe}
+  .bc-customer.done{border-color:#1c4eb4;box-shadow:0 0 0 3px rgba(28,78,180,.1)}
+  .bc-result.done{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.1)}
+  .bc-excellent.done{border-color:#d97706;box-shadow:0 0 0 3px rgba(217,119,6,.1)}
+  .bc-innovation.done{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+  .bc-icon-wrap{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .bc-icon-wrap svg{width:24px;height:24px}
+  .bc-customer .bc-icon-wrap{background:#eff6ff}.bc-result .bc-icon-wrap{background:#f0fdf4}.bc-excellent .bc-icon-wrap{background:#fffbeb}.bc-innovation .bc-icon-wrap{background:#f5f3ff}
+  .bc-info{flex:1;min-width:0}
+  .bc-name{font-size:15px;font-weight:800;margin-bottom:1px}
+  .bc-customer .bc-name{color:#1c4eb4}.bc-result .bc-name{color:#065f46}.bc-excellent .bc-name{color:#92400e}.bc-innovation .bc-name{color:#4c1d95}
+  .bc-sub{font-size:11px;color:#9ca3af}
+  .bc-btn{padding:9px 18px;border-radius:20px;border:none;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s;white-space:nowrap;flex-shrink:0}
   .bc-customer .bc-btn{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;box-shadow:0 3px 8px rgba(28,78,180,0.3)}
   .bc-result .bc-btn{background:linear-gradient(135deg,#059669,#10b981);color:#fff;box-shadow:0 3px 8px rgba(5,150,105,0.3)}
   .bc-excellent .bc-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;box-shadow:0 3px 8px rgba(217,119,6,0.3)}
@@ -95,23 +81,22 @@
   .bc-btn:active:not(.stamped){transform:scale(.96)}
   .done-badge{position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:9px;font-weight:800;border-radius:20px;padding:2px 7px}
 
-  /* ===== COMPLETE BANNER ===== */
   .complete-banner{margin:0 16px 12px;background:linear-gradient(135deg,#1c4eb4,#2563eb,#7c3aed);border-radius:16px;padding:18px 16px;text-align:center;display:none;animation:bannerIn .5s ease;box-shadow:0 6px 20px rgba(28,78,180,0.3)}
   @keyframes bannerIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
   .complete-banner.show{display:block}
   .cb-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:4px}
   .cb-sub{font-size:13px;color:#bfdbfe}
 
-  /* ===== QR SCREEN ===== */
+  /* QR SCREEN */
   .qr-screen{display:none;position:fixed;inset:0;z-index:200;background:#0a1628;flex-direction:column}
   .qr-screen.show{display:flex}
-  .qr-topbar{background:#0f1f3d;padding:14px 16px;display:flex;align-items:center;gap:12px;padding-top:max(14px,env(safe-area-inset-top));border-bottom:1px solid rgba(255,255,255,0.08)}
+  .qr-topbar{background:#0f1f3d;padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
   .qr-back{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:#e2e8f0;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .qr-topbar-info{flex:1}
   .qr-topbar-title{font-size:15px;font-weight:700;color:#f7fafc}
   .qr-topbar-sub{font-size:11px;color:#90cdf4;margin-top:1px}
   .qr-badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700}
-  .qr-cam{flex:1;position:relative;background:#000}
+  .qr-cam{flex:1;position:relative;background:#000;overflow:hidden}
   #qrVideo{width:100%;height:100%;object-fit:cover;display:block}
   .qr-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
   .qr-dim-top,.qr-dim-bot,.qr-dim-row{background:rgba(0,0,0,0.6)}
@@ -131,46 +116,63 @@
   .qr-success-flash{position:absolute;inset:0;background:rgba(16,185,129,0.25);display:none;align-items:center;justify-content:center;z-index:5}
   .qr-success-flash.show{display:flex;animation:flashOut .65s ease forwards}
   @keyframes flashOut{0%{opacity:1}100%{opacity:0}}
-  .qr-bottom{background:#0f1f3d;padding:16px 20px;padding-bottom:max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:10px;align-items:center;border-top:1px solid rgba(255,255,255,0.08)}
+  .qr-bottom{background:#0f1f3d;padding:16px 20px;display:flex;flex-direction:column;gap:10px;align-items:center;border-top:1px solid rgba(255,255,255,0.08)}
   .qr-simulate-btn{width:100%;padding:14px;border-radius:14px;border:none;font-size:15px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s;box-shadow:0 4px 14px rgba(28,78,180,0.4)}
   .qr-simulate-btn:active{transform:scale(.97)}
   .qr-cancel-btn{font-size:13px;color:#90cdf4;background:none;border:none;cursor:pointer}
 
-  /* ===== MODAL ===== */
+  /* MODAL */
   .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center}
   .modal-wrap.show{display:flex}
   .modal-sheet{background:#fff;border-radius:28px 28px 0 0;width:100%;max-width:480px;padding:28px 24px 40px;animation:sheetUp .4s ease;text-align:center;box-shadow:0 -8px 40px rgba(28,78,180,0.15)}
   @keyframes sheetUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
   .modal-handle{width:40px;height:4px;background:#e0eaff;border-radius:2px;margin:0 auto 20px}
-  .modal-puzzle{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:140px;height:140px;border-radius:12px;overflow:hidden;margin:0 auto 16px;box-shadow:0 4px 16px rgba(28,78,180,0.15)}
-  .mp{position:relative;overflow:hidden}
-  .mp img{position:absolute;width:200%;height:200%;object-fit:cover}
-  .mp.pos-tl img{top:0;left:0}.mp.pos-tr img{top:0;left:-100%}
-  .mp.pos-bl img{top:-100%;left:0}.mp.pos-br img{top:-100%;left:-100%}
   .modal-title{font-size:26px;font-weight:900;color:#1c4eb4}
   .modal-sub{font-size:14px;color:#6b7280;margin-top:6px}
   .modal-eco{font-size:13px;color:#059669;margin-top:4px}
   .modal-saving{font-size:12px;color:#2563eb;margin-top:8px;display:none}
   .modal-btn{margin-top:20px;width:100%;padding:15px;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;border:none;border-radius:14px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(28,78,180,0.3)}
 
-  /* ===== ADMIN LOGIN ===== */
+  /* ===== QR PRINT PAGE ===== */
+  .qr-print-page{background:#f0f4ff;min-height:100vh;padding:20px 16px 60px}
+  .qrp-header{text-align:center;margin-bottom:24px}
+  .qrp-header h1{font-size:22px;font-weight:900;color:#1c4eb4;margin-bottom:4px}
+  .qrp-header p{font-size:13px;color:#6b7280}
+  .qrp-back{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;border:1.5px solid #bfdbfe;background:#fff;color:#1c4eb4;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:20px}
+  .qrp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:480px;margin:0 auto}
+  .qrp-card{background:#fff;border-radius:20px;padding:20px 14px;text-align:center;box-shadow:0 4px 16px rgba(28,78,180,0.1);border:2px solid transparent;position:relative}
+  .qrp-customer{border-color:#bfdbfe}.qrp-result{border-color:#bbf7d0}.qrp-excellent{border-color:#fde68a}.qrp-innovation{border-color:#ddd6fe}
+  .qrp-icon{font-size:28px;margin-bottom:6px}
+  .qrp-name{font-size:15px;font-weight:900;margin-bottom:2px}
+  .qrp-customer .qrp-name{color:#1c4eb4}.qrp-result .qrp-name{color:#059669}.qrp-excellent .qrp-name{color:#d97706}.qrp-innovation .qrp-name{color:#7c3aed}
+  .qrp-sub{font-size:10px;color:#9ca3af;margin-bottom:12px}
+  .qrp-qr-wrap{background:#fff;border-radius:12px;padding:8px;display:inline-block;box-shadow:0 2px 10px rgba(0,0,0,0.08);margin-bottom:10px}
+  .qrp-qr-wrap canvas,.qrp-qr-wrap img{display:block !important}
+  .qrp-token{font-size:9px;font-weight:700;color:#93c5fd;letter-spacing:1px;margin-top:4px}
+  .qrp-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-top:6px}
+  .qrp-customer .qrp-badge{background:#eff6ff;color:#1c4eb4}
+  .qrp-result .qrp-badge{background:#f0fdf4;color:#059669}
+  .qrp-excellent .qrp-badge{background:#fffbeb;color:#d97706}
+  .qrp-innovation .qrp-badge{background:#f5f3ff;color:#7c3aed}
+  .qrp-print-btn{display:block;width:100%;max-width:480px;margin:20px auto 0;padding:14px;border-radius:14px;border:none;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(28,78,180,0.3)}
+  .qrp-hint{font-size:11px;color:#6b7280;text-align:center;margin-top:10px;max-width:480px;margin-left:auto;margin-right:auto}
+
+  /* ADMIN LOGIN */
   .admin-login-wrap{max-width:400px;margin:0 auto;padding:60px 24px;display:flex;flex-direction:column;align-items:center}
   .login-card{background:#fff;border-radius:24px;padding:36px 28px;box-shadow:0 8px 40px rgba(28,78,180,0.12);width:100%;text-align:center;border:1.5px solid #e0eaff}
-  .login-logo{width:64px;height:64px;border-radius:50%;object-fit:contain;margin-bottom:12px;box-shadow:0 4px 14px rgba(28,78,180,0.2)}
   .login-title{font-size:22px;font-weight:900;color:#1c4eb4;margin-bottom:4px}
   .login-sub{font-size:13px;color:#6b7280;margin-bottom:24px}
   .login-input{width:100%;padding:12px 16px;border-radius:12px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:15px;margin-bottom:12px;outline:none;transition:border .2s;font-family:inherit}
   .login-input:focus{border-color:#2563eb}
-  .login-btn{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(28,78,180,0.3)}
+  .login-btn{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;font-size:15px;font-weight:800;cursor:pointer}
   .login-err{font-size:12px;color:#ef4444;margin-top:8px;display:none}
   .back-user{font-size:13px;color:#2563eb;cursor:pointer;margin-top:16px}
 
-  /* ===== ADMIN DASHBOARD ===== */
+  /* ADMIN DASHBOARD */
   .admin-wrap{max-width:900px;margin:0 auto;padding:24px 16px 60px}
   .admin-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
   .admin-topbar-left{display:flex;align-items:center;gap:12px}
   .admin-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#2563eb);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(28,78,180,0.3)}
-  .admin-avatar svg{width:22px;height:22px}
   .admin-greeting{font-size:18px;font-weight:800;color:#1c4eb4}
   .admin-role{font-size:12px;color:#6b7280;display:flex;align-items:center;gap:5px;margin-top:2px}
   .sync-dot{width:8px;height:8px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse 2s infinite}
@@ -196,11 +198,11 @@
   .bbar-count{font-size:12px;font-weight:700;width:30px;text-align:right;color:#374151}
   .table-actions{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
   .search-input{flex:1;min-width:160px;padding:8px 12px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:13px;outline:none;font-family:inherit}
-  .search-input:focus{border-color:#2563eb}
   .filter-sel{padding:8px 10px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#374151;font-size:12px;outline:none;cursor:pointer}
-  .export-btn{padding:8px 16px;border-radius:10px;border:none;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px;box-shadow:0 2px 8px rgba(5,150,105,0.25)}
+  .export-btn{padding:8px 16px;border-radius:10px;border:none;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px}
   .refresh-btn{padding:8px 12px;border-radius:10px;border:1.5px solid #bfdbfe;background:#eff6ff;color:#1c4eb4;font-size:12px;font-weight:700;cursor:pointer}
   .add-demo-btn{padding:8px 12px;border-radius:10px;border:1.5px dashed #c4b5fd;background:#f5f3ff;color:#7c3aed;font-size:12px;font-weight:700;cursor:pointer}
+  .qr-gen-btn{padding:8px 14px;border-radius:10px;border:none;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:5px}
   .data-table{width:100%;border-collapse:collapse;font-size:12px}
   .data-table th{background:#f0f6ff;padding:9px 10px;text-align:left;font-weight:700;color:#374151;border-bottom:2px solid #e0eaff;white-space:nowrap}
   .data-table td{padding:9px 10px;border-bottom:1px solid #f0f4ff;color:#374151;vertical-align:middle}
@@ -218,11 +220,17 @@
   .page-info{font-size:11px;color:#6b7280}
   .page-btns{display:flex;gap:5px}
   .page-btn{padding:4px 10px;border-radius:8px;border:1.5px solid #dbeafe;background:#fff;color:#6b7280;font-size:11px;cursor:pointer;font-weight:600}
-  .page-btn.active{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;border-color:transparent;box-shadow:0 2px 8px rgba(28,78,180,0.3)}
+  .page-btn.active{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;border-color:transparent}
   .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(60px);background:#1c4eb4;color:#fff;padding:12px 24px;border-radius:12px;font-size:14px;font-weight:600;z-index:999;transition:transform .3s ease;white-space:nowrap;max-width:90vw;box-shadow:0 4px 20px rgba(28,78,180,0.4)}
   .toast.show{transform:translateX(-50%) translateY(0)}
   .conf{position:fixed;pointer-events:none;border-radius:50%;animation:cf 3s ease forwards;z-index:400}
   @keyframes cf{0%{opacity:1;transform:translateY(-10px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+
+  @media print {
+    .qrp-back,.qrp-print-btn,.qrp-hint,.qrp-header p { display:none !important; }
+    .qr-print-page { background:#fff; padding:10px; }
+    .qrp-card { break-inside:avoid; box-shadow:none; border:1.5px solid #ddd; }
+  }
   @media(max-width:600px){.stat-row{grid-template-columns:1fr 1fr}.admin-wrap{padding:14px 12px 40px}}
 </style>
 </head>
@@ -235,7 +243,7 @@
       <div class="sparkle sp1">✦</div><div class="sparkle sp2">✦</div>
       <div class="sparkle sp3">✦</div><div class="sparkle sp4">✦</div>
       <div class="header-logo-row">
-        <img class="header-logo" src="https://i.imgur.com/7lE2Rcx.png" alt="logo" onerror="this.style.display='none'"/>
+        <img class="header-logo" src="/api/placeholder/48/48" alt="logo" onerror="this.style.display='none'"/>
         <div class="header-title">WD Journey Stamp Collection</div>
       </div>
       <div class="header-sub">แสตมป์ครบ 4 บูท รับจิ๊กซอว์สมบูรณ์</div>
@@ -248,26 +256,76 @@
         <svg viewBox="0 0 24 24" fill="none" width="13" height="13"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round"/></svg>
         กรอกข้อมูลของคุณ
       </div>
-      <div class="name-row">
-        <input class="name-input" id="empName" type="text" placeholder="ชื่อ-นามสกุล *"/>
-        <input class="dept-input" id="empDept" type="text" placeholder="แผนก"/>
+      <div class="field-row">
+        <div class="field-group">
+          <label class="field-label">
+            <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#374151" stroke-width="1.8"/><path d="M8 9h8M8 13h5" stroke="#374151" stroke-width="1.5" stroke-linecap="round"/></svg>
+            รหัสพนักงาน <span class="req">*</span>
+          </label>
+          <input class="field-input" id="empId" type="text" placeholder="เช่น EMP-001234" maxlength="20" oninput="clearFieldError('empId','errEmpId')"/>
+          <div class="error-msg" id="errEmpId">กรุณากรอกรหัสพนักงาน</div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">
+            <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><circle cx="12" cy="8" r="4" stroke="#374151" stroke-width="1.8"/><path d="M4 20 Q12 14 20 20" stroke="#374151" stroke-width="1.5" stroke-linecap="round"/></svg>
+            ชื่อ-นามสกุล <span class="req">*</span>
+          </label>
+          <input class="field-input" id="empName" type="text" placeholder="เช่น สมชาย ใจดี" oninput="clearFieldError('empName','errEmpName')"/>
+          <div class="error-msg" id="errEmpName">กรุณากรอกชื่อ-นามสกุล</div>
+        </div>
+        <div class="two-col">
+          <div class="field-group">
+            <label class="field-label">
+              <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#374151" stroke-width="1.8"/><path d="M8 7V5a4 4 0 018 0v2" stroke="#374151" stroke-width="1.5"/></svg>
+              แผนก <span class="req">*</span>
+            </label>
+            <input class="field-input" id="empDept" type="text" placeholder="เช่น ฝ่าย IT" oninput="clearFieldError('empDept','errEmpDept')"/>
+            <div class="error-msg" id="errEmpDept">กรุณากรอกแผนก</div>
+          </div>
+          <div class="field-group">
+            <label class="field-label">
+              <svg viewBox="0 0 24 24" fill="none" width="12" height="12"><path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" stroke="#374151" stroke-width="1.8"/><path d="M16 3H8v4h8V3z" stroke="#374151" stroke-width="1.5"/></svg>
+              ตำแหน่ง
+            </label>
+            <input class="field-input" id="empPosition" type="text" placeholder="เช่น Engineer"/>
+          </div>
+        </div>
       </div>
-      <div class="name-hint">* กรุณากรอกชื่อก่อนแสตมป์ เพื่อบันทึกข้อมูลเข้าระบบ</div>
+      <div class="name-hint">
+        <svg viewBox="0 0 24 24" fill="none" width="11" height="11"><circle cx="12" cy="12" r="9" stroke="#93c5fd" stroke-width="1.8"/><path d="M12 8v4l3 3" stroke="#93c5fd" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <span>* จำเป็นต้องกรอกก่อนทำการแสตมป์ เพื่อบันทึกข้อมูลเข้าระบบ</span>
+      </div>
     </div>
 
     <div class="jigsaw-section">
       <div class="jigsaw-grid">
-        <div class="jpiece pos-tl locked" id="jp-customer"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-overlay"><svg viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="8" r="4" stroke="#93c5fd" stroke-width="2"/><path d="M4 20 Q12 15 20 20" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/></svg><span class="lname">Customer</span></div>
+        <div class="jpiece pos-tl locked" id="jp-customer">
+          <div class="piece-fill" id="pf-customer">👤</div>
+          <div class="lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="8" r="4" stroke="#93c5fd" stroke-width="2"/><path d="M4 20 Q12 15 20 20" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/></svg>
+            <span class="lname">Customer</span>
+          </div>
         </div>
-        <div class="jpiece pos-tr locked" id="jp-result"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-overlay"><svg viewBox="0 0 24 24" fill="none" width="26" height="26"><rect x="3" y="14" width="4" height="7" rx="1" fill="#93c5fd"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#93c5fd"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#93c5fd"/></svg><span class="lname">Result</span></div>
+        <div class="jpiece pos-tr locked" id="jp-result">
+          <div class="piece-fill" id="pf-result">📊</div>
+          <div class="lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><rect x="3" y="14" width="4" height="7" rx="1" fill="#93c5fd"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#93c5fd"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#93c5fd"/></svg>
+            <span class="lname">Result</span>
+          </div>
         </div>
-        <div class="jpiece pos-bl locked" id="jp-excellent"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-overlay"><svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#93c5fd" stroke-width="2" stroke-linejoin="round"/></svg><span class="lname">Excellent</span></div>
+        <div class="jpiece pos-bl locked" id="jp-excellent">
+          <div class="piece-fill" id="pf-excellent">⭐</div>
+          <div class="lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#93c5fd" stroke-width="2" stroke-linejoin="round"/></svg>
+            <span class="lname">Excellent</span>
+          </div>
         </div>
-        <div class="jpiece pos-br locked" id="jp-innovation"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-overlay"><svg viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="10" r="5" stroke="#93c5fd" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#93c5fd" stroke-width="1.5"/></svg><span class="lname">Innovation</span></div>
+        <div class="jpiece pos-br locked" id="jp-innovation">
+          <div class="piece-fill" id="pf-innovation">💡</div>
+          <div class="lock-overlay">
+            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="10" r="5" stroke="#93c5fd" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#93c5fd" stroke-width="1.5"/></svg>
+            <span class="lname">Innovation</span>
+          </div>
         </div>
       </div>
       <div class="progress-row">
@@ -283,12 +341,12 @@
 
     <div class="booth-section">
       <div class="booth-section-label">เลือกบูทเพื่อแสตมป์</div>
-      <div class="booth-grid" id="boothGrid"></div>
+      <div class="booth-list" id="boothList"></div>
     </div>
   </div>
 </div>
 
-<!-- QR SCREEN -->
+<!-- QR SCAN SCREEN -->
 <div class="qr-screen" id="qrScreen">
   <div class="qr-topbar">
     <button class="qr-back" onclick="closeQR()">‹</button>
@@ -320,7 +378,7 @@
   </div>
   <div class="qr-bottom">
     <button class="qr-simulate-btn" onclick="simulateScan()">
-      <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="17" y="17" width="2" height="2" fill="white"/><rect x="21" y="17" width="2" height="2" fill="white"/><rect x="17" y="21" width="2" height="2" fill="white"/><rect x="21" y="21" width="2" height="2" fill="white"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="17" y="17" width="2" height="2" fill="white"/></svg>
       จำลองสแกน QR สำเร็จ
     </button>
     <button class="qr-cancel-btn" onclick="closeQR()">ยกเลิก</button>
@@ -331,17 +389,31 @@
 <div class="modal-wrap" id="modalWrap">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
-    <div class="modal-puzzle">
-      <div class="mp pos-tl"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
-      <div class="mp pos-tr"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
-      <div class="mp pos-bl"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
-      <div class="mp pos-br"><img src="https://i.imgur.com/7lE2Rcx.png" alt=""/></div>
-    </div>
-    <div class="modal-title">🏆 จิ๊กซอว์สมบูรณ์!</div>
-    <div class="modal-sub">ขอบคุณที่ร่วมกิจกรรมครบทั้ง 4 บูท</div>
+    <div style="font-size:64px;margin-bottom:8px">🏆</div>
+    <div class="modal-title">จิ๊กซอว์สมบูรณ์!</div>
+    <div class="modal-sub" id="modalName">ขอบคุณที่ร่วมกิจกรรมครบทั้ง 4 บูท</div>
     <div class="modal-eco">🌿 ลดการใช้กระดาษ รักษ์โลกมากขึ้น</div>
     <div class="modal-saving" id="modalSaving">⏳ กำลังบันทึกข้อมูล...</div>
     <button class="modal-btn" onclick="resetUser()">เริ่มใหม่อีกครั้ง</button>
+  </div>
+</div>
+
+<!-- QR PRINT PAGE -->
+<div class="page" id="pageQRPrint">
+  <div class="qr-print-page">
+    <div style="max-width:480px;margin:0 auto">
+      <button class="qrp-back" onclick="showPage('pageAdmin')">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M15 18l-6-6 6-6" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round"/></svg>
+        กลับ Admin
+      </button>
+    </div>
+    <div class="qrp-header">
+      <h1>QR Code ทั้ง 4 บูท</h1>
+      <p>พิมพ์และติดตั้งที่แต่ละบูทเพื่อให้พนักงานสแกน</p>
+    </div>
+    <div class="qrp-grid" id="qrpGrid"></div>
+    <button class="qrp-print-btn" onclick="window.print()">🖨️ พิมพ์ QR Code ทั้งหมด</button>
+    <p class="qrp-hint">วิธีใช้: นำ QR Code แต่ละใบติดที่บูทที่ตรงกัน พนักงานสแกนด้วยกล้องในแอป</p>
   </div>
 </div>
 
@@ -349,7 +421,7 @@
 <div class="page" id="pageAdminLogin">
   <div class="admin-login-wrap">
     <div class="login-card">
-      <img class="login-logo" src="https://i.imgur.com/7lE2Rcx.png" alt="logo" onerror="this.style.display='none'"/>
+      <img src="/api/placeholder/64/64" style="width:64px;height:64px;border-radius:50%;margin-bottom:12px" alt="logo" onerror="this.style.display='none'"/>
       <div class="login-title">Admin Login</div>
       <div class="login-sub">เข้าสู่ระบบเพื่อดูข้อมูลการแสตมป์</div>
       <input class="login-input" type="text" id="loginUser" placeholder="Username"/>
@@ -366,13 +438,19 @@
   <div class="admin-wrap">
     <div class="admin-topbar">
       <div class="admin-topbar-left">
-        <div class="admin-avatar"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <div class="admin-avatar">
+          <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
         <div>
           <div class="admin-greeting">Admin Dashboard</div>
           <div class="admin-role"><span class="sync-dot"></span><span id="syncStatus">เชื่อมต่อ Google Sheets ✅</span></div>
         </div>
       </div>
-      <div style="display:flex;gap:8px;align-items:center">
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="qr-gen-btn" onclick="openQRPrint()">
+          <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="17" y="17" width="2" height="2" fill="white"/></svg>
+          QR Codes
+        </button>
         <button class="refresh-btn" onclick="fetchSheetData()">🔄 รีเฟรช</button>
         <button class="admin-logout" onclick="doLogout()">ออกจากระบบ</button>
       </div>
@@ -396,7 +474,7 @@
         รายชื่อผู้เข้าร่วม
       </div>
       <div class="table-actions">
-        <input class="search-input" type="text" placeholder="ค้นหาชื่อ / แผนก..." id="searchInput" oninput="filterTable()"/>
+        <input class="search-input" type="text" placeholder="ค้นหาชื่อ / รหัส / แผนก..." id="searchInput" oninput="filterTable()"/>
         <select class="filter-sel" id="filterSel" onchange="filterTable()">
           <option value="all">ทั้งหมด</option>
           <option value="complete">ครบ 4 บูท</option>
@@ -411,7 +489,7 @@
       <div class="table-scroll">
         <table class="data-table">
           <thead><tr>
-            <th>#</th><th>ชื่อ-นามสกุล</th><th>แผนก</th>
+            <th>#</th><th>รหัสพนักงาน</th><th>ชื่อ-นามสกุล</th><th>แผนก</th><th>ตำแหน่ง</th>
             <th>Customer</th><th>Result</th><th>Excellent</th><th>Innovation</th>
             <th>สถานะ</th><th>เวลา</th>
           </tr></thead>
@@ -429,204 +507,469 @@
 <div class="toast" id="toast"></div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
-const IMG = "https://i.imgur.com/7lE2Rcx.png";
-const BOOTHS = [
-  { id:'customer',   label:'Customer',   sub:'บูทเกี่ยวกับลูกค้า',  cls:'bc-customer',   pos:'tl', color:'#1c4eb4', badgeBg:'#eff6ff', badgeColor:'#1c4eb4',
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
+
+/* QR token ที่ฝังในแต่ละบูท — เปลี่ยนได้ตามต้องการ */
+var QR_TOKENS = {
+  customer:   "WD-STAMP-CUSTOMER-2025",
+  result:     "WD-STAMP-RESULT-2025",
+  excellent:  "WD-STAMP-EXCELLENT-2025",
+  innovation: "WD-STAMP-INNOVATION-2025"
+};
+
+var BOOTHS = [
+  { id:'customer',   label:'Customer',   sub:'บูทเกี่ยวกับลูกค้า',  cls:'bc-customer',   clsPrint:'qrp-customer',   color:'#1c4eb4', badgeBg:'#eff6ff', icon:'👤',
     svg:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><circle cx="7" cy="10" r="3" stroke="#1c4eb4" stroke-width="1.5"/><circle cx="17" cy="10" r="3" stroke="#1c4eb4" stroke-width="1.5"/><path d="M4 20 Q12 15 20 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round" fill="none"/></svg>'},
-  { id:'result',     label:'Result',     sub:'บูทเกี่ยวกับผลลัพธ์', cls:'bc-result',     pos:'tr', color:'#059669', badgeBg:'#f0fdf4', badgeColor:'#059669',
+  { id:'result',     label:'Result',     sub:'บูทเกี่ยวกับผลลัพธ์', cls:'bc-result',     clsPrint:'qrp-result',     color:'#059669', badgeBg:'#f0fdf4', icon:'📊',
     svg:'<svg viewBox="0 0 24 24" fill="none"><rect x="3" y="14" width="4" height="7" rx="1" fill="#059669"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#059669"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#059669"/><path d="M5 12 L12 8 L19 4" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg>'},
-  { id:'excellent',  label:'Excellent',  sub:'บูทความเป็นเลิศ',     cls:'bc-excellent',  pos:'bl', color:'#d97706', badgeBg:'#fffbeb', badgeColor:'#d97706',
+  { id:'excellent',  label:'Excellent',  sub:'บูทความเป็นเลิศ',     cls:'bc-excellent',  clsPrint:'qrp-excellent',  color:'#d97706', badgeBg:'#fffbeb', icon:'⭐',
     svg:'<svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#d97706" stroke-width="2" stroke-linejoin="round" fill="#fde68a"/></svg>'},
-  { id:'innovation', label:'Innovation', sub:'บูทนวัตกรรม',          cls:'bc-innovation', pos:'br', color:'#7c3aed', badgeBg:'#f5f3ff', badgeColor:'#7c3aed',
-    svg:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>'},
+  { id:'innovation', label:'Innovation', sub:'บูทนวัตกรรม',          cls:'bc-innovation', clsPrint:'qrp-innovation', color:'#7c3aed', badgeBg:'#f5f3ff', icon:'💡',
+    svg:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>'}
 ];
 
-let stamped={customer:false,result:false,excellent:false,innovation:false};
-let currentBooth=null,videoStream=null,participantDB=[],currentPage=1;
-const PER_PAGE=8;
-const DEMO_NAMES=[['สมชาย ใจดี','ฝ่ายผลิต'],['สุดา รักษ์ไทย','ฝ่ายขาย'],['วิชัย มั่นคง','ฝ่าย HR'],['นภา สดใส','ฝ่าย IT'],['ประสิทธิ์ เก่งงาน','ฝ่ายบัญชี'],['มาลี วงศ์งาม','ฝ่ายการตลาด'],['อนุชา ดีเลิศ','ฝ่ายผลิต'],['กานดา สุขใจ','ฝ่าย QA'],['พงษ์ศักดิ์ ชาญวิทย์','ฝ่ายวิศวกรรม'],['รัตนา พรมมา','ฝ่ายจัดซื้อ'],['ธนาวุฒิ ศรีทอง','ฝ่าย IT'],['วรรณา ทองดี','ฝ่ายขาย']];
+var stamped = {customer:false, result:false, excellent:false, innovation:false};
+var currentBooth = null, videoStream = null, participantDB = [], currentPage = 1;
+var PER_PAGE = 8;
+var qrGenerated = false;
 
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+var DEMO_NAMES = [
+  ['สมชาย ใจดี','EMP-001','ฝ่ายผลิต','Operator'],
+  ['สุดา รักษ์ไทย','EMP-002','ฝ่ายขาย','Sales Executive'],
+  ['วิชัย มั่นคง','EMP-003','ฝ่าย HR','HR Officer'],
+  ['นภา สดใส','EMP-004','ฝ่าย IT','Developer'],
+  ['ประสิทธิ์ เก่งงาน','EMP-005','ฝ่ายบัญชี','Accountant'],
+  ['มาลี วงศ์งาม','EMP-006','ฝ่ายการตลาด','Marketing'],
+  ['อนุชา ดีเลิศ','EMP-007','ฝ่ายผลิต','Technician'],
+  ['กานดา สุขใจ','EMP-008','ฝ่าย QA','QA Engineer']
+];
 
-function buildBooths(){
-  document.getElementById('boothGrid').innerHTML=BOOTHS.map(b=>{
-    const done=stamped[b.id];
-    return `<div class="booth-card ${b.cls}${done?' done':''}">
-      ${done?'<div class="done-badge">✓ แล้ว</div>':''}
-      <div class="bc-icon-wrap">${b.svg}</div>
-      <div class="bc-name">${b.label}</div>
-      <div class="bc-sub">${b.sub}</div>
-      <button class="bc-btn${done?' stamped':''}" ${done?'disabled':''} onclick="${done?'':'openQR(\''+b.id+'\')'}">
-        ${done?'<svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M5 12l5 5L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg> แสตมป์แล้ว':'<svg viewBox="0 0 24 24" fill="none" width="13" height="13"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="17" y="17" width="2" height="2" fill="white"/><rect x="21" y="17" width="2" height="2" fill="white"/><rect x="17" y="21" width="2" height="2" fill="white"/><rect x="21" y="21" width="2" height="2" fill="white"/></svg> แสตมป์ที่นี่!'}
-      </button>
-    </div>`;
-  }).join('');
+/* ── page nav ── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
 }
 
-function updateJigsaw(){
-  BOOTHS.forEach(b=>{const el=document.getElementById('jp-'+b.id);if(!el)return;if(stamped[b.id]){el.classList.remove('locked');el.classList.add('unlocked');}else{el.classList.add('locked');el.classList.remove('unlocked');}});
-  const n=Object.values(stamped).filter(Boolean).length;
-  document.getElementById('progLabel').textContent=n+' / 4 บูท';
-  document.getElementById('progFill').style.width=(n/4*100)+'%';
+/* ── form validation ── */
+function clearFieldError(inputId, errId) {
+  document.getElementById(inputId).classList.remove('error');
+  document.getElementById(errId).classList.remove('show');
 }
 
-function openQR(id){
-  if(stamped[id])return;currentBooth=id;
-  const b=BOOTHS.find(x=>x.id===id);
-  document.getElementById('qrBadge').textContent=b.label;
-  document.getElementById('qrBadge').style.background=b.badgeBg;
-  document.getElementById('qrBadge').style.color=b.color;
-  document.getElementById('qrHintName').textContent=b.label;
-  document.getElementById('qrTopSub').textContent='สแกน QR บูท '+b.label;
+function validateForm() {
+  var ok = true;
+  var checks = [
+    {input:'empId',   err:'errEmpId'},
+    {input:'empName', err:'errEmpName'},
+    {input:'empDept', err:'errEmpDept'}
+  ];
+  checks.forEach(function(c) {
+    var val = document.getElementById(c.input).value.trim();
+    if (!val) {
+      document.getElementById(c.input).classList.add('error');
+      document.getElementById(c.err).classList.add('show');
+      ok = false;
+    } else {
+      document.getElementById(c.input).classList.remove('error');
+      document.getElementById(c.err).classList.remove('show');
+    }
+  });
+  if (!ok) showToast('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน ⚠️');
+  return ok;
+}
+
+/* ── booths ── */
+function buildBooths() {
+  var html = '';
+  BOOTHS.forEach(function(b) {
+    var done = stamped[b.id];
+    html += '<div class="booth-card ' + b.cls + (done?' done':'') + '">';
+    if (done) html += '<div class="done-badge">✓ แล้ว</div>';
+    html += '<div class="bc-icon-wrap">' + b.svg + '</div>';
+    html += '<div class="bc-info"><div class="bc-name">' + b.label + '</div><div class="bc-sub">' + b.sub + '</div></div>';
+    if (done) {
+      html += '<button class="bc-btn stamped" disabled>'
+            + '<svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M5 12l5 5L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+            + ' แสตมป์แล้ว</button>';
+    } else {
+      html += '<button class="bc-btn" onclick="openQR(\'' + b.id + '\')">'
+            + '<svg viewBox="0 0 24 24" fill="none" width="13" height="13"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/><rect x="17" y="17" width="2" height="2" fill="white"/></svg>'
+            + ' แสตมป์ที่นี่!</button>';
+    }
+    html += '</div>';
+  });
+  document.getElementById('boothList').innerHTML = html;
+}
+
+function updateJigsaw() {
+  var colors = {customer:'#eff6ff', result:'#f0fdf4', excellent:'#fffbeb', innovation:'#f5f3ff'};
+  BOOTHS.forEach(function(b) {
+    var el = document.getElementById('jp-' + b.id);
+    if (!el) return;
+    if (stamped[b.id]) {
+      el.classList.remove('locked'); el.classList.add('unlocked');
+      el.style.background = colors[b.id];
+    } else {
+      el.classList.add('locked'); el.classList.remove('unlocked');
+      el.style.background = '#e0eaff';
+    }
+  });
+  var n = Object.values(stamped).filter(Boolean).length;
+  document.getElementById('progLabel').textContent = n + ' / 4 บูท';
+  document.getElementById('progFill').style.width = (n/4*100) + '%';
+}
+
+/* ── QR scan ── */
+function openQR(id) {
+  if (stamped[id]) return;
+  if (!validateForm()) return;
+  currentBooth = id;
+  var b = BOOTHS.find(function(x){ return x.id===id; });
+  document.getElementById('qrBadge').textContent = b.label;
+  document.getElementById('qrBadge').style.background = b.badgeBg;
+  document.getElementById('qrBadge').style.color = b.color;
+  document.getElementById('qrHintName').textContent = b.label;
+  document.getElementById('qrTopSub').textContent = 'สแกน QR บูท ' + b.label;
   document.getElementById('qrScreen').classList.add('show');
-  document.body.style.overflow='hidden';
-  if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+  document.body.style.overflow = 'hidden';
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'}})
-      .then(s=>{videoStream=s;const v=document.getElementById('qrVideo');v.srcObject=s;v.play();document.getElementById('qrTopSub').textContent='กล้องพร้อม — สแกน QR บูท '+BOOTHS.find(x=>x.id===currentBooth).label;})
-      .catch(()=>{document.getElementById('qrTopSub').textContent='กด "จำลองสแกน" เพื่อแสตมป์';});
+      .then(function(s){
+        videoStream = s;
+        var v = document.getElementById('qrVideo');
+        v.srcObject = s; v.play();
+        document.getElementById('qrTopSub').textContent = 'กล้องพร้อม — สแกน QR บูท ' + b.label;
+      })
+      .catch(function(){ document.getElementById('qrTopSub').textContent = 'กด "จำลองสแกน" เพื่อแสตมป์'; });
+  } else {
+    document.getElementById('qrTopSub').textContent = 'กด "จำลองสแกน" เพื่อแสตมป์';
   }
 }
 
-function closeQR(){
-  if(videoStream){videoStream.getTracks().forEach(t=>t.stop());videoStream=null;}
-  document.getElementById('qrVideo').srcObject=null;
+function closeQR() {
+  if (videoStream) { videoStream.getTracks().forEach(function(t){ t.stop(); }); videoStream = null; }
+  document.getElementById('qrVideo').srcObject = null;
   document.getElementById('qrScreen').classList.remove('show');
-  document.body.style.overflow='';currentBooth=null;
+  document.body.style.overflow = '';
+  currentBooth = null;
 }
 
-function simulateScan(){
-  if(!currentBooth)return;
-  const flash=document.getElementById('qrFlash');flash.classList.add('show');
-  setTimeout(()=>{flash.classList.remove('show');const id=currentBooth;closeQR();setTimeout(()=>doStamp(id),100);},700);
+function simulateScan() {
+  if (!currentBooth) return;
+  /* จำลองการสแกนพบ token ที่ตรงกับบูท */
+  var expectedToken = QR_TOKENS[currentBooth];
+  processQRResult(expectedToken);
 }
 
-function doStamp(id){
-  if(stamped[id])return;stamped[id]=true;buildBooths();updateJigsaw();
-  const n=Object.values(stamped).filter(Boolean).length;
-  if(n===4){
+function processQRResult(scannedText) {
+  /* หา booth ที่ token ตรงกัน */
+  var matched = null;
+  var keys = Object.keys(QR_TOKENS);
+  for (var i=0; i<keys.length; i++) {
+    if (QR_TOKENS[keys[i]] === scannedText) { matched = keys[i]; break; }
+  }
+  if (!matched) {
+    showToast('QR Code ไม่ถูกต้อง กรุณาสแกนใหม่ ❌');
+    return;
+  }
+  if (matched !== currentBooth) {
+    var wrongB = BOOTHS.find(function(b){ return b.id===matched; });
+    showToast('นี่คือ QR ของบูท ' + wrongB.label + ' ไม่ใช่บูทที่เปิดอยู่ ⚠️');
+    return;
+  }
+  var flash = document.getElementById('qrFlash');
+  flash.classList.add('show');
+  setTimeout(function(){
+    flash.classList.remove('show');
+    var id = currentBooth;
+    closeQR();
+    setTimeout(function(){ doStamp(id); }, 100);
+  }, 700);
+}
+
+function doStamp(id) {
+  if (stamped[id]) return;
+  stamped[id] = true;
+  buildBooths(); updateJigsaw();
+  var boothLabel = BOOTHS.find(function(b){ return b.id===id; }).label;
+  showToast('แสตมป์บูท ' + boothLabel + ' สำเร็จ! ✅');
+  var n = Object.values(stamped).filter(Boolean).length;
+  if (n === 4) {
     document.getElementById('completeBanner').classList.add('show');
-    setTimeout(()=>{document.getElementById('modalWrap').classList.add('show');document.getElementById('modalSaving').style.display='block';launchConfetti();saveToSheet();},700);
+    var name = document.getElementById('empName').value.trim();
+    document.getElementById('modalName').textContent = 'ยินดีด้วย คุณ' + name + '! ครบทั้ง 4 บูทแล้ว';
+    setTimeout(function(){
+      document.getElementById('modalWrap').classList.add('show');
+      document.getElementById('modalSaving').style.display = 'block';
+      launchConfetti();
+      saveToSheet();
+    }, 700);
   }
 }
 
-async function saveToSheet(){
-  const name=document.getElementById('empName').value.trim()||'ไม่ระบุชื่อ';
-  const dept=document.getElementById('empDept').value.trim()||'ไม่ระบุแผนก';
-  const now=new Date();
-  participantDB.push({id:participantDB.length+1,name,dept,customer:true,result:true,excellent:true,innovation:true,complete:true,total:4,time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
-  try{
-    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({employeeId:'EMP-'+Date.now(),name,department:dept,customer:stamped.customer,result:stamped.result,excellent:stamped.excellent,innovation:stamped.innovation})});
+/* ── save ── */
+function saveToSheet() {
+  var empId    = document.getElementById('empId').value.trim() || '-';
+  var name     = document.getElementById('empName').value.trim() || 'ไม่ระบุ';
+  var dept     = document.getElementById('empDept').value.trim() || '-';
+  var position = document.getElementById('empPosition').value.trim() || '-';
+  var now = new Date();
+  participantDB.push({
+    id:participantDB.length+1, empId:empId, name:name, dept:dept, position:position,
+    customer:true, result:true, excellent:true, innovation:true,
+    complete:true, total:4,
+    time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})
+  });
+  fetch(SCRIPT_URL, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({employeeId:empId, name:name, department:dept, position:position,
+      customer:stamped.customer, result:stamped.result,
+      excellent:stamped.excellent, innovation:stamped.innovation})
+  }).then(function(){
     document.getElementById('modalSaving').style.display='none';
     showToast('บันทึกข้อมูลลง Google Sheets แล้ว ✅');
-  }catch(e){document.getElementById('modalSaving').style.display='none';showToast('บันทึกไม่สำเร็จ กรุณาแจ้งเจ้าหน้าที่ ❌');}
+  }).catch(function(){
+    document.getElementById('modalSaving').style.display='none';
+    showToast('บันทึกไม่สำเร็จ กรุณาแจ้งเจ้าหน้าที่ ❌');
+  });
 }
 
-function resetUser(){
-  stamped={customer:false,result:false,excellent:false,innovation:false};
-  document.getElementById('empName').value='';document.getElementById('empDept').value='';
-  buildBooths();updateJigsaw();
+function resetUser() {
+  stamped = {customer:false, result:false, excellent:false, innovation:false};
+  ['empId','empName','empDept','empPosition'].forEach(function(id){
+    document.getElementById(id).value='';
+    document.getElementById(id).classList.remove('error');
+  });
+  ['errEmpId','errEmpName','errEmpDept'].forEach(function(id){
+    document.getElementById(id).classList.remove('show');
+  });
+  buildBooths(); updateJigsaw();
   document.getElementById('completeBanner').classList.remove('show');
   document.getElementById('modalWrap').classList.remove('show');
   document.getElementById('modalSaving').style.display='none';
 }
 
-function launchConfetti(){
-  const colors=['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa'];
-  for(let i=0;i<60;i++){setTimeout(()=>{const c=document.createElement('div');c.className='conf';c.style.cssText=`left:${Math.random()*100}vw;top:-10px;background:${colors[Math.floor(Math.random()*colors.length)]};width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;animation-duration:${2+Math.random()*2}s`;document.body.appendChild(c);setTimeout(()=>c.remove(),4000);},i*55);}
+function launchConfetti() {
+  var colors=['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa'];
+  for(var i=0;i<60;i++){
+    (function(i){
+      setTimeout(function(){
+        var c=document.createElement('div'); c.className='conf';
+        c.style.cssText='left:'+Math.random()*100+'vw;top:-10px;background:'+colors[Math.floor(Math.random()*colors.length)]+';width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;animation-duration:'+(2+Math.random()*2)+'s';
+        document.body.appendChild(c); setTimeout(function(){c.remove();},4000);
+      },i*55);
+    })(i);
+  }
 }
 
-function doLogin(){
-  const u=document.getElementById('loginUser').value.trim();
-  const p=document.getElementById('loginPass').value.trim();
-  if(u==='admin'&&p==='1234'){document.getElementById('loginErr').style.display='none';showPage('pageAdmin');fetchSheetData();}
-  else document.getElementById('loginErr').style.display='block';
+/* ── QR PRINT PAGE ── */
+function openQRPrint() {
+  showPage('pageQRPrint');
+  if (!qrGenerated) {
+    generateAllQRCodes();
+    qrGenerated = true;
+  }
 }
 
-function doLogout(){document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';showPage('pageUser');}
+function generateAllQRCodes() {
+  var grid = document.getElementById('qrpGrid');
+  grid.innerHTML = '';
+  BOOTHS.forEach(function(b) {
+    /* สร้าง card */
+    var card = document.createElement('div');
+    card.className = 'qrp-card ' + b.clsPrint;
 
-async function fetchSheetData(){
-  document.getElementById('syncStatus').textContent='กำลังโหลดข้อมูล...';
-  try{
-    const res=await fetch(SCRIPT_URL+'?action=getAll&t='+Date.now());
-    const json=await res.json();
-    if(json.rows&&json.rows.length>1){
-      participantDB=json.rows.slice(1).map((r,i)=>({id:i+1,time:r[0]?new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}):'-',name:r[2]||'ไม่ระบุ',dept:r[3]||'-',customer:r[4]==='✓',result:r[5]==='✓',excellent:r[6]==='✓',innovation:r[7]==='✓',total:Number(r[8])||0,complete:r[9]==='ครบ'}));
+    var icon = document.createElement('div');
+    icon.className = 'qrp-icon'; icon.textContent = b.icon;
+
+    var name = document.createElement('div');
+    name.className = 'qrp-name'; name.textContent = b.label;
+
+    var sub = document.createElement('div');
+    sub.className = 'qrp-sub'; sub.textContent = b.sub;
+
+    var qrWrap = document.createElement('div');
+    qrWrap.className = 'qrp-qr-wrap';
+    qrWrap.id = 'qr-' + b.id;
+
+    var token = document.createElement('div');
+    token.className = 'qrp-token'; token.textContent = QR_TOKENS[b.id];
+
+    var badge = document.createElement('div');
+    badge.className = 'qrp-badge'; badge.textContent = 'สแกนเพื่อแสตมป์';
+
+    card.appendChild(icon);
+    card.appendChild(name);
+    card.appendChild(sub);
+    card.appendChild(qrWrap);
+    card.appendChild(token);
+    card.appendChild(badge);
+    grid.appendChild(card);
+
+    /* Generate QR ด้วย qrcode.js */
+    try {
+      new QRCode(qrWrap, {
+        text: QR_TOKENS[b.id],
+        width: 140,
+        height: 140,
+        colorDark: b.color,
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    } catch(e) {
+      qrWrap.innerHTML = '<div style="width:140px;height:140px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9ca3af;text-align:center;padding:10px">QR ไม่สามารถโหลดได้</div>';
     }
-    document.getElementById('syncStatus').textContent='อัปเดตล่าสุด '+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-    showToast('โหลดข้อมูลจาก Google Sheets แล้ว ✅');
-  }catch(e){document.getElementById('syncStatus').textContent='โหลดไม่สำเร็จ — กด รีเฟรช';showToast('ใช้ข้อมูล Local (Sheets ไม่ตอบสนอง)');}
-  updateStats();renderBoothBars();currentPage=1;renderTable();
+  });
 }
 
-function updateStats(){
-  const total=participantDB.length,complete=participantDB.filter(r=>r.complete).length;
+/* ── admin ── */
+function doLogin() {
+  var u = document.getElementById('loginUser').value.trim();
+  var p = document.getElementById('loginPass').value.trim();
+  if (u==='admin' && p==='1234') {
+    document.getElementById('loginErr').style.display='none';
+    showPage('pageAdmin'); fetchSheetData();
+  } else {
+    document.getElementById('loginErr').style.display='block';
+  }
+}
+
+function doLogout() {
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  showPage('pageUser');
+}
+
+function fetchSheetData() {
+  document.getElementById('syncStatus').textContent='กำลังโหลดข้อมูล...';
+  fetch(SCRIPT_URL+'?action=getAll&t='+Date.now())
+    .then(function(r){ return r.json(); })
+    .then(function(json){
+      if(json.rows && json.rows.length>1){
+        participantDB=json.rows.slice(1).map(function(r,i){
+          return {id:i+1, time:r[0]?new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}):'-',
+            empId:r[1]||'-', name:r[2]||'ไม่ระบุ', dept:r[3]||'-', position:r[4]||'-',
+            customer:r[5]==='✓', result:r[6]==='✓', excellent:r[7]==='✓', innovation:r[8]==='✓',
+            total:Number(r[9])||0, complete:r[10]==='ครบ'};
+        });
+      }
+      document.getElementById('syncStatus').textContent='อัปเดตล่าสุด '+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+      showToast('โหลดข้อมูลจาก Google Sheets แล้ว ✅');
+      updateStats(); renderBoothBars(); currentPage=1; renderTable();
+    })
+    .catch(function(){
+      document.getElementById('syncStatus').textContent='โหลดไม่สำเร็จ — กด รีเฟรช';
+      showToast('ใช้ข้อมูล Local (Sheets ไม่ตอบสนอง)');
+      updateStats(); renderBoothBars(); currentPage=1; renderTable();
+    });
+}
+
+function updateStats() {
+  var total=participantDB.length, complete=participantDB.filter(function(r){return r.complete;}).length;
   document.getElementById('statTotal').textContent=total;
   document.getElementById('statComplete').textContent=complete;
   document.getElementById('statPartial').textContent=total-complete;
   document.getElementById('statRate').textContent=(total>0?Math.round(complete/total*100):0)+'%';
 }
 
-function renderBoothBars(){
-  const total=participantDB.length||1;
-  document.getElementById('boothBars').innerHTML=BOOTHS.map(b=>{
-    const cnt=participantDB.filter(r=>r[b.id]).length;
-    return `<div class="booth-bar-item"><span class="bbar-label" style="color:${b.color}">${b.label}</span><div class="bbar-track"><div class="bbar-fill" style="width:${Math.round(cnt/total*100)}%;background:${b.color}"></div></div><span class="bbar-count">${cnt}</span></div>`;
-  }).join('');
+function renderBoothBars() {
+  var total=participantDB.length||1, html='';
+  BOOTHS.forEach(function(b){
+    var cnt=participantDB.filter(function(r){return r[b.id];}).length;
+    html+='<div class="booth-bar-item"><span class="bbar-label" style="color:'+b.color+'">'+b.label+'</span>'
+         +'<div class="bbar-track"><div class="bbar-fill" style="width:'+Math.round(cnt/total*100)+'%;background:'+b.color+'"></div></div>'
+         +'<span class="bbar-count">'+cnt+'</span></div>';
+  });
+  document.getElementById('boothBars').innerHTML=html;
 }
 
-function getFiltered(){
-  const q=(document.getElementById('searchInput')||{}).value||'';
-  const f=(document.getElementById('filterSel')||{}).value||'all';
-  return participantDB.filter(r=>{const matchQ=r.name.toLowerCase().includes(q.toLowerCase())||r.dept.toLowerCase().includes(q.toLowerCase());const matchF=f==='all'||(f==='complete'&&r.complete)||(f==='partial'&&!r.complete);return matchQ&&matchF;});
+function getFiltered() {
+  var q=document.getElementById('searchInput')?document.getElementById('searchInput').value:'';
+  var f=document.getElementById('filterSel')?document.getElementById('filterSel').value:'all';
+  return participantDB.filter(function(r){
+    var mQ=r.name.toLowerCase().includes(q.toLowerCase())||r.dept.toLowerCase().includes(q.toLowerCase())||(r.empId||'').toLowerCase().includes(q.toLowerCase());
+    var mF=f==='all'||(f==='complete'&&r.complete)||(f==='partial'&&!r.complete);
+    return mQ&&mF;
+  });
 }
 
-function filterTable(){currentPage=1;renderTable();}
+function filterTable(){ currentPage=1; renderTable(); }
 
-function renderTable(){
-  const filtered=getFiltered(),total=filtered.length;
-  const totalPages=Math.max(1,Math.ceil(total/PER_PAGE)),start=(currentPage-1)*PER_PAGE;
-  const rows=filtered.slice(start,start+PER_PAGE);
-  const dot=v=>v?'<span class="stamp-dot dot-on">✓</span>':'<span class="stamp-dot dot-off">–</span>';
-  document.getElementById('tableBody').innerHTML=rows.length===0
-    ?'<tr><td colspan="9" style="text-align:center;color:#93c5fd;padding:24px">ไม่มีข้อมูล — กด 🔄 รีเฟรช</td></tr>'
-    :rows.map((r,i)=>{
-      const badge=r.complete?'<span class="badge-complete">ครบ 4 บูท</span>':r.total===0?'<span class="badge-none">ยังไม่เริ่ม</span>':`<span class="badge-partial">${r.total}/4 บูท</span>`;
-      return `<tr><td style="color:#9ca3af">${start+i+1}</td><td><div class="tbl-name">${r.name}</div></td><td><div class="tbl-dept">${r.dept}</div></td><td>${dot(r.customer)}</td><td>${dot(r.result)}</td><td>${dot(r.excellent)}</td><td>${dot(r.innovation)}</td><td>${badge}</td><td style="color:#6b7280;font-size:11px">${r.time}</td></tr>`;
-    }).join('');
-  document.getElementById('pageInfo').textContent=`แสดง ${Math.min(start+1,total)}–${Math.min(start+PER_PAGE,total)} จาก ${total} รายการ`;
-  let btns='';for(let p=1;p<=totalPages;p++) btns+=`<button class="page-btn${p===currentPage?' active':''}" onclick="goPage(${p})">${p}</button>`;
+function renderTable() {
+  var filtered=getFiltered(), total=filtered.length;
+  var totalPages=Math.max(1,Math.ceil(total/PER_PAGE)), start=(currentPage-1)*PER_PAGE;
+  var rows=filtered.slice(start,start+PER_PAGE);
+  function dot(v){return v?'<span class="stamp-dot dot-on">✓</span>':'<span class="stamp-dot dot-off">–</span>';}
+  var tbody='';
+  if(!rows.length){
+    tbody='<tr><td colspan="11" style="text-align:center;color:#93c5fd;padding:24px">ไม่มีข้อมูล — กด 🔄 รีเฟรช</td></tr>';
+  } else {
+    rows.forEach(function(r,i){
+      var badge=r.complete?'<span class="badge-complete">ครบ 4 บูท</span>':r.total===0?'<span class="badge-none">ยังไม่เริ่ม</span>':'<span class="badge-partial">'+r.total+'/4 บูท</span>';
+      tbody+='<tr><td style="color:#9ca3af">'+(start+i+1)+'</td>'
+            +'<td style="font-size:11px;color:#2563eb;font-weight:700">'+(r.empId||'-')+'</td>'
+            +'<td><div class="tbl-name">'+r.name+'</div></td>'
+            +'<td><div class="tbl-dept">'+r.dept+'</div></td>'
+            +'<td style="font-size:11px;color:#6b7280">'+(r.position||'-')+'</td>'
+            +'<td>'+dot(r.customer)+'</td><td>'+dot(r.result)+'</td>'
+            +'<td>'+dot(r.excellent)+'</td><td>'+dot(r.innovation)+'</td>'
+            +'<td>'+badge+'</td><td style="color:#6b7280;font-size:11px">'+r.time+'</td></tr>';
+    });
+  }
+  document.getElementById('tableBody').innerHTML=tbody;
+  document.getElementById('pageInfo').textContent='แสดง '+Math.min(start+1,total)+'–'+Math.min(start+PER_PAGE,total)+' จาก '+total+' รายการ';
+  var btns='';
+  for(var p=1;p<=Math.max(1,Math.ceil(total/PER_PAGE));p++) btns+='<button class="page-btn'+(p===currentPage?' active':'')+'" onclick="goPage('+p+')">'+p+'</button>';
   document.getElementById('pageBtns').innerHTML=btns;
 }
 
-function goPage(p){currentPage=p;renderTable();}
+function goPage(p){ currentPage=p; renderTable(); }
 
-function addDemoData(){
-  const hours=['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30','15:10','15:55'];
-  for(let i=0;i<5;i++){
-    const idx=Math.floor(Math.random()*DEMO_NAMES.length);const[name,dept]=DEMO_NAMES[idx];
-    const isComplete=Math.random()>0.3;
-    const stamps=isComplete?{customer:true,result:true,excellent:true,innovation:true}:{customer:Math.random()>0.3,result:Math.random()>0.4,excellent:Math.random()>0.5,innovation:Math.random()>0.5};
-    const total=['customer','result','excellent','innovation'].filter(k=>stamps[k]).length;
-    participantDB.push({id:participantDB.length+1,name,dept,...stamps,total,complete:stamps.customer&&stamps.result&&stamps.excellent&&stamps.innovation,time:hours[Math.floor(Math.random()*hours.length)]});
+function addDemoData() {
+  var hours=['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30'];
+  for(var i=0;i<5;i++){
+    var idx=Math.floor(Math.random()*DEMO_NAMES.length);
+    var row=DEMO_NAMES[idx];
+    var isComplete=Math.random()>0.3;
+    var stamps=isComplete?{customer:true,result:true,excellent:true,innovation:true}:{customer:Math.random()>0.3,result:Math.random()>0.4,excellent:Math.random()>0.5,innovation:Math.random()>0.5};
+    var total=['customer','result','excellent','innovation'].filter(function(k){return stamps[k];}).length;
+    participantDB.push({id:participantDB.length+1,empId:row[1],name:row[0],dept:row[2],position:row[3],
+      customer:stamps.customer,result:stamps.result,excellent:stamps.excellent,innovation:stamps.innovation,
+      total:total,complete:stamps.customer&&stamps.result&&stamps.excellent&&stamps.innovation,
+      time:hours[Math.floor(Math.random()*hours.length)]});
   }
-  updateStats();renderBoothBars();currentPage=1;renderTable();showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅');
+  updateStats(); renderBoothBars(); currentPage=1; renderTable();
+  showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅');
 }
 
-function exportCSV(){
-  const filtered=getFiltered();if(filtered.length===0){showToast('ไม่มีข้อมูลให้ Export');return;}
-  const header=['#','ชื่อ-นามสกุล','แผนก','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];
-  const rows=filtered.map((r,i)=>[i+1,r.name,r.dept,r.customer?'✓':'✗',r.result?'✓':'✗',r.excellent?'✓':'✗',r.innovation?'✓':'✗',r.complete?'ครบ 4 บูท':(r.total||0)+'/4 บูท',r.time]);
-  const csv=[header,...rows].map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
-  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
-  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='e-stamp-wd-journey.csv';a.click();URL.revokeObjectURL(url);
+function exportCSV() {
+  var filtered=getFiltered();
+  if(!filtered.length){showToast('ไม่มีข้อมูลให้ Export');return;}
+  var header=['#','รหัสพนักงาน','ชื่อ-นามสกุล','แผนก','ตำแหน่ง','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];
+  var csvRows=[header];
+  filtered.forEach(function(r,i){
+    csvRows.push([i+1,r.empId||'-',r.name,r.dept,r.position||'-',
+      r.customer?'✓':'✗',r.result?'✓':'✗',r.excellent?'✓':'✗',r.innovation?'✓':'✗',
+      r.complete?'ครบ 4 บูท':(r.total||0)+'/4 บูท',r.time]);
+  });
+  var csv=csvRows.map(function(row){return row.map(function(c){return '"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a'); a.href=url; a.download='e-stamp-wd-journey.csv'; a.click();
+  URL.revokeObjectURL(url);
   showToast('Export CSV สำเร็จ ✅');
 }
 
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function showToast(msg) {
+  var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
 
-document.getElementById('modalWrap').addEventListener('click',function(e){if(e.target===this)resetUser();});
-buildBooths();updateJigsaw();
+document.getElementById('modalWrap').addEventListener('click',function(e){ if(e.target===this) resetUser(); });
+buildBooths();
+updateJigsaw();
 </script>
 </body>
 </html>
