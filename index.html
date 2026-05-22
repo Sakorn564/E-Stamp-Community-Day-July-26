@@ -11,7 +11,6 @@ html,body{height:100%;overflow-x:hidden}
 body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100vh}
 .page{display:none}.page.active{display:block}
 .app-wrap{max-width:480px;margin:0 auto;padding:0 0 40px}
-
 .header{text-align:center;padding:20px 16px 14px;position:relative;background:linear-gradient(180deg,#dce8ff 0%,#f0f4ff 100%)}
 .header-logo-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:4px}
 .header-logo{width:40px;height:40px;border-radius:50%;object-fit:contain;box-shadow:0 4px 14px rgba(28,78,180,0.25);flex-shrink:0}
@@ -23,7 +22,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .sp1{top:18px;left:8%}.sp2{top:14px;right:22%;animation-delay:.6s}
 .sp3{bottom:8px;left:14%;animation-delay:1.1s}.sp4{bottom:6px;right:13%;animation-delay:1.7s}
 @keyframes twinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.5)}}
-
 .name-section{margin:8px 12px;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 2px 12px rgba(28,78,180,0.08);border:1.5px solid #e0eaff}
 .name-section-title{font-size:11px;font-weight:700;color:#1c4eb4;margin-bottom:7px;display:flex;align-items:center;gap:5px}
 .name-row{display:flex;gap:8px}
@@ -32,7 +30,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .dept-input{width:110px;padding:9px 11px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:13px;outline:none;font-family:inherit}
 .dept-input:focus{border-color:#2563eb}
 .name-hint{font-size:10px;color:#93c5fd;margin-top:4px}
-
 .jigsaw-section{margin:0 12px 8px;background:#fff;border-radius:16px;padding:12px;box-shadow:0 2px 12px rgba(28,78,180,0.08);border:1.5px solid #e0eaff}
 .jigsaw-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:100%;aspect-ratio:1/1;border-radius:10px;overflow:hidden;margin-bottom:10px}
 .jpiece{position:relative;overflow:hidden;border-radius:3px;transition:filter .4s ease}
@@ -45,17 +42,14 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .jpiece .lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;z-index:2;background:rgba(220,230,255,0.4)}
 .jpiece.unlocked .lock-overlay{display:none}
 .lock-overlay .lname{font-size:9px;font-weight:700;color:#93c5fd}
-
 .progress-row{display:flex;align-items:center;gap:10px}
 .progress-label{font-size:12px;font-weight:700;color:#1c4eb4;white-space:nowrap}
 .progress-track{flex:1;height:7px;background:#dbeafe;border-radius:10px;overflow:hidden}
 .progress-fill{height:100%;background:linear-gradient(90deg,#1c4eb4,#2563eb,#60a5fa);border-radius:10px;transition:width .6s ease}
-
 .booth-section{margin:0 12px 10px}
 .booth-section-label{font-size:12px;font-weight:700;color:#6b7280;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .booth-section-label::before,.booth-section-label::after{content:'';flex:1;height:1px;background:#e0eaff}
 .booth-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-
 .booth-card{border-radius:14px;padding:12px 8px 10px;display:flex;flex-direction:column;align-items:center;text-align:center;border:2px solid transparent;position:relative;transition:all .25s;cursor:pointer;background:#fff;box-shadow:0 2px 10px rgba(28,78,180,0.07)}
 .booth-card:active{transform:scale(.97)}
 .bc-customer{border-color:#bfdbfe}.bc-result{border-color:#bbf7d0}
@@ -64,17 +58,14 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .bc-result.done{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.1),0 4px 14px rgba(5,150,105,0.12)}
 .bc-excellent.done{border-color:#d97706;box-shadow:0 0 0 3px rgba(217,119,6,.1),0 4px 14px rgba(217,119,6,0.12)}
 .bc-innovation.done{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1),0 4px 14px rgba(124,58,237,0.12)}
-
 .bc-icon-wrap{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:6px}
 .bc-icon-wrap svg{width:24px;height:24px}
 .bc-customer .bc-icon-wrap{background:#eff6ff}.bc-result .bc-icon-wrap{background:#f0fdf4}
 .bc-excellent .bc-icon-wrap{background:#fffbeb}.bc-innovation .bc-icon-wrap{background:#f5f3ff}
-
 .bc-name{font-size:13px;font-weight:800;margin-bottom:1px}
 .bc-customer .bc-name{color:#1c4eb4}.bc-result .bc-name{color:#065f46}
 .bc-excellent .bc-name{color:#92400e}.bc-innovation .bc-name{color:#4c1d95}
 .bc-sub{font-size:9px;color:#9ca3af;margin-bottom:10px}
-
 .bc-btn{padding:7px 0;width:100%;border-radius:20px;border:none;font-size:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:4px;transition:all .2s}
 .bc-customer .bc-btn{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;box-shadow:0 3px 8px rgba(28,78,180,0.3)}
 .bc-result .bc-btn{background:linear-gradient(135deg,#059669,#10b981);color:#fff;box-shadow:0 3px 8px rgba(5,150,105,0.3)}
@@ -82,34 +73,28 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .bc-innovation .bc-btn{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff;box-shadow:0 3px 8px rgba(124,58,237,0.3)}
 .bc-btn.stamped{background:#f0fdf4;color:#059669;cursor:default;box-shadow:none;border:1.5px solid #bbf7d0}
 .done-badge{position:absolute;top:6px;right:6px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:8px;font-weight:800;border-radius:20px;padding:2px 6px}
-
 .complete-banner{margin:0 12px 10px;background:linear-gradient(135deg,#1c4eb4,#2563eb,#7c3aed);border-radius:14px;padding:14px;text-align:center;display:none;animation:bannerIn .5s ease;box-shadow:0 6px 20px rgba(28,78,180,0.3)}
 @keyframes bannerIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
 .complete-banner.show{display:block}
 .cb-title{font-size:17px;font-weight:900;color:#fff;margin-bottom:3px}
 .cb-sub{font-size:12px;color:#bfdbfe}
-
-/* ===== QR SCREEN — fullscreen fixed ===== */
 .qr-screen{display:none;position:fixed;inset:0;z-index:200;background:#0a1628;flex-direction:column}
 .qr-screen.show{display:flex}
 .qr-topbar{background:#0f1f3d;padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0}
 .qr-back{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.1);border:none;color:#e2e8f0;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .qr-topbar-info{flex:1;min-width:0}
 .qr-topbar-title{font-size:14px;font-weight:700;color:#f7fafc}
-.qr-topbar-sub{font-size:11px;color:#90cdf4;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qr-topbar-sub{font-size:11px;color:#90cdf4;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .qr-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;flex-shrink:0}
-
-/* Camera area takes all remaining height */
 .qr-cam{flex:1;position:relative;background:#000;overflow:hidden;min-height:0}
 #qrVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 #qrCanvas{display:none}
-
 .qr-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
 .qr-dim-top{width:100%;flex:1;background:rgba(0,0,0,0.55)}
 .qr-dim-bot{width:100%;flex:1;background:rgba(0,0,0,0.55);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:14px}
 .qr-dim-row{display:flex;width:100%;align-items:stretch}
 .qr-dim-side{flex:1;background:rgba(0,0,0,0.55)}
-.qr-frame-box{width:210px;height:210px;position:relative;flex-shrink:0}
+.qr-frame-box{width:220px;height:220px;position:relative;flex-shrink:0}
 .qc{position:absolute;width:32px;height:32px;border-color:#60a5fa;border-style:solid}
 .qc.tl{top:0;left:0;border-width:4px 0 0 4px;border-radius:6px 0 0 6px}
 .qc.tr{top:0;right:0;border-width:4px 4px 0 0;border-radius:0 6px 0 0}
@@ -117,32 +102,27 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .qc.br{bottom:0;right:0;border-width:0 4px 4px 0;border-radius:0 0 6px 0}
 .qr-scan-line{position:absolute;left:6px;right:6px;height:2px;background:linear-gradient(90deg,transparent,#60a5fa,transparent);top:6px;animation:scan 2s linear infinite}
 @keyframes scan{0%{top:6px}100%{top:calc(100% - 6px)}}
-.qr-hint-box{background:rgba(0,0,0,0.7);border-radius:10px;padding:8px 16px;text-align:center}
+.qr-hint-box{background:rgba(0,0,0,0.72);border-radius:10px;padding:8px 16px;text-align:center}
 .qr-hint-box p{color:#cbd5e1;font-size:12px;line-height:1.5}
 .qr-hint-box strong{color:#60a5fa}
-
-.qr-status-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(10,22,40,0.9);padding:8px 14px;display:flex;align-items:center;gap:8px;border-top:1px solid rgba(255,255,255,0.07)}
-.qr-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.qr-status-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(10,22,40,0.92);padding:8px 14px;display:flex;align-items:center;gap:8px;border-top:1px solid rgba(255,255,255,0.07)}
+.qr-status-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;transition:background .3s}
 .qr-status-dot.loading{background:#f59e0b;animation:blink 1s infinite}
 .qr-status-dot.ready{background:#10b981;animation:blink 1.5s infinite}
 .qr-status-dot.error{background:#ef4444}
 .qr-status-dot.success{background:#10b981}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 .qr-status-text{font-size:11px;color:#90cdf4;flex:1}
-
 .qr-success-flash{position:absolute;inset:0;background:rgba(16,185,129,0.25);display:none;align-items:center;justify-content:center;z-index:5}
 .qr-success-flash.show{display:flex;animation:flashOut .65s ease forwards}
 .qr-error-flash{position:absolute;inset:0;background:rgba(239,68,68,0.2);display:none;align-items:center;justify-content:center;z-index:5;flex-direction:column;gap:10px}
 .qr-error-flash.show{display:flex;animation:flashOut 1.2s ease forwards}
-.qr-error-text{color:#fff;font-size:13px;font-weight:700;background:rgba(200,30,30,0.9);padding:10px 16px;border-radius:12px;text-align:center;max-width:85%}
+.qr-error-text{color:#fff;font-size:13px;font-weight:700;background:rgba(200,30,30,0.9);padding:10px 16px;border-radius:12px;text-align:center;max-width:85%;line-height:1.4}
 @keyframes flashOut{0%{opacity:1}100%{opacity:0}}
-
 .qr-bottom{background:#0f1f3d;padding:12px 16px;display:flex;flex-direction:column;gap:8px;align-items:center;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0}
 .qr-simulate-btn{width:100%;padding:13px;border-radius:12px;border:none;font-size:14px;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 4px 14px rgba(28,78,180,0.4)}
 .qr-simulate-btn:active{transform:scale(.97)}
 .qr-cancel-btn{font-size:13px;color:#90cdf4;background:none;border:none;cursor:pointer;padding:4px}
-
-/* ===== MODAL ===== */
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;align-items:flex-end;justify-content:center}
 .modal-wrap.show{display:flex}
 .modal-sheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 36px;animation:sheetUp .4s ease;text-align:center;box-shadow:0 -8px 40px rgba(28,78,180,0.15)}
@@ -156,12 +136,10 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .modal-sub{font-size:13px;color:#6b7280;margin-top:5px}
 .modal-eco{font-size:12px;color:#059669;margin-top:4px}
 .modal-saving{font-size:11px;color:#2563eb;margin-top:6px;display:none}
-.modal-btn{margin-top:16px;width:100%;padding:14px;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:0 4px 14px rgba(28,78,180,0.3)}
-
-/* ===== ADMIN LOGIN ===== */
+.modal-btn{margin-top:16px;width:100%;padding:14px;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer}
 .admin-login-wrap{max-width:400px;margin:0 auto;padding:50px 20px}
 .login-card{background:#fff;border-radius:20px;padding:30px 24px;box-shadow:0 8px 40px rgba(28,78,180,0.12);text-align:center;border:1.5px solid #e0eaff}
-.login-logo{width:56px;height:56px;border-radius:50%;object-fit:contain;margin-bottom:10px;box-shadow:0 4px 14px rgba(28,78,180,0.2)}
+.login-logo{width:56px;height:56px;border-radius:50%;object-fit:contain;margin-bottom:10px}
 .login-title{font-size:20px;font-weight:900;color:#1c4eb4;margin-bottom:3px}
 .login-sub{font-size:12px;color:#6b7280;margin-bottom:20px}
 .login-input{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:14px;margin-bottom:10px;outline:none;font-family:inherit}
@@ -169,8 +147,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 .login-btn{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;font-size:14px;font-weight:800;cursor:pointer}
 .login-err{font-size:12px;color:#ef4444;margin-top:7px;display:none}
 .back-user{font-size:13px;color:#2563eb;cursor:pointer;margin-top:14px}
-
-/* ===== ADMIN DASHBOARD ===== */
 .admin-wrap{max-width:900px;margin:0 auto;padding:16px 12px 50px}
 .admin-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
 .admin-topbar-left{display:flex;align-items:center;gap:10px}
@@ -231,7 +207,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 </head>
 <body>
 
-<!-- USER PAGE -->
 <div class="page active" id="pageUser">
   <div class="app-wrap">
     <div class="header">
@@ -245,7 +220,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
       <div class="header-desc">สะสมแสตมป์ครบทั้ง 4 บูท เพื่อรับจิ๊กซอว์ชิ้นเต็ม!</div>
       <div class="admin-link" onclick="showPage('pageAdminLogin')">⚙ Admin</div>
     </div>
-
     <div class="name-section">
       <div class="name-section-title">
         <svg viewBox="0 0 24 24" fill="none" width="13" height="13"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round"/></svg>
@@ -257,7 +231,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
       </div>
       <div class="name-hint">* กรุณากรอกชื่อก่อนแสตมป์ เพื่อบันทึกข้อมูลเข้าระบบ</div>
     </div>
-
     <div class="jigsaw-section">
       <div class="jigsaw-grid">
         <div class="jpiece pos-tl locked" id="jp-customer">
@@ -294,12 +267,10 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
         <div class="progress-track"><div class="progress-fill" id="progFill" style="width:0%"></div></div>
       </div>
     </div>
-
     <div class="complete-banner" id="completeBanner">
       <div class="cb-title">🎉 จิ๊กซอว์สมบูรณ์!</div>
       <div class="cb-sub">ขอบคุณที่ร่วมกิจกรรมครบทั้ง 4 บูท 🌿</div>
     </div>
-
     <div class="booth-section">
       <div class="booth-section-label">เลือกบูทเพื่อแสตมป์</div>
       <div class="booth-grid" id="boothGrid"></div>
@@ -307,7 +278,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
   </div>
 </div>
 
-<!-- QR SCREEN -->
 <div class="qr-screen" id="qrScreen">
   <div class="qr-topbar">
     <button class="qr-back" onclick="closeQR()">‹</button>
@@ -339,7 +309,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
         <div class="qr-dim-side"></div>
       </div>
       <div class="qr-dim-bot">
-        <div class="qr-hint-box"><p>นำ QR Code บูท <strong id="qrHintName"></strong><br>เข้าใกล้กรอบด้านบน</p></div>
+        <div class="qr-hint-box"><p>นำ QR Code บูท <strong id="qrHintName"></strong><br>เข้าใกล้กรอบ</p></div>
       </div>
     </div>
     <div class="qr-status-bar">
@@ -356,7 +326,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
   </div>
 </div>
 
-<!-- COMPLETE MODAL -->
 <div class="modal-wrap" id="modalWrap">
   <div class="modal-sheet">
     <div class="modal-handle"></div>
@@ -374,7 +343,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
   </div>
 </div>
 
-<!-- ADMIN LOGIN -->
 <div class="page" id="pageAdminLogin">
   <div class="admin-login-wrap">
     <div class="login-card">
@@ -390,7 +358,6 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
   </div>
 </div>
 
-<!-- ADMIN DASHBOARD -->
 <div class="page" id="pageAdmin">
   <div class="admin-wrap">
     <div class="admin-topbar">
@@ -398,7 +365,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
         <div class="admin-avatar"><svg viewBox="0 0 24 24" fill="none" width="20" height="20"><circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
         <div>
           <div class="admin-greeting">Admin Dashboard</div>
-          <div class="admin-role"><span class="sync-dot"></span><span id="syncStatus">เชื่อมต่อ Google Sheets ✅</span></div>
+          <div class="admin-role"><span class="sync-dot"></span><span id="syncStatus">พร้อมใช้งาน</span></div>
         </div>
       </div>
       <div style="display:flex;gap:7px;align-items:center">
@@ -458,15 +425,17 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:#f0f4ff;min-height:100v
 <div class="toast" id="toast"></div>
 
 <script>
-/* ── CONFIG ── */
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
-const QR_CODES = {
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
+
+/* QR values ต้องตรงกับ QR Code ที่พิมพ์ไว้ */
+var QR_CODES = {
   customer:   'WD-JOURNEY-BOOTH-CUSTOMER',
   result:     'WD-JOURNEY-BOOTH-RESULT',
   excellent:  'WD-JOURNEY-BOOTH-EXCELLENT',
   innovation: 'WD-JOURNEY-BOOTH-INNOVATION'
 };
-const BOOTHS = [
+
+var BOOTHS = [
   { id:'customer',   label:'Customer',   sub:'บูทเกี่ยวกับลูกค้า',  cls:'bc-customer',  pos:'tl', color:'#1c4eb4', badgeBg:'#eff6ff', badgeColor:'#1c4eb4',
     svg:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><circle cx="7" cy="10" r="3" stroke="#1c4eb4" stroke-width="1.5"/><circle cx="17" cy="10" r="3" stroke="#1c4eb4" stroke-width="1.5"/><path d="M4 20 Q12 15 20 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round" fill="none"/></svg>'},
   { id:'result',     label:'Result',     sub:'บูทเกี่ยวกับผลลัพธ์', cls:'bc-result',    pos:'tr', color:'#059669', badgeBg:'#f0fdf4', badgeColor:'#059669',
@@ -476,25 +445,25 @@ const BOOTHS = [
   { id:'innovation', label:'Innovation', sub:'บูทนวัตกรรม',          cls:'bc-innovation',pos:'br', color:'#7c3aed', badgeBg:'#f5f3ff', badgeColor:'#7c3aed',
     svg:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>'}
 ];
-const DEMO_NAMES = [['สมชาย ใจดี','ฝ่ายผลิต'],['สุดา รักษ์ไทย','ฝ่ายขาย'],['วิชัย มั่นคง','ฝ่าย HR'],['นภา สดใส','ฝ่าย IT'],['ประสิทธิ์ เก่งงาน','ฝ่ายบัญชี'],['มาลี วงศ์งาม','ฝ่ายการตลาด'],['อนุชา ดีเลิศ','ฝ่ายผลิต'],['กานดา สุขใจ','ฝ่าย QA'],['พงษ์ศักดิ์ ชาญวิทย์','ฝ่ายวิศวกรรม'],['รัตนา พรมมา','ฝ่ายจัดซื้อ']];
 
-/* ── STATE ── */
-let stamped = {customer:false,result:false,excellent:false,innovation:false};
-let currentBooth = null, videoStream = null, scanInterval = null, scanLocked = false;
-let participantDB = [], currentPage = 1;
-const PER_PAGE = 8;
+var DEMO_NAMES = [['สมชาย ใจดี','ฝ่ายผลิต'],['สุดา รักษ์ไทย','ฝ่ายขาย'],['วิชัย มั่นคง','ฝ่าย HR'],['นภา สดใส','ฝ่าย IT'],['ประสิทธิ์ เก่งงาน','ฝ่ายบัญชี'],['มาลี วงศ์งาม','ฝ่ายการตลาด'],['อนุชา ดีเลิศ','ฝ่ายผลิต'],['กานดา สุขใจ','ฝ่าย QA'],['พงษ์ศักดิ์ ชาญวิทย์','ฝ่ายวิศวกรรม'],['รัตนา พรมมา','ฝ่ายจัดซื้อ']];
 
-/* ── PAGE NAV ── */
+var stamped = {customer:false, result:false, excellent:false, innovation:false};
+var currentBooth = null, videoStream = null, scanInterval = null, scanLocked = false;
+var participantDB = [], currentPage = 1;
+var PER_PAGE = 8;
+
+/* ─── PAGE ─── */
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
 }
 
-/* ── BUILD BOOTHS ── */
+/* ─── BOOTHS ─── */
 function buildBooths() {
-  document.getElementById('boothGrid').innerHTML = BOOTHS.map(b => {
-    const done = stamped[b.id];
+  document.getElementById('boothGrid').innerHTML = BOOTHS.map(function(b) {
+    var done = stamped[b.id];
     return '<div class="booth-card ' + b.cls + (done?' done':'') + '">' +
       (done ? '<div class="done-badge">✓ แล้ว</div>' : '') +
       '<div class="bc-icon-wrap">' + b.svg + '</div>' +
@@ -508,9 +477,8 @@ function buildBooths() {
   }).join('');
 }
 
-/* ── UPDATE JIGSAW ── */
 function updateJigsaw() {
-  BOOTHS.forEach(b => {
+  BOOTHS.forEach(function(b) {
     var el = document.getElementById('jp-' + b.id);
     if (!el) return;
     if (stamped[b.id]) { el.classList.remove('locked'); el.classList.add('unlocked'); }
@@ -521,7 +489,7 @@ function updateJigsaw() {
   document.getElementById('progFill').style.width = (n / 4 * 100) + '%';
 }
 
-/* ── OPEN QR ── */
+/* ─── OPEN QR ─── */
 function openQR(id) {
   if (stamped[id]) return;
   currentBooth = id;
@@ -542,59 +510,113 @@ function openQR(id) {
   startCamera();
 }
 
-/* ── START CAMERA ── */
+/* ─── CAMERA ─── */
 function startCamera() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
     setStatus('error', 'Browser ไม่รองรับกล้อง — ใช้ปุ่มจำลองสแกน');
     return;
   }
-  var constraints = { video: { facingMode: { ideal: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } } };
-  navigator.mediaDevices.getUserMedia(constraints)
-    .then(function(stream) {
-      videoStream = stream;
-      var v = document.getElementById('qrVideo');
-      v.srcObject = stream;
-      v.play();
-      v.addEventListener('loadeddata', function onLoaded() {
-        v.removeEventListener('loadeddata', onLoaded);
-        var b = BOOTHS.find(function(x){ return x.id === currentBooth; });
-        document.getElementById('qrTopSub').textContent = 'กล้องพร้อม — สแกน QR บูท ' + (b ? b.label : '');
-        setStatus('ready', 'กำลังสแกน... นำ QR เข้าใกล้กรอบ');
-        startScanLoop();
-      });
-    })
-    .catch(function(err) {
-      console.warn('Camera error:', err);
-      setStatus('error', 'เปิดกล้องไม่ได้ — กดปุ่มจำลองสแกนด้านล่าง');
+  /* ลอง back camera ก่อน ถ้าไม่ได้ fallback เป็น any */
+  var tryConstraints = [
+    { video: { facingMode: { exact: 'environment' }, width: { ideal: 1280 }, height: { ideal: 720 } } },
+    { video: { facingMode: 'environment' } },
+    { video: true }
+  ];
+  function tryNext(idx) {
+    if (idx >= tryConstraints.length) {
+      setStatus('error', 'เปิดกล้องไม่ได้ — กดปุ่มจำลองสแกน');
       document.getElementById('qrTopSub').textContent = 'กด "จำลองสแกน" เพื่อแสตมป์';
-    });
+      return;
+    }
+    navigator.mediaDevices.getUserMedia(tryConstraints[idx])
+      .then(function(stream) {
+        videoStream = stream;
+        var v = document.getElementById('qrVideo');
+        v.srcObject = stream;
+        v.play().catch(function(){});
+        /* รอ video พร้อม */
+        var waited = 0;
+        var waitReady = setInterval(function() {
+          waited += 100;
+          if (v.readyState >= 2 && v.videoWidth > 0) {
+            clearInterval(waitReady);
+            var b = BOOTHS.find(function(x){ return x.id === currentBooth; });
+            document.getElementById('qrTopSub').textContent = 'กล้องพร้อม — สแกน QR บูท ' + (b ? b.label : '');
+            setStatus('ready', 'กำลังสแกน... นำ QR เข้าใกล้กรอบสีฟ้า');
+            startScanLoop();
+          }
+          if (waited > 8000) {
+            clearInterval(waitReady);
+            setStatus('error', 'กล้องไม่ตอบสนอง — ใช้ปุ่มจำลองสแกน');
+          }
+        }, 100);
+      })
+      .catch(function(err) {
+        console.warn('cam try ' + idx + ' failed:', err.name);
+        tryNext(idx + 1);
+      });
+  }
+  tryNext(0);
 }
 
-/* ── SCAN LOOP ── */
+/* ─── GRAYSCALE HELPER — ทำให้ jsQR อ่าน Colored QR ได้ ─── */
+function toGrayscaleImageData(ctx, w, h) {
+  var raw = ctx.getImageData(0, 0, w, h);
+  var d = raw.data;
+  /* แปลง RGB → grayscale แบบ luminance */
+  for (var i = 0; i < d.length; i += 4) {
+    var gray = Math.round(0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2]);
+    d[i] = d[i+1] = d[i+2] = gray;
+  }
+  return raw;
+}
+
+/* ─── SCAN LOOP ─── */
 function startScanLoop() {
   stopScanLoop();
-  var video = document.getElementById('qrVideo');
-  var canvas = document.getElementById('qrCanvas');
-  var ctx = canvas.getContext('2d');
+  var video   = document.getElementById('qrVideo');
+  var canvas  = document.getElementById('qrCanvas');
+  var ctx     = canvas.getContext('2d', { willReadFrequently: true });
+
   scanInterval = setInterval(function() {
     if (scanLocked) return;
     if (!video || video.readyState < 2 || video.videoWidth === 0) return;
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-    var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    try {
-      var code = jsQR(imgData.data, imgData.width, imgData.height, { inversionAttempts: 'dontInvert' });
-      if (code && code.data) handleQRResult(code.data);
-    } catch(e) {}
-  }, 250);
+
+    var W = video.videoWidth;
+    var H = video.videoHeight;
+    canvas.width  = W;
+    canvas.height = H;
+    ctx.drawImage(video, 0, 0, W, H);
+
+    /* ── ลองสแกนทั้ง 3 mode ─ ทำให้ Colored QR ผ่าน ── */
+    var attempts = ['dontInvert', 'onlyInvert', 'attemptBoth'];
+    var code = null;
+
+    /* Pass 1: ภาพสี ปกติ */
+    for (var a = 0; a < attempts.length && !code; a++) {
+      var imgData = ctx.getImageData(0, 0, W, H);
+      code = jsQR(imgData.data, W, H, { inversionAttempts: attempts[a] });
+    }
+
+    /* Pass 2: แปลง grayscale แล้วลองอีกรอบ */
+    if (!code) {
+      var grayData = toGrayscaleImageData(ctx, W, H);
+      for (var b = 0; b < attempts.length && !code; b++) {
+        code = jsQR(grayData.data, W, H, { inversionAttempts: attempts[b] });
+      }
+    }
+
+    if (code && code.data) {
+      handleQRResult(code.data);
+    }
+  }, 200);
 }
 
 function stopScanLoop() {
   if (scanInterval) { clearInterval(scanInterval); scanInterval = null; }
 }
 
-/* ── QR RESULT ── */
+/* ─── QR RESULT ─── */
 function handleQRResult(data) {
   if (scanLocked) return;
   var expected = QR_CODES[currentBooth];
@@ -605,40 +627,36 @@ function handleQRResult(data) {
     var flash = document.getElementById('qrFlash');
     flash.classList.add('show');
     setTimeout(function() { flash.classList.remove('show'); }, 700);
-    var capturedBooth = currentBooth;
-    setTimeout(function() {
-      closeQR();
-      setTimeout(function() { doStamp(capturedBooth); }, 150);
-    }, 800);
+    var captured = currentBooth;
+    setTimeout(function() { closeQR(); setTimeout(function() { doStamp(captured); }, 150); }, 850);
   } else {
     scanLocked = true;
     stopScanLoop();
-    var b = BOOTHS.find(function(x){ return x.id === currentBooth; });
-    var found = BOOTHS.find(function(x){ return QR_CODES[x.id] === data; });
+    var bObj    = BOOTHS.find(function(x){ return x.id === currentBooth; });
+    var found   = BOOTHS.find(function(x){ return QR_CODES[x.id] === data; });
     var msg = found
-      ? 'นี่คือ QR บูท "' + found.label + '" — สแกน QR บูท "' + b.label + '"'
-      : 'QR ไม่ถูกต้อง กรุณาสแกน QR บูท "' + b.label + '"';
+      ? 'นี่คือ QR บูท "' + found.label + '" — กรุณาสแกน QR บูท "' + bObj.label + '"'
+      : 'QR ไม่ถูกต้อง กรุณาสแกน QR บูท "' + bObj.label + '"';
     document.getElementById('qrErrorText').textContent = msg;
-    var ef = document.getElementById('qrErrorFlash');
-    ef.classList.add('show');
+    document.getElementById('qrErrorFlash').classList.add('show');
     setStatus('error', 'QR ไม่ตรง — ลองอีกครั้ง');
     showToast('❌ ' + msg, 'error');
     setTimeout(function() {
-      ef.classList.remove('show');
+      document.getElementById('qrErrorFlash').classList.remove('show');
       scanLocked = false;
-      setStatus('ready', 'กำลังสแกน... นำ QR เข้าใกล้กรอบ');
+      setStatus('ready', 'กำลังสแกน... นำ QR เข้าใกล้กรอบสีฟ้า');
       startScanLoop();
-    }, 2200);
+    }, 2500);
   }
 }
 
-/* ── SIMULATE SCAN ── */
+/* ─── SIMULATE ─── */
 function simulateScan() {
   if (!currentBooth) return;
   handleQRResult(QR_CODES[currentBooth]);
 }
 
-/* ── CLOSE QR ── */
+/* ─── CLOSE QR ─── */
 function closeQR() {
   stopScanLoop();
   if (videoStream) { videoStream.getTracks().forEach(function(t){ t.stop(); }); videoStream = null; }
@@ -649,20 +667,18 @@ function closeQR() {
   currentBooth = null;
 }
 
-/* ── STATUS HELPER ── */
 function setStatus(type, msg) {
   document.getElementById('qrStatusDot').className = 'qr-status-dot ' + type;
   document.getElementById('qrStatusText').textContent = msg;
 }
 
-/* ── DO STAMP ── */
+/* ─── STAMP ─── */
 function doStamp(id) {
   var name = document.getElementById('empName').value.trim();
   if (!name) { showToast('⚠️ กรุณากรอกชื่อก่อนแสตมป์', 'error'); return; }
   if (stamped[id]) { showToast('✅ บูทนี้แสตมป์แล้ว'); return; }
   stamped[id] = true;
-  buildBooths();
-  updateJigsaw();
+  buildBooths(); updateJigsaw();
   var b = BOOTHS.find(function(x){ return x.id === id; });
   showToast('🎉 แสตมป์บูท ' + b.label + ' สำเร็จ!', 'success');
   var n = Object.values(stamped).filter(Boolean).length;
@@ -677,26 +693,25 @@ function doStamp(id) {
   }
 }
 
-/* ── SAVE TO SHEET ── */
+/* ─── SAVE ─── */
 function saveToSheet() {
   var name = document.getElementById('empName').value.trim() || 'ไม่ระบุชื่อ';
   var dept = document.getElementById('empDept').value.trim() || 'ไม่ระบุแผนก';
-  var now = new Date();
-  participantDB.push({ id: participantDB.length+1, name: name, dept: dept, customer: true, result: true, excellent: true, innovation: true, complete: true, total: 4, time: now.toLocaleTimeString('th-TH', {hour:'2-digit', minute:'2-digit'}) });
+  var now  = new Date();
+  participantDB.push({ id: participantDB.length+1, name: name, dept: dept, customer:true, result:true, excellent:true, innovation:true, complete:true, total:4, time: now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}) });
   fetch(SCRIPT_URL, {
-    method: 'POST', mode: 'no-cors',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ employeeId: 'EMP-'+Date.now(), name: name, department: dept, customer: stamped.customer, result: stamped.result, excellent: stamped.excellent, innovation: stamped.innovation })
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ employeeId:'EMP-'+Date.now(), name:name, department:dept, customer:stamped.customer, result:stamped.result, excellent:stamped.excellent, innovation:stamped.innovation })
   }).then(function() {
     document.getElementById('modalSaving').style.display = 'none';
     showToast('บันทึกข้อมูลลง Google Sheets ✅');
   }).catch(function() {
     document.getElementById('modalSaving').style.display = 'none';
-    showToast('บันทึกไม่สำเร็จ กรุณาแจ้งเจ้าหน้าที่ ❌', 'error');
   });
 }
 
-/* ── RESET ── */
+/* ─── RESET ─── */
 function resetUser() {
   stamped = {customer:false, result:false, excellent:false, innovation:false};
   document.getElementById('empName').value = '';
@@ -707,11 +722,11 @@ function resetUser() {
   document.getElementById('modalSaving').style.display = 'none';
 }
 
-/* ── CONFETTI ── */
+/* ─── CONFETTI ─── */
 function launchConfetti() {
   var colors = ['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa','#34d399','#fbbf24'];
   for (var i = 0; i < 55; i++) {
-    (function(delay){
+    (function(delay) {
       setTimeout(function() {
         var c = document.createElement('div');
         c.className = 'conf';
@@ -723,24 +738,23 @@ function launchConfetti() {
   }
 }
 
-/* ── TOAST ── */
-var _toastTimer = null;
+/* ─── TOAST ─── */
+var _tt = null;
 function showToast(msg, type) {
   var t = document.getElementById('toast');
   t.textContent = msg;
-  t.className = 'toast' + (type ? ' '+type : '') + ' show';
-  if (_toastTimer) clearTimeout(_toastTimer);
-  _toastTimer = setTimeout(function(){ t.classList.remove('show'); }, 3000);
+  t.className = 'toast' + (type?' '+type:'') + ' show';
+  if (_tt) clearTimeout(_tt);
+  _tt = setTimeout(function(){ t.classList.remove('show'); }, 3000);
 }
 
-/* ── ADMIN LOGIN ── */
+/* ─── ADMIN ─── */
 function doLogin() {
   var u = document.getElementById('loginUser').value.trim();
   var p = document.getElementById('loginPass').value.trim();
   if (u === 'admin' && p === '1234') {
     document.getElementById('loginErr').style.display = 'none';
-    showPage('pageAdmin');
-    fetchSheetData();
+    showPage('pageAdmin'); fetchSheetData();
   } else {
     document.getElementById('loginErr').style.display = 'block';
   }
@@ -751,7 +765,6 @@ function doLogout() {
   showPage('pageUser');
 }
 
-/* ── FETCH SHEET ── */
 function fetchSheetData() {
   document.getElementById('syncStatus').textContent = 'กำลังโหลด...';
   fetch(SCRIPT_URL + '?action=getAll&t=' + Date.now())
@@ -759,7 +772,7 @@ function fetchSheetData() {
     .then(function(json) {
       if (json.rows && json.rows.length > 1) {
         participantDB = json.rows.slice(1).map(function(r, i) {
-          return { id:i+1, time: r[0] ? new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}) : '-', name: r[2]||'ไม่ระบุ', dept: r[3]||'-', customer: r[4]==='✓', result: r[5]==='✓', excellent: r[6]==='✓', innovation: r[7]==='✓', total: Number(r[8])||0, complete: r[9]==='ครบ' };
+          return { id:i+1, time: r[0] ? new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}) : '-', name:r[2]||'ไม่ระบุ', dept:r[3]||'-', customer:r[4]==='✓', result:r[5]==='✓', excellent:r[6]==='✓', innovation:r[7]==='✓', total:Number(r[8])||0, complete:r[9]==='ครบ' };
         });
       }
       document.getElementById('syncStatus').textContent = 'อัปเดต ' + new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
@@ -768,12 +781,10 @@ function fetchSheetData() {
     })
     .catch(function() {
       document.getElementById('syncStatus').textContent = 'ใช้ข้อมูล Local';
-      showToast('Sheets ไม่ตอบสนอง — ใช้ข้อมูลในเครื่อง');
       updateStats(); renderBoothBars(); currentPage=1; renderTable();
     });
 }
 
-/* ── STATS ── */
 function updateStats() {
   var total = participantDB.length;
   var complete = participantDB.filter(function(r){ return r.complete; }).length;
@@ -783,77 +794,71 @@ function updateStats() {
   document.getElementById('statRate').textContent = total > 0 ? Math.round(complete/total*100)+'%' : '0%';
 }
 
-/* ── BOOTH BARS ── */
 function renderBoothBars() {
   var total = participantDB.length || 1;
   document.getElementById('boothBars').innerHTML = BOOTHS.map(function(b) {
     var cnt = participantDB.filter(function(r){ return r[b.id]; }).length;
-    var pct = Math.round(cnt / total * 100);
+    var pct = Math.round(cnt/total*100);
     return '<div class="booth-bar-item"><span class="bbar-label" style="color:'+b.color+'">'+b.label+'</span><div class="bbar-track"><div class="bbar-fill" style="width:'+pct+'%;background:'+b.color+'"></div></div><span class="bbar-count">'+cnt+'</span></div>';
   }).join('');
 }
 
-/* ── TABLE ── */
 function getFiltered() {
-  var q = (document.getElementById('searchInput').value || '').toLowerCase();
+  var q = (document.getElementById('searchInput').value||'').toLowerCase();
   var f = document.getElementById('filterSel').value;
   return participantDB.filter(function(r) {
     var mq = !q || r.name.toLowerCase().includes(q) || (r.dept||'').toLowerCase().includes(q);
-    var mf = f==='all' || (f==='complete'&&r.complete) || (f==='partial'&&!r.complete);
+    var mf = f==='all'||(f==='complete'&&r.complete)||(f==='partial'&&!r.complete);
     return mq && mf;
   });
 }
-function filterTable() { currentPage = 1; renderTable(); }
-function goPage(p) { currentPage = p; renderTable(); }
+function filterTable(){ currentPage=1; renderTable(); }
+function goPage(p){ currentPage=p; renderTable(); }
 
 function renderTable() {
-  var filtered = getFiltered();
-  var total = filtered.length;
-  var pages = Math.max(1, Math.ceil(total / PER_PAGE));
-  var start = (currentPage-1) * PER_PAGE;
-  var rows = filtered.slice(start, start+PER_PAGE);
+  var filtered = getFiltered(), total = filtered.length;
+  var pages = Math.max(1, Math.ceil(total/PER_PAGE));
+  var start = (currentPage-1)*PER_PAGE;
+  var rows  = filtered.slice(start, start+PER_PAGE);
   var dot = function(v){ return v ? '<span class="stamp-dot dot-on">✓</span>' : '<span class="stamp-dot dot-off">–</span>'; };
   document.getElementById('tableBody').innerHTML = rows.length === 0
     ? '<tr><td colspan="9" style="text-align:center;color:#93c5fd;padding:20px">ไม่มีข้อมูล</td></tr>'
-    : rows.map(function(r, i) {
-        var badge = r.complete ? '<span class="badge-complete">ครบ 4</span>' : r.total===0 ? '<span class="badge-none">ยังไม่เริ่ม</span>' : '<span class="badge-partial">' + r.total + '/4</span>';
-        return '<tr><td style="color:#9ca3af">' + (start+i+1) + '</td><td><div class="tbl-name">' + r.name + '</div></td><td><div class="tbl-dept">' + (r.dept||'-') + '</div></td><td>' + dot(r.customer) + '</td><td>' + dot(r.result) + '</td><td>' + dot(r.excellent) + '</td><td>' + dot(r.innovation) + '</td><td>' + badge + '</td><td style="color:#6b7280;font-size:10px">' + (r.time||'-') + '</td></tr>';
+    : rows.map(function(r,i) {
+        var badge = r.complete ? '<span class="badge-complete">ครบ 4</span>' : r.total===0 ? '<span class="badge-none">ยังไม่เริ่ม</span>' : '<span class="badge-partial">'+r.total+'/4</span>';
+        return '<tr><td style="color:#9ca3af">'+(start+i+1)+'</td><td><div class="tbl-name">'+r.name+'</div></td><td><div class="tbl-dept">'+(r.dept||'-')+'</div></td><td>'+dot(r.customer)+'</td><td>'+dot(r.result)+'</td><td>'+dot(r.excellent)+'</td><td>'+dot(r.innovation)+'</td><td>'+badge+'</td><td style="color:#6b7280;font-size:10px">'+(r.time||'-')+'</td></tr>';
       }).join('');
-  document.getElementById('pageInfo').textContent = 'แสดง ' + Math.min(start+1,total) + '–' + Math.min(start+PER_PAGE,total) + ' / ' + total;
-  var btns = '';
-  for (var p=1; p<=pages; p++) btns += '<button class="page-btn' + (p===currentPage?' active':'') + '" onclick="goPage('+p+')">' + p + '</button>';
-  document.getElementById('pageBtns').innerHTML = btns;
+  document.getElementById('pageInfo').textContent = 'แสดง '+Math.min(start+1,total)+'–'+Math.min(start+PER_PAGE,total)+' / '+total;
+  var btns='';
+  for(var p=1;p<=pages;p++) btns+='<button class="page-btn'+(p===currentPage?' active':'')+'" onclick="goPage('+p+')">'+p+'</button>';
+  document.getElementById('pageBtns').innerHTML=btns;
 }
 
-/* ── DEMO DATA ── */
 function addDemoData() {
-  var hours = ['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30'];
-  for (var i=0; i<5; i++) {
-    var nm = DEMO_NAMES[Math.floor(Math.random()*DEMO_NAMES.length)];
-    var isComplete = Math.random() > 0.35;
-    var s = isComplete ? {customer:true,result:true,excellent:true,innovation:true} : {customer:Math.random()>.3,result:Math.random()>.4,excellent:Math.random()>.5,innovation:Math.random()>.5};
-    var tot = ['customer','result','excellent','innovation'].filter(function(k){ return s[k]; }).length;
-    participantDB.push({ id: participantDB.length+1, name: nm[0], dept: nm[1], customer:s.customer, result:s.result, excellent:s.excellent, innovation:s.innovation, total:tot, complete:s.customer&&s.result&&s.excellent&&s.innovation, time:hours[Math.floor(Math.random()*hours.length)] });
+  var hours=['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30'];
+  for(var i=0;i<5;i++){
+    var nm=DEMO_NAMES[Math.floor(Math.random()*DEMO_NAMES.length)];
+    var isC=Math.random()>.35;
+    var s=isC?{customer:true,result:true,excellent:true,innovation:true}:{customer:Math.random()>.3,result:Math.random()>.4,excellent:Math.random()>.5,innovation:Math.random()>.5};
+    var tot=['customer','result','excellent','innovation'].filter(function(k){return s[k];}).length;
+    participantDB.push({id:participantDB.length+1,name:nm[0],dept:nm[1],customer:s.customer,result:s.result,excellent:s.excellent,innovation:s.innovation,total:tot,complete:s.customer&&s.result&&s.excellent&&s.innovation,time:hours[Math.floor(Math.random()*hours.length)]});
   }
   updateStats(); renderBoothBars(); currentPage=1; renderTable();
-  showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅', 'success');
+  showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅','success');
 }
 
-/* ── EXPORT CSV ── */
 function exportCSV() {
-  var filtered = getFiltered();
-  if (filtered.length===0) { showToast('ไม่มีข้อมูลให้ Export'); return; }
-  var header = ['#','ชื่อ-นามสกุล','แผนก','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];
-  var rows = filtered.map(function(r,i){ return [i+1, r.name, r.dept||'', r.customer?'✓':'✗', r.result?'✓':'✗', r.excellent?'✓':'✗', r.innovation?'✓':'✗', r.complete?'ครบ 4 บูท':(r.total||0)+'/4', r.time||'']; });
-  var csv = [header].concat(rows).map(function(row){ return row.map(function(c){ return '"'+String(c).replace(/"/g,'""')+'"'; }).join(','); }).join('\n');
-  var blob = new Blob(['\uFEFF'+csv], {type:'text/csv;charset=utf-8;'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a'); a.href=url; a.download='wd-journey-stamps.csv'; a.click();
+  var filtered=getFiltered();
+  if(filtered.length===0){showToast('ไม่มีข้อมูลให้ Export');return;}
+  var header=['#','ชื่อ-นามสกุล','แผนก','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];
+  var rows=filtered.map(function(r,i){return[i+1,r.name,r.dept||'',r.customer?'✓':'✗',r.result?'✓':'✗',r.excellent?'✓':'✗',r.innovation?'✓':'✗',r.complete?'ครบ 4 บูท':(r.total||0)+'/4',r.time||''];});
+  var csv=[header].concat(rows).map(function(row){return row.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
+  var blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download='wd-journey-stamps.csv';a.click();
   URL.revokeObjectURL(url);
-  showToast('Export CSV สำเร็จ ✅', 'success');
+  showToast('Export CSV สำเร็จ ✅','success');
 }
 
-/* ── INIT ── */
 buildBooths();
 updateJigsaw();
 document.getElementById('modalWrap').addEventListener('click', function(e){ if(e.target===this) resetUser(); });
