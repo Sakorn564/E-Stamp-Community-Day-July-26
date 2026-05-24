@@ -10,7 +10,6 @@
 html,body{height:100%;font-family:'Segoe UI',Tahoma,sans-serif}
 body{background:#f0f4ff;min-height:100vh}
 .page{display:none}.page.active{display:block}
-
 .user-wrap{max-width:420px;margin:0 auto;padding:0 0 40px}
 .u-header{background:linear-gradient(160deg,#1a2e6e 0%,#1c4eb4 60%,#2563eb 100%);padding:22px 20px 18px;text-align:center;position:relative;overflow:hidden}
 .u-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(96,165,250,0.25) 0%,transparent 60%)}
@@ -81,35 +80,35 @@ body{background:#f0f4ff;min-height:100vh}
 .cb-title{font-size:18px;font-weight:900;color:#fff;margin-bottom:3px}
 .cb-sub{font-size:12px;color:#bfdbfe}
 
-/* ═══ QR SCREEN — clean version ═══ */
-.qr-screen{display:none;position:fixed;inset:0;z-index:200;background:#0a1628;flex-direction:column}
+/* ═══ QR SCREEN ═══ */
+.qr-screen{display:none;position:fixed;inset:0;z-index:200;background:#000;flex-direction:column}
 .qr-screen.show{display:flex}
-.qr-topbar{background:#0f1f3d;padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0}
-.qr-back{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-topbar{background:#0f1f3d;padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;z-index:10}
+.qr-back{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .qr-topbar-info{flex:1;min-width:0}
 .qr-topbar-title{font-size:15px;font-weight:700;color:#f7fafc}
 .qr-topbar-sub{font-size:11px;color:#90cdf4;margin-top:2px}
 .qr-badge{padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;flex-shrink:0}
-
-/* camera fills entire remaining space */
 .qr-cam{flex:1;position:relative;overflow:hidden;min-height:0;background:#000}
-#qrVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+#qrVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 #qrCanvas{display:none}
 
-/* tap overlay */
-.tap-start{position:absolute;inset:0;background:rgba(10,22,40,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:10;cursor:pointer}
-.tap-start.hidden{display:none}
-.tap-ring{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#7c3aed);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(96,165,250,0.6);animation:ripple 2s infinite}
-@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(96,165,250,0.5)}70%{box-shadow:0 0 0 28px rgba(96,165,250,0)}100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}}
-.tap-text{color:#fff;font-size:20px;font-weight:900;text-align:center}
-.tap-sub{color:#93c5fd;font-size:13px;text-align:center}
+/* ─── START BUTTON overlay (replaces tap-start) ─── */
+.start-overlay{position:absolute;inset:0;background:rgba(5,10,25,0.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;z-index:10}
+.start-overlay.hidden{display:none}
+.start-cam-btn{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#7c3aed);border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;box-shadow:0 0 0 0 rgba(96,165,250,0.5);animation:ripple 2s infinite;-webkit-appearance:none;appearance:none}
+@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(96,165,250,0.5)}70%{box-shadow:0 0 0 30px rgba(96,165,250,0)}100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}}
+.start-cam-btn:active{transform:scale(.95)}
+.start-cam-label{color:#fff;font-size:16px;font-weight:900;text-align:center;pointer-events:none}
+.start-cam-sub{color:#93c5fd;font-size:12px;text-align:center}
+.start-booth-name{color:#60a5fa;font-weight:900}
 
-/* scan frame overlay */
+/* scan frame */
 .qr-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;z-index:2}
-.qr-dim-top{width:100%;flex:1;background:rgba(0,0,0,0.5)}
-.qr-dim-bot{width:100%;flex:1;background:rgba(0,0,0,0.5);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px}
+.qr-dim-top{width:100%;flex:1;background:rgba(0,0,0,0.55)}
+.qr-dim-bot{width:100%;flex:1;background:rgba(0,0,0,0.55);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:14px}
 .qr-dim-row{display:flex;width:100%;align-items:stretch}
-.qr-dim-side{flex:1;background:rgba(0,0,0,0.5)}
+.qr-dim-side{flex:1;background:rgba(0,0,0,0.55)}
 .qr-frame{width:240px;height:240px;position:relative;flex-shrink:0}
 .qc{position:absolute;width:36px;height:36px;border-color:#60a5fa;border-style:solid}
 .qc.tl{top:0;left:0;border-width:4px 0 0 4px;border-radius:6px 0 0 0}
@@ -118,33 +117,33 @@ body{background:#f0f4ff;min-height:100vh}
 .qc.br{bottom:0;right:0;border-width:0 4px 4px 0;border-radius:0 0 6px 0}
 .qr-scan-line{position:absolute;left:4px;right:4px;height:2px;background:linear-gradient(90deg,transparent,#60a5fa,transparent);animation:scanline 2s linear infinite}
 @keyframes scanline{0%{top:4px}100%{top:calc(100% - 4px)}}
-.qr-label{background:rgba(0,0,0,0.75);border-radius:12px;padding:10px 20px;text-align:center}
+.qr-label{background:rgba(0,0,0,0.78);border-radius:12px;padding:10px 20px;text-align:center}
 .qr-label p{color:#e2e8f0;font-size:13px;line-height:1.5}
 .qr-label strong{color:#60a5fa;font-size:14px}
 
-/* flash overlays */
+/* flash */
 .qr-success-flash{position:absolute;inset:0;background:rgba(16,185,129,0.35);display:none;align-items:center;justify-content:center;z-index:8}
-.qr-success-flash.show{display:flex;animation:fadeOut .7s ease forwards}
+.qr-success-flash.show{display:flex;animation:fo .7s ease forwards}
 .qr-error-flash{position:absolute;inset:0;background:rgba(239,68,68,0.3);display:none;align-items:center;justify-content:center;z-index:8;flex-direction:column;gap:14px}
-.qr-error-flash.show{display:flex;animation:fadeOut 1.4s ease forwards}
-@keyframes fadeOut{0%{opacity:1}100%{opacity:0}}
-.qr-error-bubble{background:rgba(160,10,10,0.95);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:14px;text-align:center;max-width:80%;line-height:1.5}
+.qr-error-flash.show{display:flex;animation:fo 1.4s ease forwards}
+@keyframes fo{0%{opacity:1}100%{opacity:0}}
+.qr-error-bubble{background:rgba(150,10,10,0.95);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:14px;text-align:center;max-width:80%;line-height:1.5}
 
-/* bottom bar — status only, no manual input */
-.qr-bottom{background:#0f1f3d;padding:10px 16px 16px;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0;display:flex;flex-direction:column;gap:6px}
+/* bottom status only */
+.qr-bottom{background:#0f1f3d;padding:10px 16px 16px;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0;display:flex;flex-direction:column;gap:8px;z-index:10}
 .qr-status-row{display:flex;align-items:center;gap:8px}
 .qr-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;transition:background .3s}
-.qr-dot.waiting{background:#64748b}
-.qr-dot.loading{background:#f59e0b;animation:pulse 1s infinite}
-.qr-dot.ready{background:#10b981;animation:pulse 1.5s infinite}
+.qr-dot.waiting{background:#475569}
+.qr-dot.loading{background:#f59e0b;animation:blink 1s infinite}
+.qr-dot.ready{background:#10b981;animation:blink 1.5s infinite}
 .qr-dot.error{background:#ef4444}
 .qr-dot.success{background:#10b981}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 .qr-status-txt{font-size:12px;color:#90cdf4;flex:1}
-.qr-close-btn{padding:11px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#94a3b8;font-size:13px;font-weight:600;cursor:pointer;text-align:center;width:100%}
+.qr-close-btn{padding:12px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.07);color:#94a3b8;font-size:14px;font-weight:600;cursor:pointer;text-align:center;width:100%;-webkit-appearance:none}
 .qr-close-btn:active{opacity:.7}
 
-/* ═══ MODAL ═══ */
+/* modal */
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;align-items:flex-end;justify-content:center}
 .modal-wrap.show{display:flex}
 .modal-sheet{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:480px;padding:24px 20px 36px;animation:sheetUp .4s ease;text-align:center}
@@ -159,7 +158,7 @@ body{background:#f0f4ff;min-height:100vh}
 .modal-eco{font-size:12px;color:#059669;margin-top:6px;font-weight:600}
 .modal-btn{margin-top:16px;width:100%;padding:14px;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer}
 
-/* ═══ ADMIN ═══ */
+/* admin login */
 .al-wrap{max-width:400px;margin:0 auto;padding:60px 20px}
 .al-card{background:#fff;border-radius:20px;padding:32px 24px;box-shadow:0 8px 40px rgba(28,78,180,0.12);text-align:center;border:1.5px solid #e0eaff}
 .al-logo{width:54px;height:54px;border-radius:50%;object-fit:contain;margin-bottom:10px}
@@ -170,13 +169,15 @@ body{background:#f0f4ff;min-height:100vh}
 .al-btn{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;font-size:14px;font-weight:800;cursor:pointer}
 .al-err{font-size:12px;color:#ef4444;margin-top:7px;display:none}
 .al-back{font-size:13px;color:#2563eb;cursor:pointer;margin-top:14px}
+
+/* admin dashboard */
 .ad-wrap{max-width:960px;margin:0 auto;padding:16px 14px 50px}
 .ad-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .ad-left{display:flex;align-items:center;gap:12px}
 .ad-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#2563eb);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .ad-title{font-size:18px;font-weight:900;color:#1c4eb4}
 .ad-sub{font-size:11px;color:#6b7280;margin-top:1px;display:flex;align-items:center;gap:5px}
-.sync-dot{width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse 2s infinite}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:blink 2s infinite}
 .ad-logout{font-size:12px;color:#ef4444;cursor:pointer;padding:6px 14px;border-radius:20px;border:1.5px solid #fecaca;background:#fff5f5;font-weight:700}
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
 .stat-card{background:#fff;border-radius:14px;padding:16px 14px;box-shadow:0 2px 12px rgba(28,78,180,0.08);position:relative;overflow:hidden;border:1.5px solid #e0eaff}
@@ -267,22 +268,10 @@ body{background:#f0f4ff;min-height:100vh}
     </div>
     <div class="jigsaw-box">
       <div class="jig-grid">
-        <div class="jpiece pos-tl locked" id="jp-customer">
-          <img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="8" r="4" stroke="#93c5fd" stroke-width="2"/><path d="M4 20 Q12 15 20 20" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="l-name">Customer</span></div>
-        </div>
-        <div class="jpiece pos-tr locked" id="jp-result">
-          <img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><rect x="3" y="14" width="4" height="7" rx="1" fill="#93c5fd"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#93c5fd"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#93c5fd"/></svg><span class="l-name">Result</span></div>
-        </div>
-        <div class="jpiece pos-bl locked" id="jp-excellent">
-          <img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#93c5fd" stroke-width="2" stroke-linejoin="round"/></svg><span class="l-name">Excellent</span></div>
-        </div>
-        <div class="jpiece pos-br locked" id="jp-innovation">
-          <img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/>
-          <div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="10" r="5" stroke="#93c5fd" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#93c5fd" stroke-width="1.5"/></svg><span class="l-name">Innovation</span></div>
-        </div>
+        <div class="jpiece pos-tl locked" id="jp-customer"><img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/><div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="8" r="4" stroke="#93c5fd" stroke-width="2"/><path d="M4 20 Q12 15 20 20" stroke="#93c5fd" stroke-width="2" stroke-linecap="round" fill="none"/></svg><span class="l-name">Customer</span></div></div>
+        <div class="jpiece pos-tr locked" id="jp-result"><img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/><div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><rect x="3" y="14" width="4" height="7" rx="1" fill="#93c5fd"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#93c5fd"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#93c5fd"/></svg><span class="l-name">Result</span></div></div>
+        <div class="jpiece pos-bl locked" id="jp-excellent"><img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/><div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#93c5fd" stroke-width="2" stroke-linejoin="round"/></svg><span class="l-name">Excellent</span></div></div>
+        <div class="jpiece pos-br locked" id="jp-innovation"><img class="jimg" src="https://i.imgur.com/7lE2Rcx.png" alt=""/><div class="lock-ov"><svg class="l-icon" viewBox="0 0 24 24" fill="none" width="26" height="26"><circle cx="12" cy="10" r="5" stroke="#93c5fd" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#93c5fd" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#93c5fd" stroke-width="1.5"/></svg><span class="l-name">Innovation</span></div></div>
       </div>
       <div class="prog-row">
         <span class="prog-label" id="progLabel">แสตมป์แล้ว 0 / 4 บูท</span>
@@ -300,76 +289,62 @@ body{background:#f0f4ff;min-height:100vh}
   </div>
 </div>
 
-<!-- QR SCREEN — กล้องเต็มจอ ไม่มีช่องกรอกรหัส -->
+<!-- QR SCREEN -->
 <div class="qr-screen" id="qrScreen">
   <div class="qr-topbar">
     <button class="qr-back" onclick="closeQR()">‹</button>
     <div class="qr-topbar-info">
       <div class="qr-topbar-title">สแกน QR Code</div>
-      <div class="qr-topbar-sub" id="qrTopSub">กำลังเปิดกล้อง...</div>
+      <div class="qr-topbar-sub" id="qrTopSub">กดปุ่มเพื่อเปิดกล้อง</div>
     </div>
     <span class="qr-badge" id="qrBadge"></span>
   </div>
-
   <div class="qr-cam">
-    <video id="qrVideo" autoplay playsinline muted webkit-playsinline></video>
+    <video id="qrVideo" autoplay playsinline muted webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false"></video>
     <canvas id="qrCanvas"></canvas>
 
-    <!-- tap overlay (iOS fix) -->
-    <div class="tap-start" id="tapStart" onclick="userTapStart()">
-      <div class="tap-ring">
-        <svg viewBox="0 0 24 24" fill="none" width="48" height="48">
-          <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
-          <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
-          <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
-          <rect x="16.5" y="16.5" width="2" height="2" rx=".5" fill="white"/>
-          <rect x="20" y="16.5" width="1" height="2" rx=".5" fill="white"/>
-          <rect x="16.5" y="20" width="2" height="1" rx=".5" fill="white"/>
-          <rect x="20" y="20" width="1" height="1" rx=".5" fill="white"/>
+    <!-- START BUTTON — กดปุ่มนี้เพื่อเปิดกล้อง (iOS safe) -->
+    <div class="start-overlay" id="startOverlay">
+      <button class="start-cam-btn" id="startCamBtn" onclick="startCameraFromBtn()">
+        <svg viewBox="0 0 24 24" fill="none" width="52" height="52">
+          <rect x="1" y="6" width="22" height="14" rx="3" stroke="white" stroke-width="1.8"/>
+          <circle cx="12" cy="13" r="4" stroke="white" stroke-width="1.8"/>
+          <path d="M8 6V5a2 2 0 012-2h4a2 2 0 012 2v1" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
-      </div>
-      <div class="tap-text">แตะเพื่อเปิดกล้อง</div>
-      <div class="tap-sub">สแกน QR บูท <span id="tapBoothName" style="color:#60a5fa;font-weight:800"></span></div>
+      </button>
+      <div class="start-cam-label">กดเปิดกล้อง</div>
+      <div class="start-cam-sub">เพื่อสแกน QR บูท <span class="start-booth-name" id="startBoothName"></span></div>
     </div>
 
-    <!-- success flash -->
     <div class="qr-success-flash" id="qrFlash">
       <svg viewBox="0 0 90 90" width="90" height="90"><circle cx="45" cy="45" r="43" fill="#10b981"/><path d="M25 45l15 15 25-25" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
     </div>
-
-    <!-- error flash -->
     <div class="qr-error-flash" id="qrErrorFlash">
       <svg viewBox="0 0 90 90" width="90" height="90"><circle cx="45" cy="45" r="43" fill="#ef4444"/><path d="M30 30l30 30M60 30L30 60" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
       <div class="qr-error-bubble" id="qrErrorText">QR ไม่ตรงกับบูทนี้</div>
     </div>
 
-    <!-- scan frame -->
     <div class="qr-overlay">
       <div class="qr-dim-top"></div>
       <div class="qr-dim-row">
         <div class="qr-dim-side"></div>
         <div class="qr-frame">
-          <div class="qc tl"></div><div class="qc tr"></div>
-          <div class="qc bl"></div><div class="qc br"></div>
+          <div class="qc tl"></div><div class="qc tr"></div><div class="qc bl"></div><div class="qc br"></div>
           <div class="qr-scan-line"></div>
         </div>
         <div class="qr-dim-side"></div>
       </div>
       <div class="qr-dim-bot">
-        <div class="qr-label">
-          <p>นำ QR Code บูท <strong id="qrHintName"></strong> เข้ากรอบ</p>
-        </div>
+        <div class="qr-label"><p>นำ QR Code บูท <strong id="qrHintName"></strong> เข้ากรอบ</p></div>
       </div>
     </div>
   </div>
-
-  <!-- bottom: status + close only -->
   <div class="qr-bottom">
     <div class="qr-status-row">
       <div class="qr-dot waiting" id="qrDot"></div>
-      <div class="qr-status-txt" id="qrTxt">รอเปิดกล้อง...</div>
+      <div class="qr-status-txt" id="qrTxt">กดปุ่มกล้องเพื่อเริ่มสแกน</div>
     </div>
-    <button class="qr-close-btn" onclick="closeQR()">✕ ปิดกล้อง / ยกเลิก</button>
+    <button class="qr-close-btn" onclick="closeQR()">✕  ปิด / ยกเลิก</button>
   </div>
 </div>
 
@@ -449,7 +424,6 @@ body{background:#f0f4ff;min-height:100vh}
   </div>
 </div>
 
-<!-- CONFIRM -->
 <div class="confirm-wrap" id="confirmWrap">
   <div class="confirm-box">
     <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><polyline points="3 6 5 6 21 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11v6M14 11v6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -461,34 +435,21 @@ body{background:#f0f4ff;min-height:100vh}
     </div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
 
 <script>
-var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
-
-var QR_CODES = {
-  customer: 'WD-JOURNEY-BOOTH-CUSTOMER',
-  result:   'WD-JOURNEY-BOOTH-RESULT',
-  excellent:'WD-JOURNEY-BOOTH-EXCELLENT',
-  innovation:'WD-JOURNEY-BOOTH-INNOVATION'
-};
-
-var BOOTHS = [
-  {id:'customer',  label:'Customer',   sub:'บูทเกี่ยวกับลูกค้า',  cls:'br-c', jpId:'jp-customer',  color:'#1c4eb4', badgeBg:'#eff6ff',
-   svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><circle cx="7" cy="10.5" r="2.5" stroke="#1c4eb4" stroke-width="1.5"/><circle cx="17" cy="10.5" r="2.5" stroke="#1c4eb4" stroke-width="1.5"/><path d="M2 20 Q7 16 12 16 Q17 16 22 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round" fill="none"/></svg>'},
-  {id:'result',    label:'Result',     sub:'บูทเกี่ยวกับผลลัพธ์', cls:'br-r', jpId:'jp-result',    color:'#059669', badgeBg:'#f0fdf4',
-   svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" fill="#059669"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#059669"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#059669"/><path d="M5 12L12 8L19 4" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg>'},
-  {id:'excellent', label:'Excellent',  sub:'บูทความเป็นเลิศ',     cls:'br-e', jpId:'jp-excellent', color:'#d97706', badgeBg:'#fffbeb',
-   svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#d97706" stroke-width="2" stroke-linejoin="round" fill="#fde68a"/></svg>'},
-  {id:'innovation',label:'Innovation', sub:'บูทนวัตกรรม',          cls:'br-i', jpId:'jp-innovation',color:'#7c3aed', badgeBg:'#f5f3ff',
-   svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>'}
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
+var QR_CODES={customer:'WD-JOURNEY-BOOTH-CUSTOMER',result:'WD-JOURNEY-BOOTH-RESULT',excellent:'WD-JOURNEY-BOOTH-EXCELLENT',innovation:'WD-JOURNEY-BOOTH-INNOVATION'};
+var BOOTHS=[
+  {id:'customer',label:'Customer',sub:'บูทเกี่ยวกับลูกค้า',cls:'br-c',jpId:'jp-customer',color:'#1c4eb4',badgeBg:'#eff6ff',svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><circle cx="7" cy="10.5" r="2.5" stroke="#1c4eb4" stroke-width="1.5"/><circle cx="17" cy="10.5" r="2.5" stroke="#1c4eb4" stroke-width="1.5"/><path d="M2 20 Q7 16 12 16 Q17 16 22 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round" fill="none"/></svg>'},
+  {id:'result',label:'Result',sub:'บูทเกี่ยวกับผลลัพธ์',cls:'br-r',jpId:'jp-result',color:'#059669',badgeBg:'#f0fdf4',svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" fill="#059669"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#059669"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#059669"/><path d="M5 12L12 8L19 4" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg>'},
+  {id:'excellent',label:'Excellent',sub:'บูทความเป็นเลิศ',cls:'br-e',jpId:'jp-excellent',color:'#d97706',badgeBg:'#fffbeb',svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#d97706" stroke-width="2" stroke-linejoin="round" fill="#fde68a"/></svg>'},
+  {id:'innovation',label:'Innovation',sub:'บูทนวัตกรรม',cls:'br-i',jpId:'jp-innovation',color:'#7c3aed',badgeBg:'#f5f3ff',svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>'}
 ];
-
 var DEMO_NAMES=[['สมชาย ใจดี','ฝ่ายผลิต'],['สุดา รักษ์ไทย','ฝ่ายขาย'],['วิชัย มั่นคง','ฝ่าย HR'],['นภา สดใส','ฝ่าย IT'],['ประสิทธิ์ เก่งงาน','ฝ่ายบัญชี'],['มาลี วงศ์งาม','ฝ่ายการตลาด'],['อนุชา ดีเลิศ','ฝ่ายผลิต'],['กานดา สุขใจ','ฝ่าย QA'],['พงษ์ศักดิ์ ชาญวิทย์','ฝ่ายวิศวกรรม'],['รัตนา พรมมา','ฝ่ายจัดซื้อ']];
 var stamped={customer:false,result:false,excellent:false,innovation:false};
 var participantDB=[],curPage=1,PER=8,pendingAction=null;
-var currentBooth=null,videoStream=null,scanInterval=null,scanLocked=false,cameraStarted=false;
+var currentBooth=null,videoStream=null,scanInterval=null,scanLocked=false;
 
 function showPage(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
@@ -497,7 +458,7 @@ function buildBooths(){
     var done=stamped[b.id];
     var btn=done
       ?'<button class="br-btn stamped" disabled><svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M5 12l5 5L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>แสตมป์แล้ว</button>'
-      :'<button class="br-btn" onclick="openQR(\''+b.id+'\')"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="17" y="17" width="2" height="2" fill="white"/><rect x="20" y="17" width="1" height="2" fill="white"/><rect x="17" y="20" width="2" height="1" fill="white"/></svg>แสตมป์!</button>';
+      :'<button class="br-btn" onclick="openQR(\''+b.id+'\')"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="1" y="5" width="22" height="14" rx="2.5" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.8"/><path d="M8 5V4a2 2 0 012-2h4a2 2 0 012 2v1" stroke="white" stroke-width="1.8" stroke-linecap="round"/></svg>แสตมป์!</button>';
     return '<div class="booth-row '+b.cls+(done?' done':'')+'">'+
       (done?'<div class="done-badge">✓</div>':'')+
       '<div class="br-icon">'+b.svg+'</div>'+
@@ -507,88 +468,105 @@ function buildBooths(){
 }
 
 function updateJigsaw(){
-  BOOTHS.forEach(function(b){
-    var el=document.getElementById(b.jpId);if(!el)return;
-    if(stamped[b.id]){el.classList.remove('locked');el.classList.add('unlocked');}
-    else{el.classList.add('locked');el.classList.remove('unlocked');}
-  });
+  BOOTHS.forEach(function(b){var el=document.getElementById(b.jpId);if(!el)return;if(stamped[b.id]){el.classList.remove('locked');el.classList.add('unlocked');}else{el.classList.add('locked');el.classList.remove('unlocked');}});
   var n=Object.values(stamped).filter(Boolean).length;
   document.getElementById('progLabel').textContent='แสตมป์แล้ว '+n+' / 4 บูท';
   document.getElementById('progFill').style.width=(n/4*100)+'%';
 }
 
-/* ════ QR SCANNER ════ */
+/* ════ QR — iOS-safe: ทุกอย่างเกิดใน onclick โดยตรง ════ */
 function openQR(id){
   if(stamped[id])return;
   var name=document.getElementById('empName').value.trim();
   if(!name){showToast('⚠️ กรุณากรอกชื่อก่อนแสตมป์','error');return;}
-  currentBooth=id; scanLocked=false; cameraStarted=false;
+  currentBooth=id; scanLocked=false;
   var b=BOOTHS.find(function(x){return x.id===id;});
   var badge=document.getElementById('qrBadge');
   badge.textContent=b.label; badge.style.background=b.badgeBg; badge.style.color=b.color;
   document.getElementById('qrHintName').textContent=b.label;
-  document.getElementById('qrTopSub').textContent='บูท '+b.label+' — แตะเพื่อเปิดกล้อง';
-  document.getElementById('tapBoothName').textContent=b.label;
-  document.getElementById('tapStart').classList.remove('hidden');
+  document.getElementById('qrTopSub').textContent='บูท '+b.label;
+  document.getElementById('startBoothName').textContent=b.label;
+  document.getElementById('startOverlay').classList.remove('hidden');
   document.getElementById('qrFlash').classList.remove('show');
   document.getElementById('qrErrorFlash').classList.remove('show');
-  setStatus('waiting','แตะหน้าจอเพื่อเปิดกล้อง');
+  setStatus('waiting','กดปุ่มกล้องเพื่อเริ่มสแกน');
   document.getElementById('qrScreen').classList.add('show');
   document.body.style.overflow='hidden';
 }
 
-function userTapStart(){
-  if(cameraStarted)return;
-  cameraStarted=true;
-  document.getElementById('tapStart').classList.add('hidden');
-  setStatus('loading','กำลังขอสิทธิ์กล้อง...');
+/* ── กดปุ่มกล้อง (ต้องอยู่ใน onclick โดยตรงเพื่อ iOS) ── */
+function startCameraFromBtn(){
+  document.getElementById('startOverlay').classList.add('hidden');
+  setStatus('loading','กำลังเปิดกล้อง...');
   document.getElementById('qrTopSub').textContent='กำลังเปิดกล้อง...';
-  startCamera();
-}
 
-function startCamera(){
-  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    setStatus('error','Browser ไม่รองรับกล้อง');
-    return;
-  }
-  var modes=[
+  /* ── constraint list: ลองตามลำดับ ── */
+  var constraints=[
     {video:{facingMode:{exact:'environment'},width:{ideal:1280},height:{ideal:720}}},
+    {video:{facingMode:{exact:'environment'}}},
     {video:{facingMode:'environment'}},
     {video:{facingMode:'user'}},
     {video:true}
   ];
-  function tryMode(i){
-    if(i>=modes.length){setStatus('error','เปิดกล้องไม่ได้');return;}
-    navigator.mediaDevices.getUserMedia(modes[i])
+
+  function tryNext(i){
+    if(i>=constraints.length){
+      setStatus('error','เปิดกล้องไม่ได้ — ตรวจสอบสิทธิ์กล้องในการตั้งค่า');
+      document.getElementById('qrTopSub').textContent='ไม่สามารถเปิดกล้องได้';
+      return;
+    }
+    navigator.mediaDevices.getUserMedia(constraints[i])
       .then(function(stream){
         videoStream=stream;
         var v=document.getElementById('qrVideo');
         v.srcObject=stream;
-        var p=v.play();
-        if(p!==undefined){p.catch(function(){stream.getTracks().forEach(function(t){t.stop();});videoStream=null;tryMode(i+1);});}
-        waitReady(v);
+        /* iOS requires play() called synchronously after getUserMedia resolves */
+        v.play().then(function(){
+          waitForVideo(v);
+        }).catch(function(e){
+          console.warn('play() error:',e);
+          stopStream();
+          tryNext(i+1);
+        });
       })
       .catch(function(err){
-        if(err.name==='NotAllowedError'||err.name==='PermissionDeniedError'){setStatus('error','ถูกปฏิเสธสิทธิ์กล้อง');return;}
-        tryMode(i+1);
+        console.warn('getUserMedia['+i+'] failed:',err.name,err.message);
+        if(err.name==='NotAllowedError'||err.name==='PermissionDeniedError'){
+          setStatus('error','ถูกปฏิเสธสิทธิ์กล้อง');
+          document.getElementById('qrTopSub').textContent='กรุณาอนุญาตกล้องในการตั้งค่า browser';
+          return;
+        }
+        tryNext(i+1);
       });
   }
-  tryMode(0);
+
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
+    setStatus('error','Browser ไม่รองรับ getUserMedia');
+    return;
+  }
+  tryNext(0);
 }
 
-function waitReady(v){
+function waitForVideo(v){
   var elapsed=0;
   var t=setInterval(function(){
     elapsed+=100;
     if(v.readyState>=2&&v.videoWidth>0){
       clearInterval(t);
       var b=BOOTHS.find(function(x){return x.id===currentBooth;});
-      document.getElementById('qrTopSub').textContent='กำลังสแกน — บูท '+(b?b.label:'');
-      setStatus('ready','กำลังสแกน QR — นำ QR เข้ากรอบสีฟ้า');
+      setStatus('ready','กำลังสแกน — บูท '+(b?b.label:''));
+      document.getElementById('qrTopSub').textContent='นำ QR บูท '+(b?b.label:'')+' เข้ากรอบ';
       startScanLoop();
     }
-    if(elapsed>12000){clearInterval(t);setStatus('error','กล้องไม่ตอบสนอง');}
+    if(elapsed>15000){
+      clearInterval(t);
+      setStatus('error','กล้องไม่ตอบสนอง');
+    }
   },100);
+}
+
+function stopStream(){
+  if(videoStream){videoStream.getTracks().forEach(function(t){t.stop();});videoStream=null;}
 }
 
 function decodeQR(imgData,W,H){
@@ -597,7 +575,7 @@ function decodeQR(imgData,W,H){
     var lum=Math.round(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]);
     gray[i]=gray[i+1]=gray[i+2]=lum;gray[i+3]=255;
     inv[i]=inv[i+1]=inv[i+2]=255-lum;inv[i+3]=255;
-    hi[i]=hi[i+1]=hi[i+2]=lum<128?0:255;hi[i+3]=255;
+    hi[i]=hi[i+1]=hi[i+2]=(lum<128?0:255);hi[i+3]=255;
   }
   var sets=[
     {d:new ImageData(gray,W,H),m:'dontInvert'},
@@ -621,7 +599,7 @@ function startScanLoop(){
     var W=video.videoWidth,H=video.videoHeight;
     canvas.width=W;canvas.height=H;
     ctx.drawImage(video,0,0,W,H);
-    var cx=Math.floor(W*0.175),cy=Math.floor(H*0.175),cw=Math.floor(W*0.65),ch=Math.floor(H*0.65);
+    var cx=Math.floor(W*.175),cy=Math.floor(H*.175),cw=Math.floor(W*.65),ch=Math.floor(H*.65);
     var res=decodeQR(ctx.getImageData(cx,cy,cw,ch),cw,ch);
     if(!res&&fc%3===0)res=decodeQR(ctx.getImageData(0,0,W,H),W,H);
     if(res)handleResult(res);
@@ -643,30 +621,28 @@ function handleResult(data){
     scanLocked=true;stopScanLoop();
     var bObj=BOOTHS.find(function(x){return x.id===currentBooth;});
     var found=BOOTHS.find(function(x){return QR_CODES[x.id]===data;});
-    var msg=found?'นี่คือ QR บูท "'+found.label+'" ไม่ใช่บูท "'+bObj.label+'"':'QR ไม่ถูกต้อง กรุณาสแกน QR บูท "'+bObj.label+'"';
+    var msg=found?'นี่คือ QR บูท "'+found.label+'" ไม่ใช่บูท "'+bObj.label+'"':'QR ไม่ถูกต้อง — สแกน QR บูท "'+bObj.label+'"';
     document.getElementById('qrErrorText').textContent=msg;
     document.getElementById('qrErrorFlash').classList.add('show');
-    setStatus('error','QR ไม่ตรง — รอสักครู่แล้วลองใหม่');
+    setStatus('error','QR ไม่ตรง — ลองใหม่');
     setTimeout(function(){
       document.getElementById('qrErrorFlash').classList.remove('show');
       scanLocked=false;
-      setStatus('ready','กำลังสแกน QR — นำ QR เข้ากรอบสีฟ้า');
+      setStatus('ready','กำลังสแกน — นำ QR เข้ากรอบสีฟ้า');
       startScanLoop();
     },2500);
   }
 }
 
 function closeQR(){
-  stopScanLoop();
-  if(videoStream){videoStream.getTracks().forEach(function(t){t.stop();});videoStream=null;}
+  stopScanLoop();stopStream();
   var v=document.getElementById('qrVideo');v.pause();v.srcObject=null;
   document.getElementById('qrScreen').classList.remove('show');
   document.body.style.overflow='';
-  currentBooth=null;cameraStarted=false;
+  currentBooth=null;
 }
 function setStatus(type,msg){document.getElementById('qrDot').className='qr-dot '+type;document.getElementById('qrTxt').textContent=msg;}
 
-/* ════ STAMP ════ */
 function doStamp(id){
   if(stamped[id]){showToast('✅ บูทนี้แสตมป์แล้ว');return;}
   stamped[id]=true;buildBooths();updateJigsaw();
@@ -683,8 +659,7 @@ function saveToSheet(){
   var dept=document.getElementById('empDept').value.trim()||'ไม่ระบุแผนก';
   var now=new Date();
   participantDB.push({id:Date.now(),name:name,dept:dept,customer:true,result:true,excellent:true,innovation:true,complete:true,total:4,time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
-  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({employeeId:'EMP-'+Date.now(),name:name,department:dept,customer:stamped.customer,result:stamped.result,excellent:stamped.excellent,innovation:stamped.innovation})})
-    .then(function(){showToast('บันทึกลง Google Sheets ✅');}).catch(function(){});
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({employeeId:'EMP-'+Date.now(),name:name,department:dept,customer:stamped.customer,result:stamped.result,excellent:stamped.excellent,innovation:stamped.innovation})}).then(function(){showToast('บันทึกลง Google Sheets ✅');}).catch(function(){});
 }
 
 function resetUser(){
@@ -694,29 +669,12 @@ function resetUser(){
   document.getElementById('completeBanner').classList.remove('show');
   document.getElementById('modalWrap').classList.remove('show');
 }
-
-function launchConfetti(){
-  var c=['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa','#34d399','#fbbf24'];
-  for(var i=0;i<60;i++){(function(d){setTimeout(function(){var el=document.createElement('div');el.className='conf';el.style.cssText='left:'+Math.random()*100+'vw;top:-10px;background:'+c[Math.floor(Math.random()*c.length)]+';width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;animation-duration:'+(2+Math.random()*2)+'s';document.body.appendChild(el);setTimeout(function(){el.remove();},4000);},d);})(i*50);}
-}
-
+function launchConfetti(){var c=['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa','#34d399','#fbbf24'];for(var i=0;i<60;i++){(function(d){setTimeout(function(){var el=document.createElement('div');el.className='conf';el.style.cssText='left:'+Math.random()*100+'vw;top:-10px;background:'+c[Math.floor(Math.random()*c.length)]+';width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;animation-duration:'+(2+Math.random()*2)+'s';document.body.appendChild(el);setTimeout(function(){el.remove();},4000);},d);})(i*50);}}
 var _tt=null;
 function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'')+' show';if(_tt)clearTimeout(_tt);_tt=setTimeout(function(){t.classList.remove('show');},3000);}
-
-/* ════ ADMIN ════ */
 function doLogin(){var u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value.trim();if(u==='admin'&&p==='1234'){document.getElementById('loginErr').style.display='none';showPage('pageAdmin');fetchData();}else document.getElementById('loginErr').style.display='block';}
 function doLogout(){document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';showPage('pageUser');}
-function fetchData(){
-  document.getElementById('syncStatus').textContent='กำลังโหลด...';
-  fetch(SCRIPT_URL+'?action=getAll&t='+Date.now())
-    .then(function(r){return r.json();})
-    .then(function(json){
-      if(json.rows&&json.rows.length>1){participantDB=json.rows.slice(1).map(function(r,i){return{id:i+1,time:r[0]?new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}):'-',name:r[2]||'ไม่ระบุ',dept:r[3]||'-',customer:r[4]==='TRUE'||r[4]===true||r[4]==='✓',result:r[5]==='TRUE'||r[5]===true||r[5]==='✓',excellent:r[6]==='TRUE'||r[6]===true||r[6]==='✓',innovation:r[7]==='TRUE'||r[7]===true||r[7]==='✓',total:Number(r[8])||0,complete:r[9]==='ครบ'||r[9]===true};});}
-      document.getElementById('syncStatus').textContent='อัปเดต '+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-      showToast('โหลดข้อมูลจาก Sheets ✅');updateStats();renderBars();curPage=1;renderTbl();
-    })
-    .catch(function(){document.getElementById('syncStatus').textContent='ใช้ข้อมูล Local';updateStats();renderBars();curPage=1;renderTbl();});
-}
+function fetchData(){document.getElementById('syncStatus').textContent='กำลังโหลด...';fetch(SCRIPT_URL+'?action=getAll&t='+Date.now()).then(function(r){return r.json();}).then(function(json){if(json.rows&&json.rows.length>1){participantDB=json.rows.slice(1).map(function(r,i){return{id:i+1,time:r[0]?new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}):'-',name:r[2]||'ไม่ระบุ',dept:r[3]||'-',customer:r[4]==='TRUE'||r[4]===true||r[4]==='✓',result:r[5]==='TRUE'||r[5]===true||r[5]==='✓',excellent:r[6]==='TRUE'||r[6]===true||r[6]==='✓',innovation:r[7]==='TRUE'||r[7]===true||r[7]==='✓',total:Number(r[8])||0,complete:r[9]==='ครบ'||r[9]===true};});}document.getElementById('syncStatus').textContent='อัปเดต '+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});showToast('โหลดข้อมูลจาก Sheets ✅');updateStats();renderBars();curPage=1;renderTbl();}).catch(function(){document.getElementById('syncStatus').textContent='ใช้ข้อมูล Local';updateStats();renderBars();curPage=1;renderTbl();});}
 function updateStats(){var total=participantDB.length,complete=participantDB.filter(function(r){return r.complete;}).length;document.getElementById('stTotal').textContent=total;document.getElementById('stComplete').textContent=complete;document.getElementById('stPartial').textContent=total-complete;document.getElementById('stRate').textContent=total>0?Math.round(complete/total*100)+'%':'0%';}
 function renderBars(){var total=participantDB.length||1;document.getElementById('boothBars').innerHTML=BOOTHS.map(function(b){var cnt=participantDB.filter(function(r){return r[b.id];}).length;var pct=Math.round(cnt/total*100);return'<div class="bbar"><span class="bbar-lbl" style="color:'+b.color+'">'+b.label+'</span><div class="bbar-track"><div class="bbar-fill" style="width:'+pct+'%;background:'+b.color+'"></div></div><span class="bbar-cnt">'+cnt+'</span></div>';}).join('');}
 function deleteRow(rowId){pendingAction=function(){participantDB=participantDB.filter(function(r){return r.id!==rowId;});updateStats();renderBars();renderTbl();showToast('ลบรายการเรียบร้อย','success');};var rec=participantDB.find(function(r){return r.id===rowId;});document.getElementById('confirmTitle').textContent='ลบรายการนี้?';document.getElementById('confirmSub').textContent='ลบข้อมูลของ "'+(rec?rec.name:'รายการนี้')+'" ไม่สามารถกู้คืนได้';document.getElementById('confirmOkBtn').textContent='ลบเลย';document.getElementById('confirmWrap').classList.add('show');}
@@ -727,14 +685,7 @@ document.getElementById('confirmWrap').addEventListener('click',function(e){if(e
 function getFiltered(){var q=(document.getElementById('srchInput').value||'').toLowerCase();var f=document.getElementById('filtSel').value;return participantDB.filter(function(r){var mq=!q||r.name.toLowerCase().includes(q)||(r.dept||'').toLowerCase().includes(q);var mf=f==='all'||(f==='complete'&&r.complete)||(f==='partial'&&!r.complete);return mq&&mf;});}
 function filterTbl(){curPage=1;renderTbl();}
 function goPage(p){curPage=p;renderTbl();}
-function renderTbl(){
-  var filtered=getFiltered(),total=filtered.length,pages=Math.max(1,Math.ceil(total/PER)),start=(curPage-1)*PER,rows=filtered.slice(start,start+PER);
-  var dot=function(v){return v?'<span class="sdot dot-on">✓</span>':'<span class="sdot dot-off">–</span>';};
-  document.getElementById('tblBody').innerHTML=rows.length===0?'<tr><td colspan="10" style="text-align:center;color:#93c5fd;padding:24px">ไม่มีข้อมูล</td></tr>':rows.map(function(r,i){var badge=r.complete?'<span class="badge-ok">ครบ 4</span>':r.total===0?'<span class="badge-no">ยังไม่เริ่ม</span>':'<span class="badge-pt">'+r.total+'/4</span>';return'<tr><td style="color:#9ca3af">'+(start+i+1)+'</td><td><div class="tbl-name">'+r.name+'</div></td><td><div class="tbl-dept">'+(r.dept||'-')+'</div></td><td>'+dot(r.customer)+'</td><td>'+dot(r.result)+'</td><td>'+dot(r.excellent)+'</td><td>'+dot(r.innovation)+'</td><td>'+badge+'</td><td style="color:#6b7280;font-size:10px">'+(r.time||'-')+'</td><td><button class="del-row-btn" onclick="deleteRow('+r.id+')">✕</button></td></tr>';}).join('');
-  document.getElementById('pgInfo').textContent='แสดง '+Math.min(start+1,total)+'–'+Math.min(start+PER,total)+' / '+total+' รายการ';
-  var btns='';for(var p=1;p<=pages;p++)btns+='<button class="pg-btn'+(p===curPage?' active':'')+'" onclick="goPage('+p+')">'+p+'</button>';
-  document.getElementById('pgBtns').innerHTML=btns;
-}
+function renderTbl(){var filtered=getFiltered(),total=filtered.length,pages=Math.max(1,Math.ceil(total/PER)),start=(curPage-1)*PER,rows=filtered.slice(start,start+PER);var dot=function(v){return v?'<span class="sdot dot-on">✓</span>':'<span class="sdot dot-off">–</span>';};document.getElementById('tblBody').innerHTML=rows.length===0?'<tr><td colspan="10" style="text-align:center;color:#93c5fd;padding:24px">ไม่มีข้อมูล</td></tr>':rows.map(function(r,i){var badge=r.complete?'<span class="badge-ok">ครบ 4</span>':r.total===0?'<span class="badge-no">ยังไม่เริ่ม</span>':'<span class="badge-pt">'+r.total+'/4</span>';return'<tr><td style="color:#9ca3af">'+(start+i+1)+'</td><td><div class="tbl-name">'+r.name+'</div></td><td><div class="tbl-dept">'+(r.dept||'-')+'</div></td><td>'+dot(r.customer)+'</td><td>'+dot(r.result)+'</td><td>'+dot(r.excellent)+'</td><td>'+dot(r.innovation)+'</td><td>'+badge+'</td><td style="color:#6b7280;font-size:10px">'+(r.time||'-')+'</td><td><button class="del-row-btn" onclick="deleteRow('+r.id+')">✕</button></td></tr>';}).join('');document.getElementById('pgInfo').textContent='แสดง '+Math.min(start+1,total)+'–'+Math.min(start+PER,total)+' / '+total+' รายการ';var btns='';for(var p=1;p<=pages;p++)btns+='<button class="pg-btn'+(p===curPage?' active':'')+'" onclick="goPage('+p+')">'+p+'</button>';document.getElementById('pgBtns').innerHTML=btns;}
 function addDemo(){var hours=['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30'];for(var i=0;i<5;i++){var nm=DEMO_NAMES[Math.floor(Math.random()*DEMO_NAMES.length)];var isC=Math.random()>.35;var s=isC?{customer:true,result:true,excellent:true,innovation:true}:{customer:Math.random()>.3,result:Math.random()>.4,excellent:Math.random()>.5,innovation:Math.random()>.5};var tot=['customer','result','excellent','innovation'].filter(function(k){return s[k];}).length;participantDB.push({id:Date.now()+i,name:nm[0],dept:nm[1],customer:s.customer,result:s.result,excellent:s.excellent,innovation:s.innovation,total:tot,complete:s.customer&&s.result&&s.excellent&&s.innovation,time:hours[Math.floor(Math.random()*hours.length)]});}updateStats();renderBars();curPage=1;renderTbl();showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅','success');}
 function exportCSV(){var filtered=getFiltered();if(filtered.length===0){showToast('ไม่มีข้อมูลให้ Export','error');return;}var h=['#','ชื่อ-นามสกุล','แผนก','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];var rows=filtered.map(function(r,i){return[i+1,r.name,r.dept||'',r.customer?'✓':'✗',r.result?'✓':'✗',r.excellent?'✓':'✗',r.innovation?'✓':'✗',r.complete?'ครบ 4 บูท':(r.total||0)+'/4',r.time||''];});var csv=[h].concat(rows).map(function(row){return row.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');var blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='wd-estamp.csv';a.click();URL.revokeObjectURL(url);showToast('Export CSV สำเร็จ ✅','success');}
 document.getElementById('modalWrap').addEventListener('click',function(e){if(e.target===this)resetUser();});
