@@ -11,7 +11,6 @@ html,body{height:100%;font-family:'Segoe UI',Tahoma,sans-serif}
 body{background:#f0f4ff;min-height:100vh}
 .page{display:none}.page.active{display:block}
 
-/* ═══ USER PAGE ═══ */
 .user-wrap{max-width:420px;margin:0 auto;padding:0 0 40px}
 .u-header{background:linear-gradient(160deg,#1a2e6e 0%,#1c4eb4 60%,#2563eb 100%);padding:22px 20px 18px;text-align:center;position:relative;overflow:hidden}
 .u-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 20%,rgba(96,165,250,0.25) 0%,transparent 60%)}
@@ -21,7 +20,6 @@ body{background:#f0f4ff;min-height:100vh}
 .u-title span{color:#93c5fd}
 .u-subtitle{font-size:12px;color:#93c5fd;margin-top:4px;font-weight:600;position:relative}
 .admin-btn{position:absolute;top:16px;right:14px;font-size:11px;color:#93c5fd;cursor:pointer;padding:4px 10px;border-radius:20px;border:1px solid rgba(147,197,253,0.4);background:rgba(255,255,255,0.08);font-weight:600;z-index:2}
-
 .name-box{margin:14px 14px 0;background:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 2px 14px rgba(28,78,180,0.09);border:1.5px solid #e0eaff}
 .name-box-title{font-size:11px;font-weight:800;color:#1c4eb4;margin-bottom:8px;display:flex;align-items:center;gap:5px;text-transform:uppercase;letter-spacing:.5px}
 .name-row{display:flex;gap:8px}
@@ -30,8 +28,6 @@ body{background:#f0f4ff;min-height:100vh}
 .d-input{width:120px;padding:10px 12px;border-radius:10px;border:1.5px solid #dbeafe;background:#f8fbff;color:#1e293b;font-size:13px;outline:none;font-family:inherit;transition:border-color .2s}
 .d-input:focus{border-color:#2563eb;background:#fff}
 .name-hint{font-size:10px;color:#93c5fd;margin-top:5px}
-
-/* jigsaw */
 .jigsaw-box{margin:12px 14px 0;background:#fff;border-radius:16px;padding:14px;box-shadow:0 2px 14px rgba(28,78,180,0.09);border:1.5px solid #e0eaff}
 .jig-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:100%;aspect-ratio:1/1;border-radius:12px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 20px rgba(28,78,180,0.15)}
 .jpiece{position:relative;overflow:hidden;transition:all .5s ease}
@@ -55,13 +51,11 @@ body{background:#f0f4ff;min-height:100vh}
 .prog-label{font-size:13px;font-weight:800;color:#1c4eb4;white-space:nowrap}
 .prog-track{flex:1;height:8px;background:#dbeafe;border-radius:10px;overflow:hidden}
 .prog-fill{height:100%;background:linear-gradient(90deg,#1c4eb4,#2563eb,#60a5fa);border-radius:10px;transition:width .7s cubic-bezier(.4,0,.2,1)}
-
-/* booth cards */
 .booth-section{margin:12px 14px 0}
 .booth-divider{font-size:11px;font-weight:700;color:#9ca3af;text-align:center;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .booth-divider::before,.booth-divider::after{content:'';flex:1;height:1px;background:#e0eaff}
 .booth-list{display:flex;flex-direction:column;gap:8px}
-.booth-row{border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:12px;border:2px solid transparent;position:relative;transition:all .25s;background:#fff;box-shadow:0 2px 10px rgba(28,78,180,0.07);cursor:default}
+.booth-row{border-radius:14px;padding:10px 12px;display:flex;align-items:center;gap:12px;border:2px solid transparent;position:relative;transition:all .25s;background:#fff;box-shadow:0 2px 10px rgba(28,78,180,0.07)}
 .br-c{border-color:#bfdbfe}.br-r{border-color:#bbf7d0}.br-e{border-color:#fde68a}.br-i{border-color:#ddd6fe}
 .br-c.done{border-color:#1c4eb4;box-shadow:0 0 0 3px rgba(28,78,180,.1),0 4px 14px rgba(28,78,180,0.12)}
 .br-r.done{border-color:#059669;box-shadow:0 0 0 3px rgba(5,150,105,.1),0 4px 14px rgba(5,150,105,0.12)}
@@ -73,86 +67,82 @@ body{background:#f0f4ff;min-height:100vh}
 .br-name{font-size:14px;font-weight:800}
 .br-c .br-name{color:#1c4eb4}.br-r .br-name{color:#059669}.br-e .br-name{color:#d97706}.br-i .br-name{color:#7c3aed}
 .br-sub{font-size:10px;color:#9ca3af;margin-top:1px}
-.br-btn{padding:8px 14px;border-radius:20px;border:none;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s;flex-shrink:0;white-space:nowrap}
+.br-btn{padding:9px 16px;border-radius:20px;border:none;font-size:11px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .2s;flex-shrink:0;white-space:nowrap}
 .br-btn:active{transform:scale(.95)}
-.br-c .br-btn{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;box-shadow:0 3px 8px rgba(28,78,180,0.35)}
-.br-r .br-btn{background:linear-gradient(135deg,#059669,#10b981);color:#fff;box-shadow:0 3px 8px rgba(5,150,105,0.35)}
-.br-e .br-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;box-shadow:0 3px 8px rgba(217,119,6,0.35)}
-.br-i .br-btn{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff;box-shadow:0 3px 8px rgba(124,58,237,0.35)}
+.br-c .br-btn{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;box-shadow:0 3px 10px rgba(28,78,180,0.4)}
+.br-r .br-btn{background:linear-gradient(135deg,#059669,#10b981);color:#fff;box-shadow:0 3px 10px rgba(5,150,105,0.4)}
+.br-e .br-btn{background:linear-gradient(135deg,#d97706,#f59e0b);color:#fff;box-shadow:0 3px 10px rgba(217,119,6,0.4)}
+.br-i .br-btn{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff;box-shadow:0 3px 10px rgba(124,58,237,0.4)}
 .br-btn.stamped{background:#f0fdf4;color:#059669;cursor:default;box-shadow:none;border:1.5px solid #bbf7d0}
 .done-badge{position:absolute;top:6px;right:6px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-size:8px;font-weight:800;border-radius:20px;padding:2px 7px}
-
 .complete-banner{margin:12px 14px 0;background:linear-gradient(135deg,#1c4eb4,#2563eb,#7c3aed);border-radius:16px;padding:16px;text-align:center;display:none;animation:banIn .5s ease;box-shadow:0 6px 24px rgba(28,78,180,0.35)}
 @keyframes banIn{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
 .complete-banner.show{display:block}
 .cb-title{font-size:18px;font-weight:900;color:#fff;margin-bottom:3px}
 .cb-sub{font-size:12px;color:#bfdbfe}
 
-/* ═══ QR SCREEN ═══ */
+/* ═══ QR SCREEN — clean version ═══ */
 .qr-screen{display:none;position:fixed;inset:0;z-index:200;background:#0a1628;flex-direction:column}
 .qr-screen.show{display:flex}
 .qr-topbar{background:#0f1f3d;padding:12px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0}
-.qr-back{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-back{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.12);border:none;color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .qr-topbar-info{flex:1;min-width:0}
-.qr-topbar-title{font-size:14px;font-weight:700;color:#f7fafc}
-.qr-topbar-sub{font-size:11px;color:#90cdf4;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.qr-badge{padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;flex-shrink:0}
+.qr-topbar-title{font-size:15px;font-weight:700;color:#f7fafc}
+.qr-topbar-sub{font-size:11px;color:#90cdf4;margin-top:2px}
+.qr-badge{padding:4px 14px;border-radius:20px;font-size:12px;font-weight:800;flex-shrink:0}
 
+/* camera fills entire remaining space */
 .qr-cam{flex:1;position:relative;overflow:hidden;min-height:0;background:#000}
 #qrVideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 #qrCanvas{display:none}
 
-.tap-start{position:absolute;inset:0;background:rgba(10,22,40,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;z-index:10;cursor:pointer}
+/* tap overlay */
+.tap-start{position:absolute;inset:0;background:rgba(10,22,40,0.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:10;cursor:pointer}
 .tap-start.hidden{display:none}
-.tap-icon{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#7c3aed);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(96,165,250,0.6);animation:ripple 2s infinite}
-@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(96,165,250,0.5)}70%{box-shadow:0 0 0 24px rgba(96,165,250,0)}100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}}
-.tap-text{color:#e2e8f0;font-size:18px;font-weight:800;text-align:center}
-.tap-sub{color:#90cdf4;font-size:12px;text-align:center}
+.tap-ring{width:100px;height:100px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#7c3aed);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 0 rgba(96,165,250,0.6);animation:ripple 2s infinite}
+@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(96,165,250,0.5)}70%{box-shadow:0 0 0 28px rgba(96,165,250,0)}100%{box-shadow:0 0 0 0 rgba(96,165,250,0)}}
+.tap-text{color:#fff;font-size:20px;font-weight:900;text-align:center}
+.tap-sub{color:#93c5fd;font-size:13px;text-align:center}
 
+/* scan frame overlay */
 .qr-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;z-index:2}
 .qr-dim-top{width:100%;flex:1;background:rgba(0,0,0,0.5)}
-.qr-dim-bot{width:100%;flex:1;background:rgba(0,0,0,0.5);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:14px}
+.qr-dim-bot{width:100%;flex:1;background:rgba(0,0,0,0.5);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:16px}
 .qr-dim-row{display:flex;width:100%;align-items:stretch}
 .qr-dim-side{flex:1;background:rgba(0,0,0,0.5)}
-.qr-frame-box{width:230px;height:230px;position:relative;flex-shrink:0}
-.qc{position:absolute;width:34px;height:34px;border-color:#60a5fa;border-style:solid}
+.qr-frame{width:240px;height:240px;position:relative;flex-shrink:0}
+.qc{position:absolute;width:36px;height:36px;border-color:#60a5fa;border-style:solid}
 .qc.tl{top:0;left:0;border-width:4px 0 0 4px;border-radius:6px 0 0 0}
 .qc.tr{top:0;right:0;border-width:4px 4px 0 0;border-radius:0 6px 0 0}
 .qc.bl{bottom:0;left:0;border-width:0 0 4px 4px;border-radius:0 0 0 6px}
 .qc.br{bottom:0;right:0;border-width:0 4px 4px 0;border-radius:0 0 6px 0}
-.qr-scan-line{position:absolute;left:4px;right:4px;height:2px;background:linear-gradient(90deg,transparent,#60a5fa,transparent);animation:scan 2s linear infinite}
-@keyframes scan{0%{top:4px}100%{top:calc(100% - 4px)}}
-.qr-hint-box{background:rgba(0,0,0,0.75);border-radius:10px;padding:8px 18px;text-align:center;margin-top:12px}
-.qr-hint-box p{color:#cbd5e1;font-size:12px;line-height:1.5}
-.qr-hint-box strong{color:#60a5fa}
+.qr-scan-line{position:absolute;left:4px;right:4px;height:2px;background:linear-gradient(90deg,transparent,#60a5fa,transparent);animation:scanline 2s linear infinite}
+@keyframes scanline{0%{top:4px}100%{top:calc(100% - 4px)}}
+.qr-label{background:rgba(0,0,0,0.75);border-radius:12px;padding:10px 20px;text-align:center}
+.qr-label p{color:#e2e8f0;font-size:13px;line-height:1.5}
+.qr-label strong{color:#60a5fa;font-size:14px}
 
-.qr-success-flash{position:absolute;inset:0;background:rgba(16,185,129,0.3);display:none;align-items:center;justify-content:center;z-index:8}
-.qr-success-flash.show{display:flex;animation:flashOut .7s ease forwards}
-.qr-error-flash{position:absolute;inset:0;background:rgba(239,68,68,0.25);display:none;align-items:center;justify-content:center;z-index:8;flex-direction:column;gap:12px}
-.qr-error-flash.show{display:flex;animation:flashOut 1.3s ease forwards}
-.qr-error-text{color:#fff;font-size:13px;font-weight:700;background:rgba(180,20,20,0.92);padding:10px 18px;border-radius:12px;text-align:center;max-width:84%;line-height:1.5}
-@keyframes flashOut{0%{opacity:1}100%{opacity:0}}
+/* flash overlays */
+.qr-success-flash{position:absolute;inset:0;background:rgba(16,185,129,0.35);display:none;align-items:center;justify-content:center;z-index:8}
+.qr-success-flash.show{display:flex;animation:fadeOut .7s ease forwards}
+.qr-error-flash{position:absolute;inset:0;background:rgba(239,68,68,0.3);display:none;align-items:center;justify-content:center;z-index:8;flex-direction:column;gap:14px}
+.qr-error-flash.show{display:flex;animation:fadeOut 1.4s ease forwards}
+@keyframes fadeOut{0%{opacity:1}100%{opacity:0}}
+.qr-error-bubble{background:rgba(160,10,10,0.95);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:14px;text-align:center;max-width:80%;line-height:1.5}
 
-.qr-status-bar{position:absolute;bottom:0;left:0;right:0;background:rgba(10,22,40,0.9);padding:8px 14px;display:flex;align-items:center;gap:8px;z-index:3}
-.qr-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.qr-dot.loading{background:#f59e0b;animation:bl 1s infinite}
-.qr-dot.ready{background:#10b981;animation:bl 1.5s infinite}
+/* bottom bar — status only, no manual input */
+.qr-bottom{background:#0f1f3d;padding:10px 16px 16px;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0;display:flex;flex-direction:column;gap:6px}
+.qr-status-row{display:flex;align-items:center;gap:8px}
+.qr-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;transition:background .3s}
+.qr-dot.waiting{background:#64748b}
+.qr-dot.loading{background:#f59e0b;animation:pulse 1s infinite}
+.qr-dot.ready{background:#10b981;animation:pulse 1.5s infinite}
 .qr-dot.error{background:#ef4444}
 .qr-dot.success{background:#10b981}
-@keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
-.qr-status-txt{font-size:11px;color:#90cdf4;flex:1}
-
-.qr-bottom{background:#0f1f3d;padding:10px 14px 16px;display:flex;flex-direction:column;gap:8px;border-top:1px solid rgba(255,255,255,0.08);flex-shrink:0}
-.manual-toggle{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#90cdf4;cursor:pointer;padding:6px;user-select:none}
-.manual-box{background:rgba(255,255,255,0.05);border-radius:12px;padding:12px;display:none;flex-direction:column;gap:8px}
-.manual-box.open{display:flex}
-.manual-label{font-size:11px;color:#90cdf4;font-weight:600}
-.manual-input{width:100%;padding:10px 12px;border-radius:10px;border:1.5px solid rgba(96,165,250,0.3);background:rgba(255,255,255,0.08);color:#f1f5f9;font-size:13px;outline:none;font-family:inherit;text-transform:uppercase;letter-spacing:.5px}
-.manual-input::placeholder{color:#475569;text-transform:none;letter-spacing:0}
-.manual-input:focus{border-color:#60a5fa}
-.manual-submit{padding:10px;border-radius:10px;border:none;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;font-size:13px;font-weight:700;cursor:pointer;width:100%}
-.manual-hint{font-size:10px;color:#64748b;text-align:center;line-height:1.5}
-.qr-cancel-btn{font-size:13px;color:#64748b;background:none;border:none;cursor:pointer;padding:4px;text-align:center;width:100%}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.qr-status-txt{font-size:12px;color:#90cdf4;flex:1}
+.qr-close-btn{padding:11px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#94a3b8;font-size:13px;font-weight:600;cursor:pointer;text-align:center;width:100%}
+.qr-close-btn:active{opacity:.7}
 
 /* ═══ MODAL ═══ */
 .modal-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:300;align-items:flex-end;justify-content:center}
@@ -169,7 +159,7 @@ body{background:#f0f4ff;min-height:100vh}
 .modal-eco{font-size:12px;color:#059669;margin-top:6px;font-weight:600}
 .modal-btn{margin-top:16px;width:100%;padding:14px;background:linear-gradient(135deg,#1c4eb4,#7c3aed);color:#fff;border:none;border-radius:12px;font-size:15px;font-weight:800;cursor:pointer}
 
-/* ═══ ADMIN LOGIN ═══ */
+/* ═══ ADMIN ═══ */
 .al-wrap{max-width:400px;margin:0 auto;padding:60px 20px}
 .al-card{background:#fff;border-radius:20px;padding:32px 24px;box-shadow:0 8px 40px rgba(28,78,180,0.12);text-align:center;border:1.5px solid #e0eaff}
 .al-logo{width:54px;height:54px;border-radius:50%;object-fit:contain;margin-bottom:10px}
@@ -180,15 +170,13 @@ body{background:#f0f4ff;min-height:100vh}
 .al-btn{width:100%;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;font-size:14px;font-weight:800;cursor:pointer}
 .al-err{font-size:12px;color:#ef4444;margin-top:7px;display:none}
 .al-back{font-size:13px;color:#2563eb;cursor:pointer;margin-top:14px}
-
-/* ═══ ADMIN DASHBOARD ═══ */
 .ad-wrap{max-width:960px;margin:0 auto;padding:16px 14px 50px}
 .ad-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .ad-left{display:flex;align-items:center;gap:12px}
 .ad-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#1c4eb4,#2563eb);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .ad-title{font-size:18px;font-weight:900;color:#1c4eb4}
 .ad-sub{font-size:11px;color:#6b7280;margin-top:1px;display:flex;align-items:center;gap:5px}
-.sync-dot{width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:bl 2s infinite}
+.sync-dot{width:7px;height:7px;border-radius:50%;background:#10b981;display:inline-block;animation:pulse 2s infinite}
 .ad-logout{font-size:12px;color:#ef4444;cursor:pointer;padding:6px 14px;border-radius:20px;border:1.5px solid #fecaca;background:#fff5f5;font-weight:700}
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:14px}
 .stat-card{background:#fff;border-radius:14px;padding:16px 14px;box-shadow:0 2px 12px rgba(28,78,180,0.08);position:relative;overflow:hidden;border:1.5px solid #e0eaff}
@@ -235,8 +223,6 @@ body{background:#f0f4ff;min-height:100vh}
 .pg-btns{display:flex;gap:4px}
 .pg-btn{padding:4px 10px;border-radius:7px;border:1.5px solid #dbeafe;background:#fff;color:#6b7280;font-size:10px;cursor:pointer;font-weight:600}
 .pg-btn.active{background:linear-gradient(135deg,#1c4eb4,#2563eb);color:#fff;border-color:transparent}
-
-/* confirm dialog */
 .confirm-wrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;padding:20px}
 .confirm-wrap.show{display:flex}
 .confirm-box{background:#fff;border-radius:20px;padding:28px 24px;max-width:340px;width:100%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.25)}
@@ -246,8 +232,6 @@ body{background:#f0f4ff;min-height:100vh}
 .confirm-btns{display:flex;gap:10px}
 .confirm-cancel{flex:1;padding:11px;border-radius:10px;border:1.5px solid #e5e7eb;background:#f8fafc;color:#374151;font-size:13px;font-weight:700;cursor:pointer}
 .confirm-ok{flex:1;padding:11px;border-radius:10px;border:none;background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;font-size:13px;font-weight:800;cursor:pointer}
-
-/* toast & confetti */
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(60px);background:#1c4eb4;color:#fff;padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:999;transition:transform .3s;white-space:nowrap;max-width:92vw;box-shadow:0 4px 20px rgba(28,78,180,0.4)}
 .toast.show{transform:translateX(-50%) translateY(0)}.toast.error{background:#dc2626}.toast.success{background:#059669}
 .conf{position:fixed;pointer-events:none;border-radius:50%;animation:cf 3s ease forwards;z-index:400}
@@ -270,7 +254,6 @@ body{background:#f0f4ff;min-height:100vh}
       </div>
       <div class="admin-btn" onclick="showPage('pageAdminLogin')">⚙ Admin</div>
     </div>
-
     <div class="name-box">
       <div class="name-box-title">
         <svg viewBox="0 0 24 24" fill="none" width="13" height="13"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round"/></svg>
@@ -282,7 +265,6 @@ body{background:#f0f4ff;min-height:100vh}
       </div>
       <div class="name-hint">* กรุณากรอกชื่อก่อนกดแสตมป์</div>
     </div>
-
     <div class="jigsaw-box">
       <div class="jig-grid">
         <div class="jpiece pos-tl locked" id="jp-customer">
@@ -307,12 +289,10 @@ body{background:#f0f4ff;min-height:100vh}
         <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
       </div>
     </div>
-
     <div class="complete-banner" id="completeBanner">
       <div class="cb-title">🎉 จิ๊กซอว์สมบูรณ์!</div>
       <div class="cb-sub">ขอบคุณที่ร่วมกิจกรรมครบทั้ง 4 บูท 🌿</div>
     </div>
-
     <div class="booth-section">
       <div class="booth-divider">เลือกบูทเพื่อแสตมป์</div>
       <div class="booth-list" id="boothList"></div>
@@ -320,72 +300,76 @@ body{background:#f0f4ff;min-height:100vh}
   </div>
 </div>
 
-<!-- QR SCREEN -->
+<!-- QR SCREEN — กล้องเต็มจอ ไม่มีช่องกรอกรหัส -->
 <div class="qr-screen" id="qrScreen">
   <div class="qr-topbar">
     <button class="qr-back" onclick="closeQR()">‹</button>
     <div class="qr-topbar-info">
       <div class="qr-topbar-title">สแกน QR Code</div>
-      <div class="qr-topbar-sub" id="qrTopSub">แตะเพื่อเปิดกล้อง</div>
+      <div class="qr-topbar-sub" id="qrTopSub">กำลังเปิดกล้อง...</div>
     </div>
     <span class="qr-badge" id="qrBadge"></span>
   </div>
+
   <div class="qr-cam">
     <video id="qrVideo" autoplay playsinline muted webkit-playsinline></video>
     <canvas id="qrCanvas"></canvas>
+
+    <!-- tap overlay (iOS fix) -->
     <div class="tap-start" id="tapStart" onclick="userTapStart()">
-      <div class="tap-icon">
-        <svg viewBox="0 0 24 24" fill="none" width="40" height="40">
-          <rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/>
-          <rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="2"/>
-          <rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="2"/>
-          <rect x="16" y="16" width="2" height="2" fill="white"/>
-          <rect x="19" y="16" width="2" height="2" fill="white"/>
-          <rect x="16" y="19" width="2" height="2" fill="white"/>
-          <rect x="19" y="19" width="2" height="2" fill="white"/>
+      <div class="tap-ring">
+        <svg viewBox="0 0 24 24" fill="none" width="48" height="48">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+          <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+          <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="white" stroke-width="2"/>
+          <rect x="16.5" y="16.5" width="2" height="2" rx=".5" fill="white"/>
+          <rect x="20" y="16.5" width="1" height="2" rx=".5" fill="white"/>
+          <rect x="16.5" y="20" width="2" height="1" rx=".5" fill="white"/>
+          <rect x="20" y="20" width="1" height="1" rx=".5" fill="white"/>
         </svg>
       </div>
-      <div class="tap-text">แตะที่นี่เพื่อเปิดกล้อง</div>
-      <div class="tap-sub">กล้องจะเปิดและสแกน QR อัตโนมัติ</div>
+      <div class="tap-text">แตะเพื่อเปิดกล้อง</div>
+      <div class="tap-sub">สแกน QR บูท <span id="tapBoothName" style="color:#60a5fa;font-weight:800"></span></div>
     </div>
+
+    <!-- success flash -->
     <div class="qr-success-flash" id="qrFlash">
-      <svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="38" fill="#10b981"/><path d="M22 40l13 13 23-23" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      <svg viewBox="0 0 90 90" width="90" height="90"><circle cx="45" cy="45" r="43" fill="#10b981"/><path d="M25 45l15 15 25-25" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
     </div>
+
+    <!-- error flash -->
     <div class="qr-error-flash" id="qrErrorFlash">
-      <svg viewBox="0 0 80 80" width="80" height="80"><circle cx="40" cy="40" r="38" fill="#ef4444"/><path d="M27 27l26 26M53 27l-26 26" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
-      <div class="qr-error-text" id="qrErrorText">QR ไม่ตรงกับบูทนี้!</div>
+      <svg viewBox="0 0 90 90" width="90" height="90"><circle cx="45" cy="45" r="43" fill="#ef4444"/><path d="M30 30l30 30M60 30L30 60" stroke="#fff" stroke-width="6" stroke-linecap="round"/></svg>
+      <div class="qr-error-bubble" id="qrErrorText">QR ไม่ตรงกับบูทนี้</div>
     </div>
+
+    <!-- scan frame -->
     <div class="qr-overlay">
       <div class="qr-dim-top"></div>
       <div class="qr-dim-row">
         <div class="qr-dim-side"></div>
-        <div class="qr-frame-box">
-          <div class="qc tl"></div><div class="qc tr"></div><div class="qc bl"></div><div class="qc br"></div>
+        <div class="qr-frame">
+          <div class="qc tl"></div><div class="qc tr"></div>
+          <div class="qc bl"></div><div class="qc br"></div>
           <div class="qr-scan-line"></div>
         </div>
         <div class="qr-dim-side"></div>
       </div>
       <div class="qr-dim-bot">
-        <div class="qr-hint-box"><p>นำ QR Code บูท <strong id="qrHintName"></strong> เข้ากรอบสีฟ้า</p></div>
+        <div class="qr-label">
+          <p>นำ QR Code บูท <strong id="qrHintName"></strong> เข้ากรอบ</p>
+        </div>
       </div>
     </div>
-    <div class="qr-status-bar">
-      <div class="qr-dot loading" id="qrDot"></div>
-      <div class="qr-status-txt" id="qrTxt">แตะหน้าจอเพื่อเปิดกล้อง</div>
-    </div>
   </div>
+
+  <!-- bottom: status + close only -->
   <div class="qr-bottom">
-    <div class="manual-toggle" onclick="toggleManual()">
-      <svg viewBox="0 0 24 24" fill="none" width="14" height="14"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" stroke="#90cdf4" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>กรอกรหัสด้วยตัวเอง (ถ้ากล้องไม่ทำงาน)</span>
+    <div class="qr-status-row">
+      <div class="qr-dot waiting" id="qrDot"></div>
+      <div class="qr-status-txt" id="qrTxt">รอเปิดกล้อง...</div>
     </div>
-    <div class="manual-box" id="manualBox">
-      <div class="manual-label">กรอกรหัส QR Code ของบูทนี้</div>
-      <input class="manual-input" id="manualInput" type="text" placeholder="WD-JOURNEY-BOOTH-..." autocomplete="off" spellcheck="false"/>
-      <div class="manual-hint">รหัสบูทนี้คือ: <strong id="manualCode" style="color:#60a5fa"></strong></div>
-      <button class="manual-submit" onclick="submitManual()">ยืนยันรหัส</button>
-    </div>
-    <button class="qr-cancel-btn" onclick="closeQR()">ยกเลิก / ปิดกล้อง</button>
+    <button class="qr-close-btn" onclick="closeQR()">✕ ปิดกล้อง / ยกเลิก</button>
   </div>
 </div>
 
@@ -428,10 +412,7 @@ body{background:#f0f4ff;min-height:100vh}
     <div class="ad-topbar">
       <div class="ad-left">
         <div class="ad-avatar"><svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="white" stroke-width="2"/><path d="M4 20 Q12 14 20 20" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div>
-          <div class="ad-title">Admin Dashboard</div>
-          <div class="ad-sub"><span class="sync-dot"></span><span id="syncStatus">E-Stamp Management</span></div>
-        </div>
+        <div><div class="ad-title">Admin Dashboard</div><div class="ad-sub"><span class="sync-dot"></span><span id="syncStatus">E-Stamp Management</span></div></div>
       </div>
       <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
         <button class="ref-btn" onclick="fetchData()">🔄 รีเฟรช</button>
@@ -468,7 +449,7 @@ body{background:#f0f4ff;min-height:100vh}
   </div>
 </div>
 
-<!-- CONFIRM DIALOG -->
+<!-- CONFIRM -->
 <div class="confirm-wrap" id="confirmWrap">
   <div class="confirm-box">
     <div class="confirm-icon"><svg viewBox="0 0 24 24" fill="none" width="28" height="28"><polyline points="3 6 5 6 21 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11v6M14 11v6" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/><path d="M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -484,56 +465,50 @@ body{background:#f0f4ff;min-height:100vh}
 <div class="toast" id="toast"></div>
 
 <script>
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
+var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxVVGyO_5JcK1wQQbkYWVWUN0g50JB65XiNuv7wxAf1bHkhe_jXOdTG5MMHwrbEKen9/exec";
 
-/* QR codes ที่แต่ละบูทจะสร้างแปะไว้ */
-var QR_CODES={
-  customer:'WD-JOURNEY-BOOTH-CUSTOMER',
-  result:'WD-JOURNEY-BOOTH-RESULT',
+var QR_CODES = {
+  customer: 'WD-JOURNEY-BOOTH-CUSTOMER',
+  result:   'WD-JOURNEY-BOOTH-RESULT',
   excellent:'WD-JOURNEY-BOOTH-EXCELLENT',
   innovation:'WD-JOURNEY-BOOTH-INNOVATION'
 };
 
-var BOOTHS=[
-  {id:'customer',label:'Customer',sub:'บูทเกี่ยวกับลูกค้า',cls:'br-c',jpId:'jp-customer',color:'#1c4eb4',badgeBg:'#eff6ff',
+var BOOTHS = [
+  {id:'customer',  label:'Customer',   sub:'บูทเกี่ยวกับลูกค้า',  cls:'br-c', jpId:'jp-customer',  color:'#1c4eb4', badgeBg:'#eff6ff',
    svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="8" r="4" stroke="#1c4eb4" stroke-width="2"/><circle cx="7" cy="10.5" r="2.5" stroke="#1c4eb4" stroke-width="1.5"/><circle cx="17" cy="10.5" r="2.5" stroke="#1c4eb4" stroke-width="1.5"/><path d="M2 20 Q7 16 12 16 Q17 16 22 20" stroke="#1c4eb4" stroke-width="2" stroke-linecap="round" fill="none"/></svg>'},
-  {id:'result',label:'Result',sub:'บูทเกี่ยวกับผลลัพธ์',cls:'br-r',jpId:'jp-result',color:'#059669',badgeBg:'#f0fdf4',
+  {id:'result',    label:'Result',     sub:'บูทเกี่ยวกับผลลัพธ์', cls:'br-r', jpId:'jp-result',    color:'#059669', badgeBg:'#f0fdf4',
    svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><rect x="3" y="14" width="4" height="7" rx="1" fill="#059669"/><rect x="10" y="10" width="4" height="11" rx="1" fill="#059669"/><rect x="17" y="6" width="4" height="15" rx="1" fill="#059669"/><path d="M5 12L12 8L19 4" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg>'},
-  {id:'excellent',label:'Excellent',sub:'บูทความเป็นเลิศ',cls:'br-e',jpId:'jp-excellent',color:'#d97706',badgeBg:'#fffbeb',
+  {id:'excellent', label:'Excellent',  sub:'บูทความเป็นเลิศ',     cls:'br-e', jpId:'jp-excellent', color:'#d97706', badgeBg:'#fffbeb',
    svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M12 2l3 7h7l-6 4 2 7-6-4-6 4 2-7-6-4h7z" stroke="#d97706" stroke-width="2" stroke-linejoin="round" fill="#fde68a"/></svg>'},
-  {id:'innovation',label:'Innovation',sub:'บูทนวัตกรรม',cls:'br-i',jpId:'jp-innovation',color:'#7c3aed',badgeBg:'#f5f3ff',
+  {id:'innovation',label:'Innovation', sub:'บูทนวัตกรรม',          cls:'br-i', jpId:'jp-innovation',color:'#7c3aed', badgeBg:'#f5f3ff',
    svg:'<svg viewBox="0 0 24 24" fill="none" width="22" height="22"><circle cx="12" cy="10" r="5" stroke="#7c3aed" stroke-width="2"/><path d="M9.5 14.5Q10 16 10 17h4q0-1 .5-2.5" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/><rect x="10" y="17" width="4" height="2" rx=".5" stroke="#7c3aed" stroke-width="1.5"/><line x1="12" y1="4" x2="12" y2="2" stroke="#7c3aed" stroke-width="1.5" stroke-linecap="round"/></svg>'}
 ];
 
 var DEMO_NAMES=[['สมชาย ใจดี','ฝ่ายผลิต'],['สุดา รักษ์ไทย','ฝ่ายขาย'],['วิชัย มั่นคง','ฝ่าย HR'],['นภา สดใส','ฝ่าย IT'],['ประสิทธิ์ เก่งงาน','ฝ่ายบัญชี'],['มาลี วงศ์งาม','ฝ่ายการตลาด'],['อนุชา ดีเลิศ','ฝ่ายผลิต'],['กานดา สุขใจ','ฝ่าย QA'],['พงษ์ศักดิ์ ชาญวิทย์','ฝ่ายวิศวกรรม'],['รัตนา พรมมา','ฝ่ายจัดซื้อ']];
-
 var stamped={customer:false,result:false,excellent:false,innovation:false};
 var participantDB=[],curPage=1,PER=8,pendingAction=null;
 var currentBooth=null,videoStream=null,scanInterval=null,scanLocked=false,cameraStarted=false;
 
-/* ─── PAGES ─── */
 function showPage(id){document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
 
-/* ─── BUILD BOOTH LIST ─── */
 function buildBooths(){
   document.getElementById('boothList').innerHTML=BOOTHS.map(function(b){
     var done=stamped[b.id];
-    var btnHtml=done
-      ? '<button class="br-btn stamped" disabled><svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M5 12l5 5L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>แสตมป์แล้ว</button>'
-      : '<button class="br-btn" onclick="openQR(\''+b.id+'\')"><svg viewBox="0 0 24 24" fill="none" width="13" height="13"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="17" y="17" width="2" height="2" fill="white"/><rect x="20" y="17" width="1" height="2" fill="white"/><rect x="17" y="20" width="2" height="1" fill="white"/></svg>แสตมป์!</button>';
+    var btn=done
+      ?'<button class="br-btn stamped" disabled><svg viewBox="0 0 24 24" fill="none" width="13" height="13"><path d="M5 12l5 5L19 7" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>แสตมป์แล้ว</button>'
+      :'<button class="br-btn" onclick="openQR(\''+b.id+'\')"><svg viewBox="0 0 24 24" fill="none" width="14" height="14"><rect x="3" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="white" stroke-width="1.8"/><rect x="17" y="17" width="2" height="2" fill="white"/><rect x="20" y="17" width="1" height="2" fill="white"/><rect x="17" y="20" width="2" height="1" fill="white"/></svg>แสตมป์!</button>';
     return '<div class="booth-row '+b.cls+(done?' done':'')+'">'+
       (done?'<div class="done-badge">✓</div>':'')+
       '<div class="br-icon">'+b.svg+'</div>'+
       '<div class="br-info"><div class="br-name">'+b.label+'</div><div class="br-sub">'+b.sub+'</div></div>'+
-      btnHtml+'</div>';
+      btn+'</div>';
   }).join('');
 }
 
-/* ─── UPDATE JIGSAW ─── */
 function updateJigsaw(){
   BOOTHS.forEach(function(b){
-    var el=document.getElementById(b.jpId);
-    if(!el)return;
+    var el=document.getElementById(b.jpId);if(!el)return;
     if(stamped[b.id]){el.classList.remove('locked');el.classList.add('unlocked');}
     else{el.classList.add('locked');el.classList.remove('unlocked');}
   });
@@ -542,7 +517,7 @@ function updateJigsaw(){
   document.getElementById('progFill').style.width=(n/4*100)+'%';
 }
 
-/* ─── OPEN QR SCANNER ─── */
+/* ════ QR SCANNER ════ */
 function openQR(id){
   if(stamped[id])return;
   var name=document.getElementById('empName').value.trim();
@@ -553,31 +528,27 @@ function openQR(id){
   badge.textContent=b.label; badge.style.background=b.badgeBg; badge.style.color=b.color;
   document.getElementById('qrHintName').textContent=b.label;
   document.getElementById('qrTopSub').textContent='บูท '+b.label+' — แตะเพื่อเปิดกล้อง';
-  document.getElementById('manualCode').textContent=QR_CODES[id];
-  document.getElementById('manualInput').value='';
-  document.getElementById('manualBox').classList.remove('open');
+  document.getElementById('tapBoothName').textContent=b.label;
   document.getElementById('tapStart').classList.remove('hidden');
   document.getElementById('qrFlash').classList.remove('show');
   document.getElementById('qrErrorFlash').classList.remove('show');
-  setQRStatus('loading','แตะหน้าจอเพื่อเปิดกล้อง');
+  setStatus('waiting','แตะหน้าจอเพื่อเปิดกล้อง');
   document.getElementById('qrScreen').classList.add('show');
   document.body.style.overflow='hidden';
 }
 
-/* ─── TAP TO START (iOS fix) ─── */
 function userTapStart(){
   if(cameraStarted)return;
   cameraStarted=true;
   document.getElementById('tapStart').classList.add('hidden');
-  setQRStatus('loading','กำลังขอสิทธิ์กล้อง...');
+  setStatus('loading','กำลังขอสิทธิ์กล้อง...');
+  document.getElementById('qrTopSub').textContent='กำลังเปิดกล้อง...';
   startCamera();
 }
 
-/* ─── START CAMERA ─── */
 function startCamera(){
   if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){
-    setQRStatus('error','Browser ไม่รองรับกล้อง — กรอกรหัสด้านล่างแทน');
-    document.getElementById('manualBox').classList.add('open');
+    setStatus('error','Browser ไม่รองรับกล้อง');
     return;
   }
   var modes=[
@@ -587,7 +558,7 @@ function startCamera(){
     {video:true}
   ];
   function tryMode(i){
-    if(i>=modes.length){setQRStatus('error','เปิดกล้องไม่ได้ — กรอกรหัสด้านล่างแทน');document.getElementById('manualBox').classList.add('open');return;}
+    if(i>=modes.length){setStatus('error','เปิดกล้องไม่ได้');return;}
     navigator.mediaDevices.getUserMedia(modes[i])
       .then(function(stream){
         videoStream=stream;
@@ -595,41 +566,33 @@ function startCamera(){
         v.srcObject=stream;
         var p=v.play();
         if(p!==undefined){p.catch(function(){stream.getTracks().forEach(function(t){t.stop();});videoStream=null;tryMode(i+1);});}
-        waitVideoReady(v);
+        waitReady(v);
       })
       .catch(function(err){
-        if(err.name==='NotAllowedError'||err.name==='PermissionDeniedError'){
-          setQRStatus('error','ถูกปฏิเสธสิทธิ์กล้อง — กรอกรหัสด้านล่างแทน');
-          document.getElementById('manualBox').classList.add('open');
-          return;
-        }
+        if(err.name==='NotAllowedError'||err.name==='PermissionDeniedError'){setStatus('error','ถูกปฏิเสธสิทธิ์กล้อง');return;}
         tryMode(i+1);
       });
   }
   tryMode(0);
 }
 
-function waitVideoReady(v){
+function waitReady(v){
   var elapsed=0;
   var t=setInterval(function(){
     elapsed+=100;
     if(v.readyState>=2&&v.videoWidth>0){
       clearInterval(t);
       var b=BOOTHS.find(function(x){return x.id===currentBooth;});
-      document.getElementById('qrTopSub').textContent='กล้องพร้อม — สแกน QR บูท '+(b?b.label:'');
-      setQRStatus('ready','กำลังสแกน — นำ QR เข้ากรอบสีฟ้า');
+      document.getElementById('qrTopSub').textContent='กำลังสแกน — บูท '+(b?b.label:'');
+      setStatus('ready','กำลังสแกน QR — นำ QR เข้ากรอบสีฟ้า');
       startScanLoop();
     }
-    if(elapsed>12000){clearInterval(t);setQRStatus('error','กล้องไม่ตอบสนอง — กรอกรหัสด้านล่างแทน');document.getElementById('manualBox').classList.add('open');}
+    if(elapsed>12000){clearInterval(t);setStatus('error','กล้องไม่ตอบสนอง');}
   },100);
 }
 
-/* ─── DECODE QR ─── */
 function decodeQR(imgData,W,H){
-  var d=imgData.data;
-  var gray=new Uint8ClampedArray(d.length);
-  var inv=new Uint8ClampedArray(d.length);
-  var hi=new Uint8ClampedArray(d.length);
+  var d=imgData.data,gray=new Uint8ClampedArray(d.length),inv=new Uint8ClampedArray(d.length),hi=new Uint8ClampedArray(d.length);
   for(var i=0;i<d.length;i+=4){
     var lum=Math.round(0.299*d[i]+0.587*d[i+1]+0.114*d[i+2]);
     gray[i]=gray[i+1]=gray[i+2]=lum;gray[i+3]=255;
@@ -638,7 +601,6 @@ function decodeQR(imgData,W,H){
   }
   var sets=[
     {d:new ImageData(gray,W,H),m:'dontInvert'},
-    {d:new ImageData(gray,W,H),m:'onlyInvert'},
     {d:new ImageData(inv,W,H),m:'dontInvert'},
     {d:new ImageData(hi,W,H),m:'dontInvert'},
     {d:new ImageData(hi,W,H),m:'onlyInvert'},
@@ -648,11 +610,9 @@ function decodeQR(imgData,W,H){
   return null;
 }
 
-/* ─── SCAN LOOP ─── */
 function startScanLoop(){
   stopScanLoop();
-  var video=document.getElementById('qrVideo');
-  var canvas=document.getElementById('qrCanvas');
+  var video=document.getElementById('qrVideo'),canvas=document.getElementById('qrCanvas');
   var ctx=canvas.getContext('2d',{willReadFrequently:true});
   var fc=0;
   scanInterval=setInterval(function(){
@@ -662,52 +622,40 @@ function startScanLoop(){
     canvas.width=W;canvas.height=H;
     ctx.drawImage(video,0,0,W,H);
     var cx=Math.floor(W*0.175),cy=Math.floor(H*0.175),cw=Math.floor(W*0.65),ch=Math.floor(H*0.65);
-    var crop=ctx.getImageData(cx,cy,cw,ch);
-    var res=decodeQR(crop,cw,ch);
-    if(!res&&fc%3===0){var full=ctx.getImageData(0,0,W,H);res=decodeQR(full,W,H);}
-    if(res)handleQRResult(res);
+    var res=decodeQR(ctx.getImageData(cx,cy,cw,ch),cw,ch);
+    if(!res&&fc%3===0)res=decodeQR(ctx.getImageData(0,0,W,H),W,H);
+    if(res)handleResult(res);
   },200);
 }
 function stopScanLoop(){if(scanInterval){clearInterval(scanInterval);scanInterval=null;}}
 
-/* ─── QR RESULT ─── */
-function handleQRResult(data){
+function handleResult(data){
   if(scanLocked)return;
   var expected=QR_CODES[currentBooth];
   if(data===expected){
     scanLocked=true;stopScanLoop();
-    setQRStatus('success','สแกนสำเร็จ! ✅');
-    var flash=document.getElementById('qrFlash');flash.classList.add('show');
+    setStatus('success','สแกนสำเร็จ! ✅');
+    document.getElementById('qrFlash').classList.add('show');
     var cap=currentBooth;
-    setTimeout(function(){flash.classList.remove('show');},700);
-    setTimeout(function(){closeQR();setTimeout(function(){doStamp(cap);},150);},850);
+    setTimeout(function(){document.getElementById('qrFlash').classList.remove('show');},700);
+    setTimeout(function(){closeQR();setTimeout(function(){doStamp(cap);},150);},900);
   } else {
     scanLocked=true;stopScanLoop();
     var bObj=BOOTHS.find(function(x){return x.id===currentBooth;});
     var found=BOOTHS.find(function(x){return QR_CODES[x.id]===data;});
-    var msg=found?'นี่คือ QR บูท "'+found.label+'" — สแกน QR บูท "'+bObj.label+'"':'QR ไม่ถูกต้อง สแกน QR บูท "'+bObj.label+'"';
+    var msg=found?'นี่คือ QR บูท "'+found.label+'" ไม่ใช่บูท "'+bObj.label+'"':'QR ไม่ถูกต้อง กรุณาสแกน QR บูท "'+bObj.label+'"';
     document.getElementById('qrErrorText').textContent=msg;
     document.getElementById('qrErrorFlash').classList.add('show');
-    setQRStatus('error','QR ไม่ตรง — ลองใหม่');
-    showToast('❌ '+msg,'error');
+    setStatus('error','QR ไม่ตรง — รอสักครู่แล้วลองใหม่');
     setTimeout(function(){
       document.getElementById('qrErrorFlash').classList.remove('show');
       scanLocked=false;
-      setQRStatus('ready','กำลังสแกน — นำ QR เข้ากรอบสีฟ้า');
+      setStatus('ready','กำลังสแกน QR — นำ QR เข้ากรอบสีฟ้า');
       startScanLoop();
     },2500);
   }
 }
 
-/* ─── MANUAL INPUT ─── */
-function toggleManual(){document.getElementById('manualBox').classList.toggle('open');}
-function submitManual(){
-  var val=document.getElementById('manualInput').value.trim().toUpperCase();
-  if(!val){showToast('⚠️ กรุณากรอกรหัส','error');return;}
-  handleQRResult(val);
-}
-
-/* ─── CLOSE QR ─── */
 function closeQR(){
   stopScanLoop();
   if(videoStream){videoStream.getTracks().forEach(function(t){t.stop();});videoStream=null;}
@@ -716,17 +664,12 @@ function closeQR(){
   document.body.style.overflow='';
   currentBooth=null;cameraStarted=false;
 }
+function setStatus(type,msg){document.getElementById('qrDot').className='qr-dot '+type;document.getElementById('qrTxt').textContent=msg;}
 
-function setQRStatus(type,msg){
-  document.getElementById('qrDot').className='qr-dot '+type;
-  document.getElementById('qrTxt').textContent=msg;
-}
-
-/* ─── STAMP ─── */
+/* ════ STAMP ════ */
 function doStamp(id){
   if(stamped[id]){showToast('✅ บูทนี้แสตมป์แล้ว');return;}
-  stamped[id]=true;
-  buildBooths();updateJigsaw();
+  stamped[id]=true;buildBooths();updateJigsaw();
   var b=BOOTHS.find(function(x){return x.id===id;});
   showToast('🎉 แสตมป์บูท '+b.label+' สำเร็จ!','success');
   if(Object.values(stamped).filter(Boolean).length===4){
@@ -741,8 +684,7 @@ function saveToSheet(){
   var now=new Date();
   participantDB.push({id:Date.now(),name:name,dept:dept,customer:true,result:true,excellent:true,innovation:true,complete:true,total:4,time:now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'})});
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({employeeId:'EMP-'+Date.now(),name:name,department:dept,customer:stamped.customer,result:stamped.result,excellent:stamped.excellent,innovation:stamped.innovation})})
-    .then(function(){showToast('บันทึกลง Google Sheets ✅');})
-    .catch(function(){});
+    .then(function(){showToast('บันทึกลง Google Sheets ✅');}).catch(function(){});
 }
 
 function resetUser(){
@@ -754,126 +696,49 @@ function resetUser(){
 }
 
 function launchConfetti(){
-  var colors=['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa','#34d399','#fbbf24'];
-  for(var i=0;i<60;i++){(function(d){setTimeout(function(){var c=document.createElement('div');c.className='conf';c.style.cssText='left:'+Math.random()*100+'vw;top:-10px;background:'+colors[Math.floor(Math.random()*colors.length)]+';width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;animation-duration:'+(2+Math.random()*2)+'s';document.body.appendChild(c);setTimeout(function(){c.remove();},4000);},d);})(i*50);}
+  var c=['#1c4eb4','#2563eb','#059669','#d97706','#7c3aed','#60a5fa','#34d399','#fbbf24'];
+  for(var i=0;i<60;i++){(function(d){setTimeout(function(){var el=document.createElement('div');el.className='conf';el.style.cssText='left:'+Math.random()*100+'vw;top:-10px;background:'+c[Math.floor(Math.random()*c.length)]+';width:'+(6+Math.random()*8)+'px;height:'+(6+Math.random()*8)+'px;animation-duration:'+(2+Math.random()*2)+'s';document.body.appendChild(el);setTimeout(function(){el.remove();},4000);},d);})(i*50);}
 }
 
 var _tt=null;
 function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast'+(type?' '+type:'')+' show';if(_tt)clearTimeout(_tt);_tt=setTimeout(function(){t.classList.remove('show');},3000);}
 
-/* ─── ADMIN ─── */
-function doLogin(){
-  var u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value.trim();
-  if(u==='admin'&&p==='1234'){document.getElementById('loginErr').style.display='none';showPage('pageAdmin');fetchData();}
-  else document.getElementById('loginErr').style.display='block';
-}
+/* ════ ADMIN ════ */
+function doLogin(){var u=document.getElementById('loginUser').value.trim(),p=document.getElementById('loginPass').value.trim();if(u==='admin'&&p==='1234'){document.getElementById('loginErr').style.display='none';showPage('pageAdmin');fetchData();}else document.getElementById('loginErr').style.display='block';}
 function doLogout(){document.getElementById('loginUser').value='';document.getElementById('loginPass').value='';showPage('pageUser');}
-
 function fetchData(){
   document.getElementById('syncStatus').textContent='กำลังโหลด...';
   fetch(SCRIPT_URL+'?action=getAll&t='+Date.now())
     .then(function(r){return r.json();})
     .then(function(json){
-      if(json.rows&&json.rows.length>1){
-        participantDB=json.rows.slice(1).map(function(r,i){
-          return{id:i+1,time:r[0]?new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}):'-',name:r[2]||'ไม่ระบุ',dept:r[3]||'-',customer:r[4]==='TRUE'||r[4]===true||r[4]==='✓',result:r[5]==='TRUE'||r[5]===true||r[5]==='✓',excellent:r[6]==='TRUE'||r[6]===true||r[6]==='✓',innovation:r[7]==='TRUE'||r[7]===true||r[7]==='✓',total:Number(r[8])||0,complete:r[9]==='ครบ'||r[9]===true};
-        });
-      }
+      if(json.rows&&json.rows.length>1){participantDB=json.rows.slice(1).map(function(r,i){return{id:i+1,time:r[0]?new Date(r[0]).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'}):'-',name:r[2]||'ไม่ระบุ',dept:r[3]||'-',customer:r[4]==='TRUE'||r[4]===true||r[4]==='✓',result:r[5]==='TRUE'||r[5]===true||r[5]==='✓',excellent:r[6]==='TRUE'||r[6]===true||r[6]==='✓',innovation:r[7]==='TRUE'||r[7]===true||r[7]==='✓',total:Number(r[8])||0,complete:r[9]==='ครบ'||r[9]===true};});}
       document.getElementById('syncStatus').textContent='อัปเดต '+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-      showToast('โหลดข้อมูลจาก Sheets ✅');
-      updateStats();renderBars();curPage=1;renderTbl();
+      showToast('โหลดข้อมูลจาก Sheets ✅');updateStats();renderBars();curPage=1;renderTbl();
     })
     .catch(function(){document.getElementById('syncStatus').textContent='ใช้ข้อมูล Local';updateStats();renderBars();curPage=1;renderTbl();});
 }
-
-function updateStats(){
-  var total=participantDB.length,complete=participantDB.filter(function(r){return r.complete;}).length;
-  document.getElementById('stTotal').textContent=total;document.getElementById('stComplete').textContent=complete;
-  document.getElementById('stPartial').textContent=total-complete;
-  document.getElementById('stRate').textContent=total>0?Math.round(complete/total*100)+'%':'0%';
-}
-function renderBars(){
-  var total=participantDB.length||1;
-  document.getElementById('boothBars').innerHTML=BOOTHS.map(function(b){
-    var cnt=participantDB.filter(function(r){return r[b.id];}).length;
-    var pct=Math.round(cnt/total*100);
-    return '<div class="bbar"><span class="bbar-lbl" style="color:'+b.color+'">'+b.label+'</span><div class="bbar-track"><div class="bbar-fill" style="width:'+pct+'%;background:'+b.color+'"></div></div><span class="bbar-cnt">'+cnt+'</span></div>';
-  }).join('');
-}
-
-function deleteRow(rowId){
-  pendingAction=function(){
-    participantDB=participantDB.filter(function(r){return r.id!==rowId;});
-    updateStats();renderBars();renderTbl();showToast('ลบรายการเรียบร้อย','success');
-  };
-  var rec=participantDB.find(function(r){return r.id===rowId;});
-  document.getElementById('confirmTitle').textContent='ลบรายการนี้?';
-  document.getElementById('confirmSub').textContent='ลบข้อมูลของ "'+(rec?rec.name:'รายการนี้')+'" การลบไม่สามารถกู้คืนได้';
-  document.getElementById('confirmOkBtn').textContent='ลบเลย';
-  document.getElementById('confirmWrap').classList.add('show');
-}
-function confirmDeleteAll(){
-  if(participantDB.length===0){showToast('ไม่มีข้อมูลให้ลบ','error');return;}
-  pendingAction=function(){participantDB=[];updateStats();renderBars();curPage=1;renderTbl();showToast('ลบข้อมูลทั้งหมดเรียบร้อย','success');};
-  document.getElementById('confirmTitle').textContent='ลบข้อมูลทั้งหมด?';
-  document.getElementById('confirmSub').textContent='จะลบข้อมูลผู้เข้าร่วมทั้งหมด '+participantDB.length+' รายการ ไม่สามารถกู้คืนได้';
-  document.getElementById('confirmOkBtn').textContent='ลบทั้งหมดเลย';
-  document.getElementById('confirmWrap').classList.add('show');
-}
+function updateStats(){var total=participantDB.length,complete=participantDB.filter(function(r){return r.complete;}).length;document.getElementById('stTotal').textContent=total;document.getElementById('stComplete').textContent=complete;document.getElementById('stPartial').textContent=total-complete;document.getElementById('stRate').textContent=total>0?Math.round(complete/total*100)+'%':'0%';}
+function renderBars(){var total=participantDB.length||1;document.getElementById('boothBars').innerHTML=BOOTHS.map(function(b){var cnt=participantDB.filter(function(r){return r[b.id];}).length;var pct=Math.round(cnt/total*100);return'<div class="bbar"><span class="bbar-lbl" style="color:'+b.color+'">'+b.label+'</span><div class="bbar-track"><div class="bbar-fill" style="width:'+pct+'%;background:'+b.color+'"></div></div><span class="bbar-cnt">'+cnt+'</span></div>';}).join('');}
+function deleteRow(rowId){pendingAction=function(){participantDB=participantDB.filter(function(r){return r.id!==rowId;});updateStats();renderBars();renderTbl();showToast('ลบรายการเรียบร้อย','success');};var rec=participantDB.find(function(r){return r.id===rowId;});document.getElementById('confirmTitle').textContent='ลบรายการนี้?';document.getElementById('confirmSub').textContent='ลบข้อมูลของ "'+(rec?rec.name:'รายการนี้')+'" ไม่สามารถกู้คืนได้';document.getElementById('confirmOkBtn').textContent='ลบเลย';document.getElementById('confirmWrap').classList.add('show');}
+function confirmDeleteAll(){if(participantDB.length===0){showToast('ไม่มีข้อมูลให้ลบ','error');return;}pendingAction=function(){participantDB=[];updateStats();renderBars();curPage=1;renderTbl();showToast('ลบข้อมูลทั้งหมดเรียบร้อย','success');};document.getElementById('confirmTitle').textContent='ลบข้อมูลทั้งหมด?';document.getElementById('confirmSub').textContent='จะลบข้อมูลผู้เข้าร่วมทั้งหมด '+participantDB.length+' รายการ ไม่สามารถกู้คืนได้';document.getElementById('confirmOkBtn').textContent='ลบทั้งหมดเลย';document.getElementById('confirmWrap').classList.add('show');}
 function closeConfirm(){document.getElementById('confirmWrap').classList.remove('show');pendingAction=null;}
 document.getElementById('confirmOkBtn').addEventListener('click',function(){if(pendingAction){pendingAction();pendingAction=null;}closeConfirm();});
 document.getElementById('confirmWrap').addEventListener('click',function(e){if(e.target===this)closeConfirm();});
-
-function getFiltered(){
-  var q=(document.getElementById('srchInput').value||'').toLowerCase();
-  var f=document.getElementById('filtSel').value;
-  return participantDB.filter(function(r){
-    var mq=!q||r.name.toLowerCase().includes(q)||(r.dept||'').toLowerCase().includes(q);
-    var mf=f==='all'||(f==='complete'&&r.complete)||(f==='partial'&&!r.complete);
-    return mq&&mf;
-  });
-}
+function getFiltered(){var q=(document.getElementById('srchInput').value||'').toLowerCase();var f=document.getElementById('filtSel').value;return participantDB.filter(function(r){var mq=!q||r.name.toLowerCase().includes(q)||(r.dept||'').toLowerCase().includes(q);var mf=f==='all'||(f==='complete'&&r.complete)||(f==='partial'&&!r.complete);return mq&&mf;});}
 function filterTbl(){curPage=1;renderTbl();}
 function goPage(p){curPage=p;renderTbl();}
 function renderTbl(){
-  var filtered=getFiltered(),total=filtered.length;
-  var pages=Math.max(1,Math.ceil(total/PER)),start=(curPage-1)*PER;
-  var rows=filtered.slice(start,start+PER);
+  var filtered=getFiltered(),total=filtered.length,pages=Math.max(1,Math.ceil(total/PER)),start=(curPage-1)*PER,rows=filtered.slice(start,start+PER);
   var dot=function(v){return v?'<span class="sdot dot-on">✓</span>':'<span class="sdot dot-off">–</span>';};
-  document.getElementById('tblBody').innerHTML=rows.length===0?'<tr><td colspan="10" style="text-align:center;color:#93c5fd;padding:24px">ไม่มีข้อมูล</td></tr>':rows.map(function(r,i){
-    var badge=r.complete?'<span class="badge-ok">ครบ 4</span>':r.total===0?'<span class="badge-no">ยังไม่เริ่ม</span>':'<span class="badge-pt">'+r.total+'/4</span>';
-    return '<tr><td style="color:#9ca3af">'+(start+i+1)+'</td><td><div class="tbl-name">'+r.name+'</div></td><td><div class="tbl-dept">'+(r.dept||'-')+'</div></td><td>'+dot(r.customer)+'</td><td>'+dot(r.result)+'</td><td>'+dot(r.excellent)+'</td><td>'+dot(r.innovation)+'</td><td>'+badge+'</td><td style="color:#6b7280;font-size:10px">'+(r.time||'-')+'</td><td><button class="del-row-btn" onclick="deleteRow('+r.id+')">✕</button></td></tr>';
-  }).join('');
+  document.getElementById('tblBody').innerHTML=rows.length===0?'<tr><td colspan="10" style="text-align:center;color:#93c5fd;padding:24px">ไม่มีข้อมูล</td></tr>':rows.map(function(r,i){var badge=r.complete?'<span class="badge-ok">ครบ 4</span>':r.total===0?'<span class="badge-no">ยังไม่เริ่ม</span>':'<span class="badge-pt">'+r.total+'/4</span>';return'<tr><td style="color:#9ca3af">'+(start+i+1)+'</td><td><div class="tbl-name">'+r.name+'</div></td><td><div class="tbl-dept">'+(r.dept||'-')+'</div></td><td>'+dot(r.customer)+'</td><td>'+dot(r.result)+'</td><td>'+dot(r.excellent)+'</td><td>'+dot(r.innovation)+'</td><td>'+badge+'</td><td style="color:#6b7280;font-size:10px">'+(r.time||'-')+'</td><td><button class="del-row-btn" onclick="deleteRow('+r.id+')">✕</button></td></tr>';}).join('');
   document.getElementById('pgInfo').textContent='แสดง '+Math.min(start+1,total)+'–'+Math.min(start+PER,total)+' / '+total+' รายการ';
   var btns='';for(var p=1;p<=pages;p++)btns+='<button class="pg-btn'+(p===curPage?' active':'')+'" onclick="goPage('+p+')">'+p+'</button>';
   document.getElementById('pgBtns').innerHTML=btns;
 }
-
-function addDemo(){
-  var hours=['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30'];
-  for(var i=0;i<5;i++){
-    var nm=DEMO_NAMES[Math.floor(Math.random()*DEMO_NAMES.length)];
-    var isC=Math.random()>.35;
-    var s=isC?{customer:true,result:true,excellent:true,innovation:true}:{customer:Math.random()>.3,result:Math.random()>.4,excellent:Math.random()>.5,innovation:Math.random()>.5};
-    var tot=['customer','result','excellent','innovation'].filter(function(k){return s[k];}).length;
-    participantDB.push({id:Date.now()+i,name:nm[0],dept:nm[1],customer:s.customer,result:s.result,excellent:s.excellent,innovation:s.innovation,total:tot,complete:s.customer&&s.result&&s.excellent&&s.innovation,time:hours[Math.floor(Math.random()*hours.length)]});
-  }
-  updateStats();renderBars();curPage=1;renderTbl();showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅','success');
-}
-
-function exportCSV(){
-  var filtered=getFiltered();if(filtered.length===0){showToast('ไม่มีข้อมูลให้ Export','error');return;}
-  var h=['#','ชื่อ-นามสกุล','แผนก','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];
-  var rows=filtered.map(function(r,i){return[i+1,r.name,r.dept||'',r.customer?'✓':'✗',r.result?'✓':'✗',r.excellent?'✓':'✗',r.innovation?'✓':'✗',r.complete?'ครบ 4 บูท':(r.total||0)+'/4',r.time||''];});
-  var csv=[h].concat(rows).map(function(row){return row.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');
-  var blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
-  var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='wd-estamp.csv';a.click();URL.revokeObjectURL(url);
-  showToast('Export CSV สำเร็จ ✅','success');
-}
-
+function addDemo(){var hours=['08:30','09:15','10:00','10:45','11:20','13:00','13:45','14:30'];for(var i=0;i<5;i++){var nm=DEMO_NAMES[Math.floor(Math.random()*DEMO_NAMES.length)];var isC=Math.random()>.35;var s=isC?{customer:true,result:true,excellent:true,innovation:true}:{customer:Math.random()>.3,result:Math.random()>.4,excellent:Math.random()>.5,innovation:Math.random()>.5};var tot=['customer','result','excellent','innovation'].filter(function(k){return s[k];}).length;participantDB.push({id:Date.now()+i,name:nm[0],dept:nm[1],customer:s.customer,result:s.result,excellent:s.excellent,innovation:s.innovation,total:tot,complete:s.customer&&s.result&&s.excellent&&s.innovation,time:hours[Math.floor(Math.random()*hours.length)]});}updateStats();renderBars();curPage=1;renderTbl();showToast('เพิ่มข้อมูลทดสอบ 5 รายการ ✅','success');}
+function exportCSV(){var filtered=getFiltered();if(filtered.length===0){showToast('ไม่มีข้อมูลให้ Export','error');return;}var h=['#','ชื่อ-นามสกุล','แผนก','Customer','Result','Excellent','Innovation','สถานะ','เวลา'];var rows=filtered.map(function(r,i){return[i+1,r.name,r.dept||'',r.customer?'✓':'✗',r.result?'✓':'✗',r.excellent?'✓':'✗',r.innovation?'✓':'✗',r.complete?'ครบ 4 บูท':(r.total||0)+'/4',r.time||''];});var csv=[h].concat(rows).map(function(row){return row.map(function(c){return'"'+String(c).replace(/"/g,'""')+'"';}).join(',');}).join('\n');var blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});var url=URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='wd-estamp.csv';a.click();URL.revokeObjectURL(url);showToast('Export CSV สำเร็จ ✅','success');}
 document.getElementById('modalWrap').addEventListener('click',function(e){if(e.target===this)resetUser();});
-buildBooths();
-updateJigsaw();
+buildBooths();updateJigsaw();
 </script>
 </body>
 </html>
